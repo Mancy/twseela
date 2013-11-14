@@ -1,0 +1,42 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("user_messages.new_message") %></h2>
+  <div class="content_container">
+    <p></p>
+    <%= form_for(@message, :url => user_messages_path(@message.sender_id) ) do |f| %>
+      <%= render :partial=>'/shared/form_errors', :locals=>{:obj => @message} %>
+      <div id="hidden_fields">
+        <%= hidden_field "message", "sender_id", :value => @message.sender_id, :name=>"message[sender_id]" %>
+        <%= hidden_field "message", "recipient_id", :value => @message.recipient_id, :name=>"message[recipient_id]" %>
+      </div>
+      <div class="form_side">
+        <span class="form_item clearfix">
+          <%= f.label :from, :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= link_to image_tag(@message.sender.accounts.default_one.first.my_image(:square), :title => @message.sender.name ), @message.sender %>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :to, :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= link_to image_tag(@message.recipient.accounts.default_one.first.my_image(:square), :title => @message.recipient.name ), @message.recipient %>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :subject, :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= f.text_field :subject, :class=>"input_txt", :placeholder => t("holders.title") %>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :body, :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= f.text_area :body, :class=>"input_txt large"%>
+        </span>
+      </div>
+      
+      <div class="submit clearfix">
+        <%= f.submit :class=>"submit_btn send", :value=> "أرسل" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+<% end %>

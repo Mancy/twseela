@@ -1,0 +1,567 @@
+en:
+  tawseela: توصيلة 
+  tawseela_with_slogan: توصيلة - خد حد معاك فى سكتك
+  tawseela_short_slogan: "توصيلة - خد حد في سكتك"
+  currency: L.E.
+  currency_long: L.E.
+  
+  locales:
+    other: 
+      en: عربي
+      ar: English
+    en: English
+    ar: عربي
+  
+  welcome_message: 
+    msg_1: "مرحبا بكم فى موقع توصيلة. <br/> هذه اول نسخة من موقع توصيلة وهي غير جاهزة للعمل ولكن هذه النسخة للتجربة فقط. <br/> برجاء عدم نشر هذه النسخة مع اصدقائك فى الوقت الحالي حيث انها غير جاهزة ويمكنك نشر صفحة 'قريبا توصيلة' فقط. <br/> نرجو منكم ايضا الإطلاع على كافة الامكانيات التي تمت فى هذه النسخة وإرسال رأيك ومقتراحاتك فأنها تهمنا. <br/> ونحب ان ننبهكم بان جميع البيانات الحالية على سبيل التجربة فقط وان البيانات التي ستقومون بإدخالها سيتم حذفها قبل اصدار نسخة البيتا من موقع توصيلة <br/> شكرا لكم على مساعدتنا فى تقييم خدمة موقع توصيلة قبل بدء النشر." 
+    msg_2: "مرحبا بكم فى موقع توصيلة. <br/> نسخة البيتا من موقع توصيلة جاهزة للعمل الأن. <br/> يعتمد موقع توصيلة على توفير الأتصال بين الأشخاص الذين يمتلكون سيارة وعلى أستعداد لتوفير مواصلة لأصدقائهم، وبين الأشخاص الذين لا يمتلكون سيارة ويبحثون عن توصيلة فى نطاق الأصدقاء فقط . <br/> يعتمد الموقع على المنفعة المتبادلة بين صاحب السيارة وطالب التوصيلة وموقع توصيلة ، حيث يقوم طالب التوصيلة بدفع قيمة التوصيلة الى صاحب السيارة ، بعد ذلك يقوم الموقع بتحويل قيمة التوصيلة لصاحب السيارة بعد خصم 20% كعمولة للموقع.<br/> ولكن فى هذه النسخة والتي ستستمر خلال الشهرين القادمين لن تكون المعاملات المادية متاحة ، لذلك لا يجب عليك دفع ثمن التوصيلة لأنك ستحصل على رصيد 100 جنية كرصيد بداية لتجربة الخدمة والتأكد من سلامة الموقع وخلوه من المشاكل المتعلقة بعمليات الدفع، وأيضا صاحب السيارة لن يحصل على ثمن التوصيلات خلال هذه الفترة ، ولكن بعد انتهاء فترة نسخة البيتا ستتمكن من الحصول على قيمة التوصيلة. <br/> <h4>سجل الأن وستحصل على رصيد حقيقي مجانا بعد انتهاء فترة البيتا.</h4>"
+    msg_3: "مرحبا بكم فى موقع توصيلة. <br/>أذا كنت تمتلك سيارة ستتمكن من البحث عن احد أصدقائك ليكون معك رفيق فى الطريق وللمشاركة معك والتوفير في تكلفة البنزين، واذا كنت لا تمتلك سيارة ستتمكن من خلال موقع توصيلة البحث عن مواصلة فى نطاق أصدقائك الذين يمتلكون سيارات. <br/>يعتمد موقع توصيلة على توفير الأتصال بين الأشخاص الذين يمتلكون سيارة وعلى أستعداد لتوفير مواصلة لأصدقائهم، وبين الأشخاص الذين لا يمتلكون سيارة ويبحثون عن توصيلة فى نطاق الأصدقاء فقط . <br/> يعتمد الموقع على المنفعة المتبادلة بين صاحب السيارة وطالب التوصيلة وموقع توصيلة ، حيث يقوم طالب التوصيلة بدفع قيمة التوصيلة الى صاحب السيارة ، بعد ذلك يقوم الموقع بتحويل قيمة التوصيلة لصاحب السيارة بعد خصم 20% كعمولة للموقع.<br/>ستستمر نسخة البيتا خلال الشهرين القادمين وستحصل على رصيد 100 جنية كرصيد بداية لتجربة الموقع<br/><h4>سجل الأن وستحصل على رصيد لإستخدام الموقع بعد انتهاء فترة البيتا.</h4>"
+    msg_4: "<h4>مرحبا بكم فى موقع توصيلة.</h4> <br/>أذا كنت تمتلك سيارة ستتمكن من البحث عن احد أصدقائك ليكون معك رفيق فى الطريق وللمشاركة معك والتوفير في تكلفة البنزين. <br/>واذا كنت لا تمتلك سيارة ستتمكن من خلال موقع توصيلة البحث عن مواصلة فى نطاق أصدقائك الذين يمتلكون سيارات. <br/> يعتمد موقع توصيلة على توفير الأتصال بين الأشخاص الذين يمتلكون سيارة وعلى أستعداد لتوفير مواصلة لأصدقائهم، وبين الأشخاص الذين لا يمتلكون سيارة ويبحثون عن توصيلة فى نطاق الأصدقاء أو أصدقاء الأصدقاء فقط ."
+    
+  errors: 
+    unexpected_error: حدث خطأ ما أثناء الحفظ ، برجاء المحاولة مرة أخرى
+    start_time_after: Should not precede the current time
+    after_start_time: يجب الا يسبق معياد البداية
+    not_authorized: You are not authorized to access this page.
+    errors_title: هناك بعض الأخطاء التي تمنعك من الحفظ
+    transports_paths: يجب ان يحتوي على البداية والنهاية
+    less_than_required: أقل بكثير من القيمة المطلوبة
+  
+  all_mailer : 
+    hello: السلام عليكم
+    
+  user_mailer:
+    welcome:
+      subject: مرحبا بك على موقع توصيلة
+      body: مرحبا بك على موقع توصيلة.  
+      body_1: "الأن يمكن إضافة توصيلات جديدة، حاول إضافة كل توصيلاتك التي تسمح فيها بركوب أصدقائك معك حتى تستطيع العثور دائما وسريعا على صديق يرافقك الطريق ويشارك معك فى تكلفة البنزين، وتذكر دائما ان جميع البيانات التي قمت بإدخالها والتي ستقوم بإدخالها لن تكون متاحة لكل الأعضاء على الموقع ولكن ستكون متاحة لأصدقائك الذين قمت بتوصيلهم فقط، إذا أرسل لك أحد الأصدقاء طلب للإنضمام معك فى احدى التوصيلات وأنت قمت بالموافقة على الطلب سيتم خصم قيمة التوصيلة من طالب التوصيلة وتحويلها لرصيدك مباشرا بعد خصم 20% فقط من قيمة التوصيلة كعمولة للموقع وتحويل باقي المبلغ لرصيدك على الموقع، وستتمكن لاحقا من تحويل الرصيد من الموقع الي مبالغ حقيقية."
+      body_2: "الأن يمكنك البحث عن توصيلات تتناسب معك فى نطاق أصدقائك أو أصدقاء اصدقائك بناءا على مستوى الثقة الذي قمت بتحديده، ولزيادة نطاق أصدقائك أكثر وأكثر يمكن دمج أكثر من حساب بحيث يمكنك تسجيل الدخول بفيسبوك و تويتر ولينكدان فى نفس الوقت للبحث عن توصيلات فى نطاق أوسع، يمكنك عمل ذلك بأتباع التعليمات الموجودة فى صفحة دمج الحسابات من داخل حسابك، بعد العثور على التوصيلة المناسبة يمكنك إرسال طلب لصاحب السيارة للإنضمام معه ولكن يجب ان يكون معك رصيد على الموقع يكفي لطلب هذه التوصيلة وسيتم خصم قيمة التوصيلة من لرصيدك وتحويلها لصاحب السيارة، يمكنك أستخدام الطرق المتاحة بالموقع لزيادة رصيدك، وفي حالة عدم أستخدامك للرصيد يمكنك فى أي وقت إستعادة الرصيد الذي قمت بتحويله."
+      body_3: "ستحصل على رصيد مجاني 100 جنيه خلال فترة البيتا لإستخدام وتجربة الموقع"
+    new_transport_request: 
+      subject: طلب جديد للإنضمام بإحدي التوصيلات
+      body_1: قام احد الأصدقاء على موقع توصيلة بإرسال طلب للإنضمام معك في احدى التوصيلات التي قمت بإضافتها 
+      body_2: التالي بيانات التوصيلة
+      body_3: لمراجعة الطلبات التي قمت بإستقبالها لهذه التوصيلة، برجاء الضغط على الرابط التالي  
+      body_4: قم بالتعرف على بيانات طالب التوصيلة جيدا ، ثم قم بالموافقة للإنضمام معك أو الرفض، إذا لم تقم بالموافقة أو الرفض سيقوم الموقع تلقائيا برفض الطلب قبل موعد التوصيلة بساعات قليلة 
+    accept_transport_request: 
+      subject: لقد وافق العضو على إنضمامك بالتوصيلة
+      body_1: لقد قمت بإرسال طلب لصديقك للإنضمام معه فى أحدي التوصيلات
+      body_2: التالي بيانات التوصيلة
+      body_3: وافق صديقك على الأنضمام معه فى التوصيلة
+      body_4: قم بمراجعة بيانات التوصيلة جيدا وحاول ان تتواجد فى المكان المتفق عليه وفى الميعاد المتفق عليه لكي تحصل على تقييم جيد.
+      body_5: يمكنك مراجعة تفاصيل الطلب الذي قمت بإرساله من الرابط التالي
+    reject_transport_request: 
+      subject: تم رفض الطلب الذي أرسلته
+      body_1: لقد قمت بإرسال طلب لصديقك للإنضمام معه فى أحدي التوصيلات
+      body_2: التالي بيانات التوصيلة 
+      body_3: قام صديقك برفض الطلب الذي أرسلته، ربما الطلب لا يتناسب معه أو ربما لم يتبقى اماكن خالية بالسيارة
+      body_4: حاول البحث مرة اخرى عن توصيلات على موقع توصيلة ربما تجد ما يناسبك مرة اخرى
+      body_5: يمكنك مراجعة تفاصيل الطلب الذي قمت بإرساله من الرابط التالي
+    system_reject_transport_request: 
+      subject: قام الموقع بإلغاء طلبك أوتوماتيكيا
+      body: قام الموقع بإلغاء طلبك الذي أرسلته للإنضمام الى احدى التوصيلات أوتوماتيكيا بسبب عدم موافقة صاحب السيارة حتى الأن ولقد فات ميعاد التوصيلة
+    cancel_transport_request: 
+      subject: قام العضو بإلغاء الطلب
+      body: قام العضو بإلغاء طلب التوصيلة الذي أرسله من قبل، وبذلك فهو لن ينضم للتوصيلة
+    new_roadmate: 
+      subject: انضم صديق للتوصيلة
+      body: أنضم أحد الأصدقاء للتوصيلة التي قمت انت من قبل بالأنضمام اليها
+      body_2: قم بمراجعة الرابط التالي للتعرف على الصديق الذي أنظم معك فى نفس التوصيلة
+    cancel_roadmate: 
+      subject: أنسحب صديق من التوصيلة
+      body: أنسحب أحد الأصدقاء من التوصيلة التي قمت انت من قبل بالأنضمام اليها
+    new_transport: 
+      subject: تم إضافة توصيلة جديدة
+      body_1: قام احد الأصدقاء على موقع توصيلة بإضافة توصيلة جديدة 
+      body_2: التالي بيانات التوصيلة
+    new_transport_added:
+      subject: تم إضافة التوصيلة بنجاح
+      body_1: تم إضافة التوصيلة على موقع توصيلة بنجاح، وتم نشرها مع أصدقائك
+      body_2: تم نشر التوصيلة مع عدد (%{account}) صديق، انتظر طلبات الأنضمام للتوصيلة التي قد تصلك من أصدقائك
+      body_3: قم بمراجعة بيانات التوصيلة ربما تجدها مناسبة لك، يمكنك ان ترسل طلب لصاحب السيارة للإنضمام معه وتوفير عناء البحث عن مواصلات
+    friends_counts: 
+      subject: قائمة أصدقائك على موقع توصيلة
+      body_0: نلاحظ عدم زيادة فى عدد أصدفائك على موقع توصيلة، مما يقلل فرصتك فى العثور على مواصلة او العثور على رفيق للطريق.
+      body_1: يعتمد موقع توصيلة على شبكة أصدقائك لسهولة البحث عن توصيلة أو لسهولة إيجاد رفيق للطريق معك فى السيارة ليشاركك فى تكلفة البنزين، لذلك انت تحتاج ان تقوم بدعوة المزيد من الاصدقاء لاستخدام موقع توصيلة.
+      body_2: يمكنك دعوة المزيد من الأصدقاء من خلال صفحة %{link}
+      body_3: أو يمكنك الدخول بأكثر من حساب كالدخول بحساب الفيسبوك وتويتر فى نفس الوقت، يمكنك ذلك من صفحة %{link}، ولكن يجب عليك تسجيل الدخول أولا كي تتمكن من دخول هذه الصفحة
+      body_4: كما يمكنك تعديل مستوى الثقة من صفحة %{link}، مستوى الثقة يحدد نوعية أصدقائك، يمكنك تحديد شبكة الأصدقاء لتكون بين أصدقائك فقط أو أصدقاء أصدقائك . . وهكذا . . كلما قل مستوى الثقة كلما زاد عدد الأصدقاء، ولكن يجب عليك تسجيل الدخول على الموقع قبل الدخول على صفحة %{link}
+      body_5: لديك الأن عدد (%{friends_count}) صديق على موقع توصيلة
+      body_6: والتالي آخر الأصدقاء الذين قاموا بالتسجيل على موقع توصيلة
+    new_friends_counts: 
+      subject: أجدد الأصدقاء على موقع توصيلة
+      body_0: هناك بعض الأصدقاء قاموا مؤخرا بالتسجيل على موقع توصيلة.
+      body_1: يعتمد موقع توصيلة على شبكة أصدقائك لسهولة البحث عن توصيلة أو لسهولة إيجاد رفيق للطريق معك فى السيارة ليشاركك فى تكلفة البنزين، لذلك انت تحتاج ان تقوم دائما بدعوة المزيد من الاصدقاء لاستخدام موقع توصيلة.
+      body_2: يمكنك دعوة المزيد من الأصدقاء من خلال صفحة %{link}
+      body_3: لديك الأن عدد (%{friends_count}) صديق على موقع توصيلة
+      body_4: والتالي آخر الأصدقاء الذين قاموا بالتسجيل على موقع توصيلة
+    transports_counts: 
+      subject: توصيلاتك على موقع توصيلة
+      body_1: نلاحظ أنك لم تقم بإضافة توصيلات جديدة خلال الأسبوع الماضي.
+      body_2: ربما واجهتك بعض المشاكل على الموقع او لم تستيطع التعامل مع الموقع بطريقة سهلة، راسلنا فى حالة وجود اي مشاكل
+      body_3: حاول إضافة توصيلات جديدة وساعد أصدقائك فى العثور على مواصلة مما يساعدك فى التقليل من تكلفة البنزين
+      body_4: أستخدم صفحة %{link} لإضافة توصيلة جديدة
+  
+  payment_mailer:
+    payment_error:
+      subject: عملية دفع لم تكتمل
+      body_1: هناك عملية دفع فاشلة لم تكتمل بنجاح 
+    payment_success: 
+      subject: عملية دفع ناجحة
+      body_1: هناك عملية دفع ناجحة
+      
+  dashboard:
+    latest_transports: آخر التوصيلات
+    latest_request: آخر الطلبات
+  
+  share_transport: 
+    share: أنشر مع أصحابي
+    do_not_share: لا تقم بالنشر
+    
+  pages:
+    home: Homepage
+    home_page: Home
+    about: عن توصيلة
+    how_it_works: كيف يعمل
+    contact_us: إتصل بنا
+    privacy: الخصوصية
+    terms: شروط الإستخدام
+    how_it_works: كيف يعمل توصيلة
+    FAQ: أسئلة متكررة
+    invite_friends: ادعو أصدقائك
+    mega_fm: ميجا أف أم
+    conditions: 
+      term: الشروط
+    privacies: 
+      data: البيانات
+      accounts: الحسابات
+    login:
+      line_1: Please choose one of these accounts to login.
+      line_2: Based on the account you selected we will be able to search for Twaseela within the scope of your friends based on your chosen account of login.
+      line_3: Later, you can merge more than one account, to increase the scope of the search for Twaseela.
+  
+  navigation:
+    login: تسجيل الدخول
+    with_login: بتسجيل الدخول
+    login_by: تسجيل الدخول بحساب %{account}
+    logout: تسجيل الخروج
+    add_to_car_list: اضف لقائمة السيارات
+    edit_profile: تعديل بياناتي
+    my_profile_as_seen: بياناتي كما يراها الأخرون
+    dashboard: صفحتي
+    follow_twitter: تابع تويتر
+    follow_facebook: تابع فيسبوك
+    my_friends: أصدقائي
+    my_credits: رصيدي
+    merge_accounts: دمج الحسابات
+    on_mobile: على الموبايل
+    on_mobile_hint: قريبا . . حتقدر تنزل برنامج توصيلة على الموبايل
+    how_it_works: كيف يعمل
+    back: رجوع
+    my_messages: الرسائل المرسلة
+    transports_requests: طلبات التوصيلات
+    share: شارك أصدقائي
+    cancel: إلغاء
+    from: من
+    to: الى
+    
+  providers: 
+    facebook: Facebook
+    twitter: Twitter
+    linked_in: Linkedin
+    
+  share:
+    dsc: "موقع توصيلة - خد حد معاك تعرفه فى سكتك : أبحث عن توصيلة فى نطاق أصدقائك الذين يمتلكون سيارات أوأبحث عن أحد أصدقائك ليشارك فى تكلفة البنزين."
+    register:
+      msg: "لقد قمت بالأشتراك بموقع توصيلة، قم بالتسجيل وساعدني فى زيادة عدد اصدقائي على موقع توصيلة."
+    transport:
+      msg: "قمت بإضافة توصيلة جديدة،  حد جاي في سكتي !!"
+    invite: 
+      msg: "ادعوكم للإشتراك معي فى موقع توصيلة لزيادة عدد أصدقائي على الموقع"
+    transport_accepted: 
+      msg: "أخيرا . . لقيت مواصلة مناسبة وبطريقة سهلة"
+      
+  messages:
+    please_login: عفوا . . يجب عليك تسجيل الدخول لكي تتمكن من إستكمال هذه العملية
+    login_failure: لم تتم عملية تسجيل الدخول بنجاح
+    permission_failure: لقد قمت بإلغاء صلاحيات موقع توصيلة على الفيسبوك، برجاء إعادة المحاولة ولا تقم بحذف أي صلاحية
+    select_cost_type: Payment Type
+    select_car_make: Select Car Make
+    select_gasoline: Select Gasoline
+    select_city: أختر المدينة
+    select_year: Year
+    select_month: Month
+    select_day: Day
+    select_hour: Hour
+    select_minute: Minute
+    select_trust_level: Select trust level
+    select_count: Select count 
+    already_exists: Already Exists
+    already_added: موجود بالفعل، تم إضافته من قبل
+    not_exists: لم يتم العثور عليها
+    user_created: You are a member now, Welcome.
+    updated: The data was updated successfully.
+    deleted: Deleted successfully.
+    repeated: تم إضافة نفس التوصيلة بنفس البيانات ليوم جديد، أضغط على %{share_link} لنشر التوصيلة مع أصدقائك
+    not_repeated: لم نتمكن من إضافة التوصيلة، برجاء إعادة المحاولة
+    transport_created: تم حفظ التوصيلة بنجاح
+    groups_users_added: تم إضافة الصديق الى شبكة أصدقائك بنجاح
+    will_share: ، وسنقوم بنشرها مع اصدقائك
+    transport_shared: تم نشر التوصيلة مع أصدقائك بنجاح
+    transport_request_created: The request has been sent to the car owner, please wait for response.
+    transport_request_rejected: تم رفض طلب التوصيلة.
+    transport_request_canceled: تم إلغاء طلب التوصيلة.
+    transport_request_accepted: تم الموافقة على الطلب
+    transport_request_other_rejected: ، وتم رفض جميع الطلبات الأخرى لأنك وصلت للحد الاقصي لعدد المقاعد المتاحة
+    transport_request_updated: The request was updated successfull, we will notify the requester
+    search_updated: The search was updated successfull.
+    search_deleted: تم حذف البحث بنجاح
+    search_saved: تم حفظ البحث بنجاح، وهذه الصفحة تحتوى على نتيجة البحث
+    flag_created: Your flag was created successfully.
+    flag_deleted: Your flag was deleted successfully.
+    rate_created: Your rating was added successfully.
+    rate_updated: The rating was updated successfull.
+    just_registered: I just registered in Tawseela.
+    account_merged: Your account was merged, You can use any one of you accounts for login.
+    account_updated: Your account was updated successfully.
+    invite_friends_sent: تم إرسال دعوة لأصدقائك على حساباتك التي قمت بالتسجيل بها سواء كانت فيسبوك أو تويتر أو لينكدان
+    user_blocked: User has been added to your blocking list.
+    user_un_blocked: User has been deleted from your blocking list.
+    logged_in: You are already logged-in, if you want to merge accounts this page could help you.
+    unexpected_error: Unexpected Error.
+    notifications: Notifications
+    users_requests: Users Requests
+    users_messages: Users Messages
+    login_first: برجاء %{login_link} أولا.
+    logged_out: تم تسجيل خروجك بنجاح . . في انتظار عودتك مرة اخرى
+    yes_lab: نعم
+    no_lab: لا
+    all_lab: الكل
+    not_supported: Comming Soon . . Not supported yet.
+    feedback_sent: شكرأ على إهتمامك بموقع توصيلة ومشاركتنا رأيك
+    select_any_attribute: لحفظ البحث يجب تحديد احدي البيانات اولا
+    cant_save: لن تتمكن من حفظ التغييرات حتى تقوم %{login_link}
+    edit_your_profile_first: برجاء مراجعة بياناتك وتأكد من صحتها أولا
+    payment_added: تم إضافة الرصيد بنجاح
+  
+  cashu_errors:
+    error_2: "Inactive Merchant ID."
+    error_4: "Inactive Payment Account." 
+    error_6: "Insufficient funds." 
+    error_7: "Incorrect Payment account details."
+    error_8: "Invalid account."
+    error_15: "Password for the Payment Account has expired."
+    error_17: "The transaction has not been completed."
+    error_20: "The purchase attempt is coming from a country that is not listed in the profile."
+    error_21: "The transaction value is more than the limit. This limitation is applied to Payment Accounts that not complied by KYC rules." 
+    error_22: "The Merchant has limited his sales to only KYC complied Payment accounts, the purchase attempt is coming from a Payment account that is KYC complied."
+    error_23: "The transaction has been cancelled by the customer. The user clicks on the 'Cancel' button."
+  
+  gender:
+    select_gender: Select Gender
+    gender_1: Male
+    gender_2: Female
+    gender_3: Any gender
+  
+  accessories: 
+    no_accessories: لا يوجد كماليات
+    air_cond: تكييف
+    cassette: كاسيت
+    smoking: مسموح بالتدخين
+      
+  trust_level:
+    select_level: اختر المتسوى
+    high: "مرتفع (أصدقائك)"
+    medium: "متوسط (أصدقائك وأصدقاء أصدقائك)"
+    low: Low
+    low: منخفض
+    very_low: منخفض جدا
+    public: أي حد
+    trust_level_1: مرتفع
+    trust_level_2: متوسط
+    trust_level_3: منخفض
+    trust_level_4: منخفض جدا
+    trust_level_5: أي حد
+    level_3: High
+    level_2: Medium
+    level_1: Low
+    
+  cost_type: 
+    paid: Paid
+    free: Free
+  
+  notify_type:
+    select: Select notify type
+    type_0: System Notifications
+    type_1: By E-Mail
+    type_2: By SMS
+    type_3: Both
+    
+  searches:
+    searches: عاوز توصيلة
+    hint_1: يمكنك البحث عن توصيلة تتناسب معك فى نطاق أصدقائك او أصدقاء أصدقائك بناءا على مستوى الثقة الذي قمت بتحديده، في حالة أن وجدت التوصيلة المناسبة يجب عليك إرسال طلب لصاحب السيارة للإنضمام معه فى التوصيلة، ولكن يجب ان يكون رصيدك على الموقع أكبر من أو مساوي لقيمة التوصيلة وسيتم خصم قيمة التوصيلة من رصيدك وتحويلها الى صاحب السيارة
+    hint_1_1: للبحث عن توصيلة برجاء تحديد بيانات التوصيلة المطلوبة بناءا على البيانات التالية . . يمكنك اختيار احدى التفاصيل او كل التفاصيل . . إذا لم تقم بإختيار اي من البيانات التالية وقمت بعملية البحث سيتم عرض كل التوصيلات المتاحة الأن
+    hint_2: تم العثور على التوصيلات التالية بناءا على البيانات التي قمت بإختيارها
+    searches_search: البحث عن توصيلة
+    before_save: يجب مراجعة البيانات التي قمت بكتابتها قبل البحث
+    select_time: قم بتحديد التاريخ والوقت
+  
+  events:
+    events: فعاليات
+    
+  transports: 
+    transports: التوصيلات
+    transport: بيانات توصيلة
+    search_transport: عاوز توصيلة
+    new_transport: New Transport
+    not_transports: لا يوجد توصيلات
+    not_transports_long: عفوا، لا يوجد توصيلات متاحة فى الوقت الحالي، ربما لم يقم أصدقائك بإضافة توصيلات جديدة، قم بدعوة أصدقاء جدد لزيادة عدد أصدقائك على موقع توصيلة
+    not_transports_very_long: 'عفوا . .  لا يوجد توصيلات مناسبة متاحة فى الوقت الحالي.<br/> إذا كنت تمتلك سيارة قم بإضافة أول توصيلة.<br/> وإذا كنت تبحث عن مواصلة أدعو أصدقائك لإستخدام الموقع ربما تستطيع العثور على مواصلة.'
+    not_transports_requests: لا يوجد أي طلبات على التوصيلات
+    edit_transport: Edit transport
+    repeat_transport: قم بتكرار التوصيلة غدا
+    delete_transport: Delete transport
+    accessories: Accessories
+    air_condition: تكييف
+    cassette: كاسيت
+    smoking: تدخين
+    return_back: عودة من نفس الطريق
+    return_back_meet_place: مكان المقابلة فى العودة
+    transporter_return_back_meet_time: ميعاد المقابلة فى العودة
+    car_profile_id: السيارة
+    distance: المسافة
+    cost: التكلفة
+    hint_1: علشان نقدر نحقق الهدف من موقع توصيلة يجب عليك إضافة توصيلاتك بشكل دوري فى الأوقات التي يسمح بركوب أحد معك فى السيارة لسهولة إيجاد أي صديق يرافقك الطريق ويشارك مع فى تكلفة البنزين إذا أحببت، وستجد فى الموقع التسهيلات المناسبة لتساعدك على إضافة التوصيلات يوميا وبشكل متكرر
+    hint_1_1: "لإضافة توصيلة قم بكتابة كل البيانات المطلوبة للتوصيلة ثم قم برسم مسار التوصيلة على الخريطة، فى حالة تكرار نفس بيانات التوصيلة بشكل متكرر قم بالضغط على 'يمكن تكرار التوصيلة' قبل الحفظ"
+    hint_1_2: "بعد حفظ التوصيلة سيتم نشرها مع أصدقائك، سيقوم الأصدقاء بإرسال طلب للإنضمام معك فى التوصيلة بعد قبول الطلب سيتم خصم قيمة التوصيلة من صديقك وتحويلها وإضافتها الى رصيدك بعد خصم 20% فقط عمولة الموقع."
+    hint_2: قم بتحديد مسار التوصيلة على الخريطة او قم بكتابتها ، للكتابة اضغط على الايقونة بجوار الخريطة
+    hint_3: عرض كل التوصيلات التي قمت بإضافتها وبعض تفاصيل كل توصيلة
+    hint_4: قم بتحديد مكان المقابلة على الخريطة أيضا
+    hint_5: عرض كل التوصيلات المتاحة والتي تتناسب مع مكان الحدث
+    cost_hint: قيمة التوصيلة ستكون 10% من التكلفة بحد ادنى جنيه واحد
+    start_time: ميعاد التوصيلة
+    gender: الجنس المسموح لهم بالركوب
+    cost: تكلفة التوصيلة
+    accessories: الكماليات الموجودة بالسيارة
+    seats: عدد المقاعد المتاحة
+    requested_seats: عدد المقاعد المطلوبة
+    rates: عدد التقييمات التي تمت
+    flags: عدد البلاغات التي تمت
+    title: وصف التوصيلة
+    place: مكان المقابلة
+    title_holder: "مثال : رايح الشغل"
+  
+  groups_users:
+    groups_users: شبكات الأصدقاء
+  
+  holders:
+    title: عنوان الرسالة
+    
+  users: 
+    users: Users
+    friends: الأصدقاء
+    user_details: بيانات عضو
+    new_user: New User
+    new_user_hint: لإستكمال عملية التسجيل برجاء استكمال البيانات التالية، جميع البيانات التي ستقوم بوضعها فى موقع توصيلة محفوظة ولن يتم إستخدامها أو نشرها أو أستغلالها فى الدعاية والأعلان، وأيضا لن تكون متاحة لكل الأعضاء ولكن أصدقائك فقط يمكنهم عرض البيانات التي قمت بإدخالها
+    my_data: Personal data
+    trust_level_hint: "بناءا على مستوى الثقة الذي ستحدده سيتم اختيار الراكب معك او الذين ستركب معهم، المستوى مرتفع للبحث فى نطاق أصدقائك فقط، المستوى متوسط للبحث فى نطاق أصدقائك وأصدقاء أصدقائك، وهكذا كلما زاد المستوى كلما قل عدد نتائج البحث"
+    mobile_hint: المحمول غير مرئي لكل الأعضاء، مهم لتصلك اهم التنبيهات من اصدقائك على محمولك
+    cars: Cars
+    have_car: Do you have a car ?
+    cars_list: قائمة السيارات
+    no_cars: لا توجد سيارات
+    before_save: يجب مراجعة البيانات التي قمت بكتابتها قبل الاضافة
+    search: Searchبحث
+    friends_search: البحث عن الأصدقاء
+    users_search: البحث عن عضو
+    result: نتيجة البحث
+    list: قائمة الأصدقاء
+    no_users: لا يوجد أعضاء
+    no_friends: لا يوجد أصدقاء
+    my_accounts: حساباتي
+    merge: دمج
+    my_transports: توصلاتي
+    my_transports_requests: طلبات التوصيلات
+    gender: الجنس
+    email: البريد الإلكتروني
+    birthdate: تاريخ الميلاد
+    mobile: المحمول
+    flags_weight: عدد المرات التي تم التبليغ عن هذا العضو
+    rates_weight: عدد المرات التي تم تقييم هذا العضو فيها
+    blocked_weight: عدد المرات التي تم فيها حجب هذا العضو
+    facebook_link: صفحتي على الفيسبوك
+    twitter_link: صفحتي على تويتير
+    linked_in_link: صفحتي على لينكدان
+    name_holder: أكتب أسمك بالكامل
+    email_holder: email.example@server.com
+    mobile_holder: "مثال : 01012312312"
+    number_0_holder: س م ط
+    number_1_holder: 1234
+    color_holder: أختر اللون
+    model_holder: أكتب الموديل
+  
+  payments: 
+    payments: رصيدي
+    amount: الرصيد
+    add_amount: اضف رصيد
+    draw_amount: سحب رصيد
+    transfer_amount: تحويل رصيد
+    mobile_amount: Mobile Amount
+    cashu_amount: Cashu Amount
+    add_amount_hint_1: يمكنك أضافة رصيد على موقع توصيلة لكي تتمكن من الأنضمام للتوصيلات، حيث سيقوم الموقع بخصم قيمة التوصيلة من رصيدك فى حالة قبول صاحب التوصيلة إنضمامك الى التوصيلة
+    add_amount_hint_2: "لإضافة الرصيد يجب عليك أتباع التالي :" 
+    add_amount_hint_3: قم بتحويل رصيد من المحمول الخاص بك بحد أدنى خمس جنيهات الى احدى الأرقام التالية والتي تتناسب مع شبكة المحمول الخاص بك، بعد تحويل الرصيد سيقوم موقع توصيلة بإضافة الرصيد على حسابك بالموقع
+    draw_amount_hint_1: يمكنك سحب الرصيد في أي وقت وتحويله مرة أخرى الى رصيد على المحمول الخاص بك او تحويله الي حساب بنكي او الحصول على المبلغ نقدا
+    draw_amount_hint_2: "لسحب الرصيد عليك أتباع التالي :"
+    draw_amount_hint_3: قم بتحديد المبلغ المراد سحبه، ثم أختار طريقة السحب المطلوبة، بعد ذلك عليك أستكمال البيانات المطلوبة تبعا لكل طريقة سحب، ثم أضغط على سحب الرصيد
+    cashu:
+      display_text: أشحن رصيدك على موقع توصيلة
+      txt1: اشحن رصيدك
+      
+  blocks: 
+    blocks: حجب الأعضاء
+    blocks_list: قائمة الحجب
+  
+  flags:
+    flags: تبليغ
+    flag_transport: التبليغ عن التوصيلة
+    unflag_transport: حذف التبليغ عن التوصيلة
+    send_flag: Send flag
+    hint_1: لإرسال التبليغ يجب عليك اولا استكمال البيانات التالية المطلوبة.
+  
+  rates: 
+    rate_transport: تقييم التوصيلة
+    rate_transports_request: تقييم الطلب
+  
+  user_messages:
+    send_message: إرسال رسالة للعضو
+    new_message: رسالة جديدة
+    sent: تم إرسال الرسالة الى العضو بنجاح
+    no_messages: لا يوجد رسائل جديدة
+    show_all: عرض كل الرسائل السابقة
+    received_messages: الرسائل الواردة
+    sent_messages: الرسائل المرسلة
+    messages: الرسائل
+    
+  transports_requests: 
+    transports_requests: عاوز توصيلة
+    hint_1: برجاء استكمال البيانات التالية المطلوبة لإرسال طلب التوصيلة
+    hint_2: برجاء استكمال البيانات التالية قبل الموافقة على طلب التوصيلة
+    total_cost: التكلفة المطلوبة
+    return_back: طلب توصيلة للعودة ايضا
+    send_rquest: أرسل الطلب
+    update_request: تحديث الطلب
+    new_request: عاوز التوصيلة
+    requested: لقد قمت بطلب التوصيلة
+    waiting: في أنتظار الرد
+    cancel: الغاء طلب التوصيلة
+    cancelled: تم إلغاء الطلب
+    completed: التوصيلة تمت
+    rejected: تم رفض الطلب
+    accepted: تم الموافقة على الطلب
+    accept: الموافقة على الطلب
+    reject: رفض الطلب
+    no_available_persons: تم حجز كل المقاعد المتاحة لهذه التوصيلة
+    no_credits: رصيدك لا يسمح بإستكمال أرسال هذا الطلب، الرجاء التحقق من رصيدك أولا
+    requester_message: رسالة الى صاحب السيارة
+    transporter_message: رسالة الى طالب التوصيلة
+    transporter_meet_time: ميعاد ووقت المقابلة
+  
+  notifications:
+    notifications: notifications
+    registered: قام بالتسجيل على موقع توصيلة
+    added_transport: قام بإضافة توصيلة جديدة
+    added_flag: قام بإضافة بلاغ جديد
+    added_rate: قام بإضافة تقييم جديد
+    no_notifications: لا يوجد أخطارات جديدة
+    show_all: عرض كل الأخطارات السابقة
+  
+  users_requests:
+    sent_request: ارسل لك طلب على احدى التوصيلات
+    reject_request: رفض طلبك على احدى التوصيلات
+    system_reject_request: قام الموقع بإلغاء طلبك أوتوماتيكيا
+    accept_request: وافق على طلبك فى احدى التوصيلات
+    cancel_request: قام بإلغاء الطلب الذي ارسله
+    no_users_requests: لا يوجد طلبات جديدة
+    show_all: عرض كل الطلبات السابقة
+  
+  sidebar:
+    credits: رصيدي
+    credits_hint: تعرف على رصيدك الحالي وتعرف ايضا على طرق زيادة رصيدك وكذلك طريقة تحويل رصيدك الى مبالغ حقيقية
+    friends: أصدقائي
+    friends_hint: أبحث عن كل أصدقائك الذين يستخدمون موقع توصيلة
+    feedback: شارك برأيك
+    feedback_hint: لأن رأيكم مهم .. نرجو منكم مشاركتنا أرائكم .. ننتظر أقتراحاتكم وأرائكم
+    how_it_works: كيف يعمل
+    how_it_works_hint: اذا اردت التعرف على كيفية عمل موقع توصيلة وكيفية الأستفادة منه فى الحصول على توصيلة او الحصول على رفيق الطريق
+    block_list: قائمة الحجب
+    block_list_hint: أستعراض قائمة أصدقائك الذين قمت بحجبهم ، يمكنك إلغاء الحجب من هذه الشاشة
+    merge_accounts: دمج الحسابات
+    merge_accounts_hint: اذا كنت تمتلك اكثر من حساب على فيسبوك وتويتير ولينكدان وتريد الدمج بينهم لإستخدامهم للدخول على موقع توصيلة مما يساعد ايضا على توسيع نطاق البحث عن توصيلة
+    invite_friends: ادعو أصدقائك
+    invite_friends_hint: لأن البحث عن توصيلات يعتمد على البحث فى نطاق أصدقائك .. قم بتوسيع دائرة أصدقائك بدعوة المزيد من أصدقائك لإستخدام موقع توصيلة
+    transport_search: عاوز توصيلة
+    transport_search_hint: مستعجل! مش لاقي مواصلة! جربت تدور على توصيلة ؟
+    share: شارك
+    share_hint: شارك أصدقائك وقم بنشر التوصيلة
+    new_transport: توصيلة جديدة
+    new_transport_hint: المشوار طويل! ممكن تكون مش عارف الطريق! تكلفة البنزين مرتفعة! جربت تدور على حد من أصدقائك يجي معاك ؟
+    my_transports_hint: لعرض كل التوصيلات التي قمت بإضافتها
+    lastest_transports: آخر التوصيلات
+    lastest_users: أجدد الأصدقاء
+    faq: أسئلة متكررة
+    faq_hint: هناك بعض الأسئلة المتكررة حول موقع توصيلة، تعرف على أجابات أهم الأسئلة التي قد تدور فى ذهنك
+    groups_users: شبكات الأصدقاء 
+  
+  days: 
+    sunday: الاحد
+    monday: الاثنين
+    tuesday: الثلاثاء
+    wednesday: الاربعاء 
+    thursday: الخميس
+    friday: الجمعة 
+    saturday: السبت
+      
+  activerecord:
+    models:
+      accounts: Login Account
+      transport: Tawseela
+      car_profiles: 
+          cars_make: Car Make
+          model_name: Car Numbers
+      
+    attributes:
+      car_profile:
+        number: Car Numbers
+        cars_make: Make
+        cars_make_id: Make
+        
+      transports_path: 
+        start_lng: Start longitude
+        start_lat: Start latitude
+      
+      transport: 
+        air_cond: Air Condition
+        transports_paths: 
+          start_lng: Start longitude
+          start_lat: Start latitude
+          
+      transports_request:
+        requester_message: Message
+        for_persons: Persons count
+        requester_meet_place: Meet place
+        requester_meet_lng: Meet place longitude 
+        requester_meet_lat: Meet place latitude
+        requester_return_back: Return back
+        requester_return_back_meet_place: Return back meet place
+        requester_return_back_meet_lng: Return back meet place longitude
+        requester_return_back_meet_lat: Return back meet place latitude
+        transporter_return_back_meet_time: Return back meet time
+        requester_notify_type: How to notify
+        requester_cost: Tawseela's cost
+      
+      flag: 
+        level: Flag level
+        flaggable_id: Flaggable
+        flaggable_type: Flaggable
+        user_id: Flagger

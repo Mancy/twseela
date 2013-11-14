@@ -1,0 +1,132 @@
+<h1>Listing searches</h1>
+
+<%= render :partial => "index" %>
+
+
+<%= link_to 'New Search', new_search_path %>
+<%= link_to 'Back to Search', new_search_path + "?" + params.inspect %>
+<%= link_to 'My Searches', my_searches_searches_path  %>
+
+
+
+
+
+
+
+
+
+
+
+<p id="notice"><%= notice %></p>
+
+<% if @transport.car_profile %>
+<p>
+  <b>Car Profile:</b>
+  <%= @transport.car_profile.cars_make.name + " - " + @transport.car_profile.model_name + " - " + @transport.car_profile.number %>
+</p>
+<% end %>
+
+<p>
+  <b>Start time:</b>
+  <%= @transport.start_time %>
+</p>
+
+<p>
+  <b>Allowed persons:</b>
+  <%= @transport.allowed_persons %>
+</p>
+
+<p>
+  <b>Cost type:</b>
+  <%= @transport.cost_type %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= @transport.cost %>
+</p>
+
+<p>
+  <b>Air cond:</b>
+  <%= @transport.air_cond %>
+</p>
+
+<p>
+  <b>Cassette:</b>
+  <%= @transport.cassette %>
+</p>
+
+<p>
+  <b>Smoking:</b>
+  <%= @transport.smoking %>
+</p>
+
+<p>
+  <b>Return back:</b>
+  <%= @transport.return_back %>
+</p>
+
+<div style="border: 1px solid blue">
+  <h2>Paths</h2>
+  <% @transport.points_list.each do |point| %>
+  <div style="border: 1px solid black">
+    <p>
+      <b>Start Place:</b>
+      <%= point.x %> - <%= point.y %> 
+    </p>
+  </div>
+  <% end %>
+</div>
+
+
+
+<div style="border: 1px solid blue">
+  <h2>Requests</h2>
+  <% @transport.transports_requests.each do |transports_request| %>
+  <div style="border: 1px solid black">
+    <p>
+      <b>Status :</b>
+      <%= transports_request.status %>
+    </p>
+    <p>
+      <b>User :</b>
+      <%= transports_request.user.name %>
+    </p>
+    <p>
+      <b>Message :</b>
+      <%= transports_request.requester_message %>
+    </p>
+    <p>
+      <b>Meet Place :</b>
+      <%= transports_request.requester_meet_place %>
+    </p>
+    <p>
+      <td><%= link_to 'Response', transports_response_transport_transports_request_path(transports_request.transport, transports_request) %></td>
+      
+      <td><%= link_to 'Update response', edit_transport_transports_request_path(transports_request.transport, transports_request) %></td>
+      
+      
+      <td><%= link_to 'Delete', delete_transport_transports_request_path(transports_request.transport, transports_request) %></td>
+
+      <% transports_request_rate = transports_request.rates.where(:user_id => current_user.id).first %>
+      <% if transports_request_rate %>
+        <td><%= link_to 'Edit Rate', edit_transport_transports_request_rate_path(transports_request.transport, transports_request, transports_request_rate.id) %></td>
+      <% else %>
+        <td><%= link_to 'Rate', new_transport_transports_request_rate_path(transports_request.transport, transports_request) %></td>
+      <% end %>
+    </p>
+  </div>
+  <% end %>
+</div>
+
+
+<%= link_to 'Edit', edit_transport_path(@transport) %> |
+<%= link_to 'Back', transports_path %>
+
+
+
+
+
+
+
+

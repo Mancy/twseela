@@ -1,0 +1,39 @@
+<div class="content_container">
+  <% if params[:controller].to_s == "transports" %>
+    <% no_transports_msg = t("transports.not_transports") %>
+  <% else %>
+    <% no_transports_msg = t("transports.not_transports_long") %>
+  <% end %>
+  
+  <%= render :partial => "/transports/transports", :locals => {:transports => transports, :hint => hint, :title => "التوصيلات الحالية", :no_transports_msg => no_transports_msg}%>
+  
+  <% if prev_transports.size > 0 %>
+  <div class="sub_page_content" id="prev_transports">
+    <h3 class="title">التوصيلات السابقة</h3>
+    <div class="sub_page_container">
+      <div class="list_wrapper">
+        <div class="list_container">
+          <% prev_transports.each do |transport| %>
+            <%= render :partial => "/transports/transport", :locals => {:transport => transport, :adv_view => true}%>
+          <% end %>
+        </div>
+      </div>
+      <% if prev_transports.num_pages > 1 %>
+      <div class="submit clearfix">
+        <%= paginate prev_transports, :window => 1, :right => 0, :left => 0 %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/rails.js", "/javascripts/stars.js" %>
+  
+  <% if params[:page] && params[:page].to_i > 1 %>
+  <script>
+    location = "#prev_transports"
+  </script>
+  <% end %>
+<% end %>

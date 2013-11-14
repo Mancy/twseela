@@ -1,0 +1,133 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("users.friends")%></h2>
+  <div class="content_container">
+    
+    <% if params[:utf8].blank? %>
+    <%= render :partial => "/users/friends_numbers", :locals => {:user => current_user}%>
+    <% end %>
+    
+    <% if params[:utf8].blank? && current_user.friends_type != FriendsType.friends && current_user.groups.size > 0 %>
+    <%= render :partial => "/users/networks", :locals => {:user => current_user}%>
+    <% end %>
+    
+    <% if @users.size > 0 || !params[:utf8].blank? %>
+    <div class="sub_page_content">
+      <h3 class="title"><%= t("users.friends_search")%></h3>
+      <div class="sub_page_container">
+        <%= form_for(@user, :method => :get, :url => users_path ) do |f| %>
+          <div class="form_side">
+            <span class="form_item clearfix">
+              <%= f.label :name, User.human_attribute_name(:name), :class=>"label_txt long" %>
+              <%= f.text_field :name, :class=>"input_txt large", :placeholder => t("gender.all_genders") %>
+            </span>
+            <span class="form_item clearfix">
+              <%= f.label :email, User.human_attribute_name(:email), :class=>"label_txt long" %>
+              <%= f.text_field :email, :class=>"input_txt large", :placeholder => t("gender.all_genders") %>
+            </span>
+            <span class="form_item clearfix">
+              <%= f.label :mobile, User.human_attribute_name(:mobile), :class=>"label_txt long" %>
+              <%= f.text_field :mobile, :class=>"input_txt large", :placeholder => t("gender.all_genders") %>
+            </span>
+            <span class="form_item clearfix">
+              <%= f.label :gender, User.human_attribute_name(:gender), :class=>"label_txt long" %>
+              <%= f.select :gender, options_for_select([[t("gender.all_genders"), ""], [t("gender.gender_1"), "1"], [t("gender.gender_2"), "2"]], @user.gender), {},:class=>"large" %>
+            </span>
+            
+            <% if current_user.friends_type != FriendsType.friends && current_user.groups.size > 0 %>
+            <span class="form_item clearfix">
+              <%= f.label :filter_group, User.human_attribute_name(:filter_group), :class=>"label_txt long" %>
+              <%= f.select :filter_group, options_for_select([[t("gender.all_genders"), ""]]) + options_from_collection_for_select(current_user.groups, :id, :name, @user.filter_group), {},:class=>"large" %>
+            </span>
+            <% end %>
+            
+            <span class="form_item clearfix">
+              <%= f.label :has_car, User.human_attribute_name(:have_car), :class=>"label_txt long" %>
+              <div class="radio" style="width: 400px !important;">
+                <%= f.radio_button :has_car, "0" , :checked => @user.has_car == false %>
+                <label for="user_has_car_0"><%= t("messages.no_lab") %></label>
+                
+                <%= f.radio_button :has_car, "" , :checked => @user.has_car.nil? %>
+                <label for="user_has_car_"><%= t("messages.all_lab") %></label>
+                
+                <%= f.radio_button :has_car, "1" , :checked => @user.has_car == true %>
+                <label for="user_has_car_1"><%= t("messages.yes_lab") %></label>
+              </div>
+            </span>
+          </div>
+          
+          <%= f.submit :class=>"submit_btn search", :value=> t("users.friends_search") %>
+          <div class="clearfix"></div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+    
+    <div id="users_results" class="sub_page_content">
+      <% unless params[:utf8].blank? %>
+      <h3 class="title"><%= t("users.result")%></h3>
+      <% else %>
+      <h3 class="title"><%= t("users.list")%></h3>
+      <% end %>
+      <div class="sub_page_container">
+        <div class="form_side">
+          <div class="list_container">
+            <% if @users.size == 0 %>
+              <% if current_user.accounts.default_one.first.node_id.blank? %>
+                <div class="list_item" style="height: auto !important;">
+                  <div><img src="/images/graphic/load.gif"  class="center_image"/></div>
+                  <p>جاري البحث عن أصدقاء، برجاء المحاولة بعد قليل</p>
+                  <p>يقوم موقع توصيلة الأن بالبحث عن أصدقائك الذين يستخدمون موقع توصيلة</p>
+                </div>
+              <% else %>
+                <div class="list_item" style="height: auto !important;">
+                  <% if params[:utf8].blank? %>
+                    <p>لا يوجد أصدقاء لك على موقع توصيلة</p>
+                    <p>يعتمد موقع توصيلة على شبكة الاصدقاء، لذلك يجب عليك لإستخدام موقع توصيلة بشكل جيد أن تقوم بدعوة المزيد من الأصدقاء لإستخدام موقع توصيلة</p>
+                    <p>يمكنك أستخدام صفحة <%= link_to t("pages.invite_friends"), page_path(:invite_friends) %> لدعوة المزيد من الأصدقاء</p>
+                  <% else %>
+                    <p>لم يتم العثور على أصدقاء تتناسب مع البحث الذي قمت به</p>
+                  <% end %>
+                  
+                </div>
+              <% end %>
+            <% end %>
+            <% @users.each do |user| %>
+              <%= render :partial => "/users/user", :locals => {:user => user, :show_details => false} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <% if @users.size > 0 && @users.num_pages > 1 %>
+  <div class="submit clearfix">
+    <%= paginate @users %>
+  </div>
+  <% end %>
+</div>
+
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.16.custom.css" %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/jquery-ui-1.8.16.custom.min.js" %>
+  
+  <script>
+    $(document).ready(function () {
+      <% unless params[:utf8].blank? %>
+        location = "#users_results";
+        $.fancybox.center();
+      <% end %>
+      $( ".radio" ).buttonset();
+      $( "#format" ).buttonset();
+    });
+  </script>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/groups_users" %>
+  <%= render "/shared/sidebar/merge_accounts" %>
+<% end %>

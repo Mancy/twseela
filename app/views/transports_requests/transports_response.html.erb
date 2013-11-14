@@ -1,0 +1,97 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("transports_requests.transports_requests") %></h2>
+  <div class="content_container">
+    <p><%= t("transports_requests.hint_2")%></p>
+    <%= form_for(@transports_request, :url => accept_request_transport_transports_request_path(@transports_request.transport, @transports_request), :method => :post ) do |f| %>
+      <%= render :partial=>'/shared/form_errors', :locals=>{:obj => @transports_request} %>
+      <div id="hidden_fields">
+        <input type="hidden" name="_method" value="put"/>
+      </div>
+      <div class="form_side">
+        <span class="form_item clearfix">
+          <%= f.label :transporter_meet_time, :class=>"label_txt" %>
+          <span class="required">*</span>
+          <% transporter_meet_time_value =  @transports_request.transporter_meet_time ? "#{l(@transports_request.transporter_meet_time.to_date, :format => :default)} #{@transports_request.transporter_meet_time.hour}:#{@transports_request.transporter_meet_time.min} " : "" %>
+          <%= f.text_field :transporter_meet_time, :value => transporter_meet_time_value, :class=>"input_txt large date_and_time_picker", :date=> @transports_request.transporter_meet_time ? l(@transports_request.transporter_meet_time.try(:to_date), :format => :default) : l(Date.today, :format => :default), :hour => @transports_request.transporter_meet_time ? @transports_request.transporter_meet_time.hour : "0", :minute => @transports_request.transporter_meet_time ? @transports_request.transporter_meet_time.min : "0" %>
+        </span>
+        <% if @transports_request.requester_return_back == true %>
+          <span class="form_item clearfix">
+            <%= f.label :transporter_return_back_meet_time, :class=>"label_txt" %>
+            <span class="required">*</span>
+            <%= f.text_field :transporter_return_back_meet_time, :class=>"input_txt large date_and_time_picker", :date=> @transports_request.transporter_return_back_meet_time ? l(@transports_request.transporter_return_back_meet_time.try(:to_date), :format => :default) : l(Date.today, :format => :default), :hour => @transports_request.transporter_return_back_meet_time ? @transports_request.transporter_return_back_meet_time.hour : "0", :minute => @transports_request.transporter_return_back_meet_time ? @transports_request.transporter_return_back_meet_time.min : "0" %>
+          </span>
+        <% end %>
+        <span class="form_item clearfix">
+          <%= f.label :transporter_message, :class=>"label_txt long" %>
+          <%= f.text_area :transporter_message, :class=>"input_txt large"%>
+        </span>
+        
+        <span class="form_item clearfix" style="display: none;">
+          <%= f.label :notify_type, :class=>"label_txt long" %>
+          <%= f.select :notify_type, options_for_select([[t("notify_type.type_1"), "1"], [t("notify_type.type_2"), "2"], [t("notify_type.type_3"), "3"]], @transports_request.notify_type), {},:class=>"large" %>
+          <div class="help_container">
+            <div class="icon" title="طريقة تبليغ صاحب السيارة بهذا الطلب ، 'بواسطة الأخطارات' هي الطريقة الأفتراضية للتبليغ وهي تظهر للعضو فى اعلى الشاشة، اما فى حالة أختيار 'رسالة على المحمول' سيتم خصم قيمة الرسالة من حسابك  "></div>
+          </div>
+        </span>
+      </div>
+      
+      <div class="map_side" >
+        <div class="map">
+          <div id="map-canvas" style="width: 575px; height: 400px; "></div>
+        </div>
+        <div class="clear"></div>
+        <div class="map_btn">
+          <ul class="btn_list">
+            <%= render :partial=>'/shared/map_hints_3', :locals=>{} %>
+          </ul>
+        </div>
+      </div>
+  
+  
+      <div class="clear"></div>
+      <div class="submit clearfix">
+        <%= f.submit :class=>"submit_btn save", :value=> t("transports_requests.update_request") %>
+        <%= link_to t("navigation.back"), @back_url, :class => "submit_btn back right" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.16.custom.css" %>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/jquery-ui-1.8.16.custom.min.js", "/javascripts/jquery-ui-timepicker-addon.js", "/javascripts/maps.js", "/javascripts/transports.js" %>
+  <script>
+    $(document).ready(function(){
+      markers_handelrs = false;
+      
+      <% @transports_request.transport.points_list.each do |point| %>
+        <% if !point[:start_lat].blank? && !point[:start_lng].blank? %>
+          addNewPointLngLat('<%= point[:start_lat] %>', '<%= point[:start_lng] %>');
+        <% end %>
+      <% end %>
+      
+      if(markers.length > 0){
+        centerMarkersInMap();
+      }
+      
+      <% if !@transports_request.requester_meet_lng.blank? && !@transports_request.requester_meet_lat.blank? %>
+        addNewUserPointLngLat('<%= @transports_request.requester_meet_lat %>', '<%= @transports_request.requester_meet_lng %>');
+      <% end %>
+      
+    });
+  </script>
+  
+  
+  <script>
+    $('.date_and_time_picker').each(function(elm){
+      $(this).datetimepicker(jQuery.extend(dateTimePickerOptions, {
+        defaultDate: $(this).attr("date"),
+        hour: $(this).attr("hour"),
+        minute: $(this).attr("minute")
+      }));
+    })
+  </script>
+<% end %>

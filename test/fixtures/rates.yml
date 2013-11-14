@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  rate: 1
+  rateable_id: 1
+  rateable_type: MyString
+  user_id: 1
+
+two:
+  rate: 1
+  rateable_id: 1
+  rateable_type: MyString
+  user_id: 1

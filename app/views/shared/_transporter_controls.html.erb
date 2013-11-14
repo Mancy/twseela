@@ -1,0 +1,48 @@
+<div class="controls controls_hover">
+  <% if transports_request.status == Status.accepted %>
+    <span class="accept_hover hide_txt" title="<%= t('transports_requests.accepted') %>" ></span>
+  <% elsif transports_request.status == Status.rejected %>
+    <span class="reject_hover hide_txt" title="<%= t('transports_requests.rejected') %>" ></span>
+  <% elsif transports_request.status == Status.canceled %>
+    <span class="cancel hide_txt" title="<%= t('transports_requests.cancelled') %>" ></span>
+  <% elsif transports_request.status == Status.completed %>
+    <span class="completed hide_txt" title="<%= t('transports_requests.completed') %>" ></span>
+  <% end %>
+</div>
+<div class="all_controls_div">
+  <div class="controls">
+    <% transports_request_flag = transports_request.flags.where(:user_id => current_user.id).first %>
+    <% if transports_request_flag %>
+      <%= link_to '', delete_transport_transports_request_flag_path(transports_request.transport, transports_request, transports_request_flag.id), :class => "unflag hide_txt", :confirm => "هل أنت متأكد من حذف التبليغ؟", :title => t("transports_requests.unflag_request") %>
+    <% else %>
+      <% if can? :new, Flag.new(:flaggable => transports_request) %>
+        <%= link_to '', new_transport_transports_request_flag_path(transports_request.transport, transports_request), :class => "flag hide_txt", :title => t("transports_requests.flag_request") %>
+      <% end %>
+    <% end %>
+    <% if transports_request.status == Status.requested %>
+      <% if can? :reject_request, transports_request %>
+      <%= link_to "", reject_request_transport_transports_request_path(transports_request.transport, transports_request), :class => "reject hide_txt", :confirm => "هل أنت متأكد من رفض الطلب؟", :title => t("transports_requests.reject") %>
+      <% end %>
+      
+      <% if can? :transports_response, transports_request %>
+      <%= link_to "", transports_response_transport_transports_request_path(transports_request.transport, transports_request), :class => "accept hide_txt", :title => t("transports_requests.accept") %>
+      <% end %>
+    <% elsif transports_request.status == Status.accepted %>
+      <% if can? :new, Rate.new(:rateable => transports_request, :user => current_user) %>
+        <%= link_to "", "#" , :class=>"rate hide_txt add_stars", :title => t("rates.rate_transports_request") %>
+      <% end %>
+    <% end %>
+  </div>
+  <% if can? :new, Rate.new(:rateable => transports_request, :user => current_user) %>
+    <% transports_request_rate = transports_request.rates.where(:user_id => current_user.id).first %>
+    <% if transports_request_rate %>
+      <% transports_request_rate_url = transport_transports_request_rate_path(transports_request.transport, transports_request, transports_request_rate.id) %>
+      <% rate_method = :put %>
+    <% else %>
+      <% transports_request_rate_url = transport_transports_request_rates_path(transports_request.transport, transports_request) %>
+      <% rate_method = :post %>
+    <% end %>
+    
+    <%= render :partial => "/shared/stars", :locals => {:clickalbe => true, :rate_url => transports_request_rate_url, :rates_count => transports_request_rate ? transports_request_rate.rate : 0, :rate_method => rate_method, :html_class => "for_index"}%>
+  <% end %>
+</div>

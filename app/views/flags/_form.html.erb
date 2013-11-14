@@ -1,0 +1,35 @@
+<%= form_for(flag) do |f| %>
+  <%= render :partial=>'/shared/form_errors', :locals=>{:obj => flag} %>
+  <div id="hidden_fields">
+    <%= f.hidden_field :flaggable_id %>
+    <%= f.hidden_field :flaggable_type %>
+    <%= f.hidden_field :user_id %>
+  </div>
+  <div class="form_side">
+    <span class="form_item clearfix">
+      <%= f.label :level, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.select :level, options_for_select([[t("trust_level.select_level"), ""], [t("trust_level.level_3"), "3"], [t("trust_level.level_2"), "2"], [t("trust_level.level_1"), "1"]], flag.level), {},:class=>"large" %>
+      <div class="help_container">
+        <div class="icon" title="أختيار مستوى البلاغ مهم . . هذه البيانات سيتم عرضها لكل الأعضاء"></div>
+      </div>
+    </span>
+    <span class="form_item clearfix">
+      <%= f.label :flag, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.text_area :flag, :class=>"input_txt large"%>
+    </span>
+    <span class="form_item clearfix">
+      <%= f.label :comment, :class=>"label_txt long" %>
+      <%= f.text_area :comment, :class=>"input_txt large", :cols => 5, :rows => 2 %>
+    </span>
+  </div>
+  
+  <div class="clear"></div>
+  <div class="submit clearfix">
+    <%= f.submit :class=>"submit_btn save", :value=> t("flags.send_flag") %>
+    <% if params[:layout] != "false" %>
+    <%= link_to t("navigation.back"), @back_url, :class => "submit_btn back right" %>
+    <% end %>
+  </div>
+<% end %>

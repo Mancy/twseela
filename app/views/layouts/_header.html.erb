@@ -1,0 +1,42 @@
+<div class="header">
+  <div class="logo">
+    <%= link_to(image_tag("/images/main/car.png"), "/", :title => t('tawseela_with_slogan')) %>
+  </div>
+  <div class="h_info clearfix">
+    <div  class="logged_user_loading" id="user_header_loading">
+      <img src="/images/gif/ajax-loader.gif" />
+    </div>
+    
+    <div id="user_header_container">
+      
+    </div>
+    
+    <div class="languages">
+      <a class="current_lang languages_menu" href="<%= url_for(:locale => I18n.locale == :ar ? :en : :ar ) %>">
+        <span><%= t("locales.#{I18n.locale}") %></span>
+        <%= image_tag "/images/icons/#{I18n.locale}.png" %>
+      </a>
+      <div class="lang_menu_container languages_menu">
+        <a class="lang_btn"></a>
+        <ul class="lang_menu languages_drop_menu">
+          <li class="lang_itm">
+            <a href="<%= url_for(:locale => I18n.locale == :ar ? :en : :ar ) %>" onclick="showMsg('<%= t("messages.not_supported")%>', 'warning'); return false;" >
+              <%= image_tag "/images/icons/#{I18n.locale == :ar ? 'en' : 'ar' }.png" %>
+              <span><%= t("locales.other.#{I18n.locale}") %></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    
+  </div>
+  
+  
+</div>
+
+<% content_for :javascripts do %>
+  <script id="notify_menu_loader"  type="text/x-jquery-tmpl">
+    <div style=""><%= image_tag("/images/gif/ajax-loader.gif", :style => "width:200px") %></div>
+  </script>
+<% end %>

@@ -1,0 +1,58 @@
+<style>
+@charset "utf-8";
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0; padding:0; border:0; font-size:100%; font:inherit; vertical-align:baseline;}
+ol,ul{list-style:none;}
+body,td,th{font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#000000; line-height:1.5;}
+body{margin:0;}
+a, a:link, a:visited, a:hover,a:active{font-family:Arial, Helvetica, sans-serif; font-size:1em; color:#000000; text-decoration:none;}
+a:hover{text-decoration:none; color:#fbae40; cursor:pointer;}
+h1,h2,h3,h4,h5,h6{font-family: Arial, Helvetica, sans-serif;}
+h1{font-size:2.4em; color:#ff6302;}
+h2{font-size:2em; color:#000000;}
+
+.side_bar{float:left; width: <%= @par[:width] %>px;}
+.side_page_content{padding:1px 0px 10px 0px;}
+.side_page_content .side_page_title{width:<%= @par[:width] - 45 %>px; background:#C9581F; -moz-border-radius:10px;-webkit-border-radius:10px; border-radius:10px; padding:0 10px; border:2px solid #E2BF8C; color:#ffffff; float:right; margin: 0 11px; text-align: center;}
+.content_container{padding:10px; background:#ffffff; -moz-border-radius:10px;-webkit-border-radius:10px; border-radius:10px; padding-top:30px; margin-top:25px; border:3px solid #E2BF8C;}
+
+ul{list-style: none;margin: 0px;padding: 0px;}
+.side_list{}
+.side_list li{height: 50px; border-bottom: 1px solid #E2BF8C; margin-bottom: 15px;}
+.side_list img{float:right;}
+.side_list div.data{float: right; margin-right: 10px; text-align: right;}
+</style>
+
+
+<div class="side_bar">
+  <div class="side_page_content">
+    <h2 class="side_page_title" title="موقع توصيلة - خد حد معاك فى سكتك"><a href="http://www.temporary.com/" target="_blank">موقع توصيلة</a></h2>
+    <div class="content_container">
+      <ul class="side_list">
+        <li style="text-align: right;  border-bottom: none;" >
+          أبحث عن مواصلة فى نطاق أصدقائك الذين يمتلكون سيارات وأبحث ايضا عن أحد أصدقائك ليكون رفيقك فى الطريق للوصول الى مكان الحدث
+        </li>
+        
+        <li style="text-align: right; height: 38px; padding-right: 10px;" >
+          <h2>آخر التوصيلات</h2>
+        </li>
+        
+        <% if @transports.size == 0 %>
+        <div style="text-align: center;">
+        <h3 style="font-size: 16px; ">لا يوجد توصيلات متاحة لنفس المكان وفي نفس الوقت</h3>
+        <a style="font-weight: bolder; color: #C9581F;" href="http://temporary.com/transports/new" target="_blank">أضف توصيلة وخد حد معاك فى سكتك</a>
+        </div>
+        <% end %>
+        
+        <% @transports.each do |transport| %>
+          <li>
+            <a href="<%= transport_url(transport) %>" target="_blank"><img alt="Picture?type=square" src="http://www.temporary.com/images/main/ver_small_car.png" style="height: 48px;" title="Nesma Mohamed"></a>
+            <div class="data">
+              <%= link_to transport.title, transport_url(transport), :target => "_blank", :style => "color: #C9581F; font-weight: bolder; font-size: 14px;" %>
+              <div><%= l(transport.start_time, :format => :short) %></div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

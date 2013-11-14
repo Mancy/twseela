@@ -1,0 +1,41 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("messages.users_requests")%></h2>
+  <div class="content_container">
+    <div class="sub_page_content">
+      <% if @users_requests.size > 0 %>
+      <ul class="notifications_list">
+        <% @users_requests.each do |users_request| %>
+          <li>
+            <a href="<%= users_request.url %>?show_request=true#show_requests">
+              <%= image_tag(users_request.requester.accounts.default_one.first.my_image(:square), :title => users_request.requester.name, :style => "height: 48px;") %>
+              <div>
+                <span><%= t(users_request.details) %></span><br/>
+                <span class="small" ><%= l(users_request.created_at, :format => :long) %></span>
+              </div>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+      <div class="clear"></div>
+      <% else %>
+      <div class="list_wrapper">
+        <div class="list_container">
+          <div class="list_item">
+            <p>لا يوجد طلبات</p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% if @users_requests.num_pages > 1 %>
+      <div class="submit clearfix">
+        <%= paginate @users_requests %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/like_box" %>
+<% end %>

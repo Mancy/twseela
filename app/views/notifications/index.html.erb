@@ -1,0 +1,41 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("messages.notifications")%></h2>
+  <div class="content_container">
+    <div class="sub_page_content">
+      <% if @notifications.size > 0 %>
+      <ul class="notifications_list">
+        <% @notifications.each do |notification| %>
+          <li>
+            <a href="<%= notification.url %>">
+              <%= image_tag(notification.user.accounts.default_one.first.my_image(:square), :title => notification.user.name, :style => "height: 48px;") %>
+              <div>
+                <span><%= t(notification.notification) %></span><br/>
+              <span class="small" ><%= l(notification.created_at, :format => :long) %></span>
+              </div>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+      <div class="clear"></div>
+      <% else %>
+      <div class="list_wrapper">
+        <div class="list_container">
+          <div class="list_item">
+            <p>لا يوجد أخطارات</p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% if @notifications.num_pages > 1 %>
+      <div class="submit clearfix">
+        <%= paginate @notifications %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/like_box" %>
+<% end %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  start_place: MyString
+  start_lng: 1.5
+  start_lat: 1.5
+  return_back: false
+
+two:
+  start_place: MyString
+  start_lng: 1.5
+  start_lat: 1.5
+  return_back: false

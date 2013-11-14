@@ -1,0 +1,264 @@
+<a id="how_to_user_link" href="#"><h4 class="with_icon_big help_bus">كيفية إضافة توصيلة</h4></a>
+<div id="how_to_user" class="list_wrapper high" style="display: none;" >
+  <div class="list_container" style="margin-right: 65px;">
+    <p><%= t("transports.hint_1")%></p>
+    <p><%= t("transports.hint_1_1")%></p>
+    <p><%= t("transports.hint_1_2")%></p>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<% if transport.saved_transport.blank? && transport.new_record? && saved_transports.size > 0%>
+  <a id="saved_transports_link" href="#"><h4 class="with_icon_big car_black">التوصيلات المحفوظة سابقا</h4></a>
+  <div id="saved_transports" class="list_wrapper high" style="display: none;">
+    <div class="list_container" style="margin-right: 65px;">
+      <ul class="notifications_list">
+        <% saved_transports.each do |saved_transport| %>
+          <li>
+            <a href="/transports/new?saved_transport=<%= Encoder.encode(saved_transport.id) %>" >
+              <%= image_tag("/images/icons/small_car_2.png") %>
+              <div>
+                <span><%= saved_transport.title %></span><br/>
+                <span class="small" ><%= saved_transport.cost %> <%= t("currency")%></label></span>
+              </div>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="clear"></div>
+  </div>
+<% end %>
+<%= form_for(transport) do |f| %>
+  <%= render :partial=>'/shared/form_errors', :locals=>{:obj => transport} %>
+  <%= f.hidden_field :saved_transport %>
+  <div id="hidden_fields">
+  </div>
+  <div class="form_side">
+    <span class="form_item clearfix">
+      <%= f.label :title, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.text_field :title, :class=>"input_txt large", :placeholder => t("transports.title_holder") %>
+      <div class="help_container">
+        <div class="icon" title="قم فقط بوضع توصيف صغير او عنوان مميز للتوصيلة لسهولة الوصول لها"></div>
+      </div>
+    </span>
+    <span class="form_item clearfix">
+      <%= f.label :start_time, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <% if transport.new_record? %>
+        <%= f.text_field :start_time, :class=>"input_txt large date_and_time_picker", :date=> transport.start_time ? l(transport.start_time.try(:to_date), :format => :default) : l(Date.today, :format => :default) , :hour => transport.start_time ? transport.start_time.hour + 2 : "0" , :minute => transport.start_time ? transport.start_time.min : "0" %>
+      <% else %>
+        <%= f.text_field :start_time, :class=>"input_txt large date_and_time_picker", :date=> transport.start_time ? l(transport.start_time.try(:to_date), :format => :default) : l(Date.today, :format => :default) , :hour => transport.start_time ? transport.start_time.hour : "0" , :minute => transport.start_time ? transport.start_time.min : "0" %>
+      <% end %>
+    </span>
+    <span class="form_item clearfix">
+      <%= f.label :allowed_persons, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.select :allowed_persons, options_for_select([[t("messages.select_count"), ""], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7]], transport.allowed_persons), {},:class=>"large" %>
+    </span>
+    <span class="form_item clearfix">
+      <%= f.label :gender, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.select :gender, options_for_select([[t("gender.select_gender"), ""], [t("gender.gender_1"), "1"], [t("gender.gender_2"), "2"], [t("gender.gender_3"), "3"]], transport.gender), {},:class=>"large" %>
+      <div class="help_container">
+        <div class="icon" title="تحب مين يركب معاك ؟ اختر الجنس الي مسموح لهم يركبوا معاك في التوصيلة"></div>
+      </div>
+    </span>
+    <span class="form_item clearfix">
+      <%= f.label :cost_type , :class=>"label_txt" %>
+      <span class="required">*</span>
+      <% cost_type_list = current_user && current_user.is_free? ? [[t("messages.select_cost_type"), ""], [t("cost_type.paid"), 1], [t("cost_type.free"), 2]] : [[t("messages.select_cost_type"), ""], [t("cost_type.paid"), 1]] %>
+      <%= f.select :cost_type, options_for_select(cost_type_list, transport.cost_type), {},:class=>"large" %>
+      <div class="help_container">
+        <div class="icon" title="تحب الي يركب معاك يشارك فى البنزين ؟ اختر نوع الدفع الي يناسبك"></div>
+      </div>
+    </span>
+    <span id="cost_container" class="form_item clearfix" style="<%= 'display: none;' if transport.cost_type.to_i != 1 %>">
+      <%= f.label :cost, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.text_field :cost, :class=>"input_txt large", :placeholder => "0.0" %>
+      <div class="help_container">
+        <div class="icon" title="قيمة التوصيلة لكل فرد ، وفي حالة العودة من نفس الطريقة سيتم احتساب نفس القيمة وسيقوم الموقع بخصم 20% من قيمة التوصيلة كعمولة للموقع وستحصل على الباقي "></div>
+      </div>
+    </span>
+    <span id="free_cost_container" class="form_item clearfix" style="<%= 'display: none;' if transport.cost_type.to_i == 1 || transport.cost_type.to_i == 0 %>">
+      <%= f.label :cost, :class=>"label_txt long" %>
+      <%= t("transports.cost_hint") %>
+    </span>
+    <!-- 
+    <span class="form_item clearfix">
+      <label class="label_txt"><%= t("transports.accessories")%></label>
+      <span class="required">*</span>
+      <%= f.check_box :air_cond %>
+      <span><%= t("transports.air_condition")%></span>
+      <%= f.check_box :cassette %>
+      <span><%= t("transports.cassette")%></span>
+      <%= f.check_box :smoking %>
+      <span><%= t("transports.smoking")%></span>
+    </span>
+    -->
+    
+    <% if transport.new_record? %>
+    <span class="form_item clearfix">
+      <%= f.label :share_transport, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.select :share_transport, options_for_select([[t("share_transport.share"), "1"], [t("share_transport.do_not_share"), "0"]], transport.share_transport), {},:class=>"large" %>
+      <div class="help_container">
+        <div class="icon" title="تحب تشارك التوصيلة وتنشرها على فيسبوك وتويتر ولينكدان وعلى الايميل كمان"></div>
+      </div>
+    </span>
+    <% end %>
+    
+    <span class="form_item clearfix">
+      <%= f.label :return_back, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.check_box :return_back %>
+      <span><%= t("transports.return_back")%></span>
+    </span>
+    <span id="return_back_start_time_container" class="form_item clearfix" style="<%= 'display: none;' unless transport.return_back %>">
+      <%= f.label :return_back_start_time, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <% if transport.new_record? %>
+        <%= f.text_field :return_back_start_time, :class=>"input_txt large date_and_time_picker", :date=> transport.return_back_start_time ? l(transport.return_back_start_time.try(:to_date), :format => :default) : l(Date.today, :format => :default), :hour => transport.return_back_start_time ? transport.return_back_start_time.hour + 2 : "0", :minute => transport.return_back_start_time ? transport.return_back_start_time.min : "0" %>
+      <% else %>
+        <%= f.text_field :return_back_start_time, :class=>"input_txt large date_and_time_picker", :date=> transport.return_back_start_time ? l(transport.return_back_start_time.try(:to_date), :format => :default) : l(Date.today, :format => :default), :hour => transport.return_back_start_time ? transport.return_back_start_time.hour : "0", :minute => transport.return_back_start_time ? transport.return_back_start_time.min : "0" %>
+      <% end %>
+    </span>
+    
+    <% if transport.new_record? %>
+    <span class="form_item clearfix">
+      <%= f.label :repeat_days, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <% transport.repeat_days ||= [] %>
+      <%= check_box_tag "transport[repeat_days][]", "sunday", transport.repeat_days.include?("sunday") %>
+      <span><%= t("days.sunday")%></span>
+      
+      <%= check_box_tag "transport[repeat_days][]", "monday", transport.repeat_days.include?("monday") %>
+      <span><%= t("days.monday")%></span>
+      
+      <%= check_box_tag "transport[repeat_days][]", "tuesday", transport.repeat_days.include?("tuesday") %>
+      <span><%= t("days.tuesday")%></span>
+      
+      <%= check_box_tag "transport[repeat_days][]", "wednesday", transport.repeat_days.include?("wednesday") %>
+      <span><%= t("days.wednesday")%></span>
+      
+      <%= check_box_tag "transport[repeat_days][]", "thursday", transport.repeat_days.include?("thursday") %>
+      <span><%= t("days.thursday")%></span>
+      
+      <%= check_box_tag "transport[repeat_days][]", "friday", transport.repeat_days.include?("friday") %>
+      <span><%= t("days.friday")%></span>
+      
+      <%= check_box_tag "transport[repeat_days][]", "saturday", transport.repeat_days.include?("6") %>
+      <span><%= t("days.saturday")%></span>
+    </span>
+    <% end %>
+    
+    <% if current_user && current_user.car_profiles.size > 0  %>
+    <span class="form_item clearfix">
+      <label class="label_txt"><%= t("transports.car_profile_id")%></label>
+      <span class="required">*</span>
+      <% current_user.car_profiles.each do |car_profile| %>
+        <div class="col3">
+        <%= f.radio_button :car_profile_id, car_profile.id, :gas_cost => car_profile.gasoline_type.price , :class=>"car_profile", :checked => current_user.car_profiles.size < 2 || car_profile.id == transport.car_profile_id ? true : false %>
+        <span><%= car_profile.cars_make.name + " - " + car_profile.model_name + " - " + car_profile.number %></span>
+        </div>
+      <% end if current_user %>
+    </span>
+    <% end %>
+    
+    <span class="form_item clearfix recorded_data">
+      <div class="col2">
+        <label class="label_txt long"><%= t("transports.distance") %></label>
+        <span class="recorded_value" id="transport_km_value" >لم يحدد حتى الأن</span>
+        <input id="transport_mileage_value_input" type="hidden" name="transport[mileage]" value="0" />
+      </div>
+      <div class="col2">
+        <label class="label_txt" title="التكلفة المتوقعة التي سنقوم بحسابها بناءا على المسافة لمساعدتك فى تحديد قيمة التوصيلة" >التكلفة المتوقعة</label>
+        <span class="recorded_value" id="transport_cost_value" >لم يحدد حتى الأن</span>
+        <input id="transport_cost_value_input" type="hidden" name="transport_total_cost" value="" />
+      </div>
+    </span>
+  </div>
+  
+  <div class="map_side" >
+    <div class="map">
+      <div id="map-canvas" style="width: 575px; height: 400px; "></div>
+    </div>
+    <div class="clear"></div>
+    <div class="advices">
+      <p><%= t("transports.hint_2")%></p>
+    </div>
+    <div class="map_btn">
+      <ul class="btn_list">
+        <%= render :partial=>'/shared/map_btn', :locals=>{} %>
+        <%= render :partial=>'/shared/map_hints', :locals=>{} %>
+      </ul>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="submit clearfix">
+    <p></p>
+    <%= f.submit :class=>"submit_btn save" %>
+    <% if transport.saved_transport.blank? && transport.new_record? %>
+      <div style="float: left; padding: 10px 0 0 0;">
+        <%= f.label :templ_saved, :title => "سيتم حفظ بيانات التوصيلة لكي يمكن استخدامها اكثر من مرة لاحقا" %>
+        <%= f.check_box :templ_saved %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.16.custom.css" %>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/jquery-ui-1.8.16.custom.min.js", "/javascripts/jquery-ui-timepicker-addon.js", "/javascripts/maps.js", "/javascripts/transports.js" %>
+  <script>
+    $(document).ready(function () {
+      <% transport.points_list.each do |point| %>
+        <% if !point[:start_lat].blank? && !point[:start_lng].blank? %>
+          addNewPointLngLat('<%= point[:start_lat] %>', '<%= point[:start_lng] %>');
+        <% end %>
+      <% end %>
+      
+      <% if current_user && current_user.city && current_user.city.lat && current_user.city.lng %>
+        cityLat = "<%= current_user.city.lat %>";
+        cityLng = "<%= current_user.city.lng %>";
+      <% else %>
+        cityLat = null;
+        cityLng = null;
+      <% end %>
+      
+      if(markers.length > 0){
+        centerMarkersInMap();
+      }else if(cityLat && cityLng) {
+        myLatlng = new google.maps.LatLng(cityLat, cityLng);
+        map.setCenter(myLatlng);
+        map.setZoom(13);
+      }
+      $("#saved_transports_link").click(function(){
+        $("#saved_transports").toggle("slow");
+        return false;
+      })
+      $("#how_to_user_link").click(function(){
+        $("#how_to_user").toggle("slow");
+        return false;
+      })
+    });
+  </script>
+  <script id="transport_path_templ" type="text/x-jquery-tmpl">
+    <div id="hidden_field_${index}">
+      <input type="hidden" name="transport[paths][${index}][start_lng]" value="${start_lng}" >
+      <input type="hidden" name="transport[paths][${index}][start_lat]" value="${start_lat}" >
+    </div>
+  </script>
+  
+  <script id="transport_place_templ" type="text/x-jquery-tmpl">
+    <div id="hidden_field_${index}">
+      <input type="hidden" name="transport[start_place]" value="${start_place}" >
+      <input type="hidden" name="transport[end_place]" value="${end_place}" >
+    </div>
+  </script>
+<% end %>

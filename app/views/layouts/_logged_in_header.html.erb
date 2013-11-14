@@ -1,0 +1,130 @@
+<div class="logged_user">
+  <% if current_user %>
+    <ul class="top_nav clearfix">
+      <li class="info user_menu">
+        <img class="social_account" src="/images/icons/<%= current_account.provider %>.png" />
+      </li>
+      <li class="info logged_name user_menu">
+        <a class="user_name"><%= current_user.name %></a>
+      </li>
+      <li class="info drop_manu_container">
+        <a class="menu_btn user_menu"></a>
+        <ul class="drop_menu user_drop_menu">
+          <li>
+            <a href="/users/<%= current_user.id %>">
+              <%= image_tag("/images/icons/my_profile.png") %>
+              <span><%= t("navigation.my_profile_as_seen") %></span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/<%= current_user.id %>/dashboard">
+              <%= image_tag("/images/icons/home.png") %>
+              <span><%= t("navigation.dashboard") %></span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/<%= current_user.id %>/edit">
+              <%= image_tag("/images/icons/edit_profile.png") %>
+              <span><%= t("navigation.edit_profile") %></span>
+            </a>
+          </li>
+          <% if current_user.has_car %>
+          <li>
+            <a href="<%= transports_path  %>">
+              <%= image_tag("/images/icons/small_red_car.png") %>
+              <span><%= t("users.my_transports") %></span>
+            </a>
+          </li>
+          <% end %>
+          <li>
+            <a href="<%= transports_requests_user_transports_path(current_user)  %>">
+              <%= image_tag("/images/icons/small_ask.png") %>
+              <span><%= t("users.my_transports_requests") %></span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="/users/">
+              <%= image_tag("/images/icons/small_bus.png") %>
+              <span>قائمة أصدقائي</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%= merge_accounts_user_path(current_user) %>">
+              <%= image_tag("/images/icons/small_merge.png") %>
+              <span>دمج الحسابات</span>
+            </a>
+          </li>
+          <li>
+            <a href="/payments">
+              <%= image_tag("/images/icons/payment.png") %>
+              <span><%= t("payments.payments") %></span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="<%= sent_user_messages_path(current_user)  %>">
+              <%= image_tag("/images/icons/message.png") %>
+              <span><%= t("navigation.my_messages") %></span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="<%= user_blocks_path(current_user)  %>">
+              <%= image_tag("/images/icons/blocked_user.png") %>
+              <span><%= t("blocks.blocks_list") %></span>
+            </a>
+          </li>
+          <li>
+            <a href="/logout">
+              <%= image_tag("/images/icons/logout.png") %>
+              <span><%= t("navigation.logout") %></span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  <% else %>
+    <ul class="top_nav clearfix">
+      <li class="info">
+        <a href="/login#login_content" class="fancybox internal">
+          <h4><%= t("navigation.login") %></h4>
+          <%= image_tag "/images/icons/facebook.png", :title => t("navigation.login_by", :account => t("providers.facebook"))%>
+          <%= image_tag "/images/icons/twitter.png", :title => t("navigation.login_by", :account => t("providers.twitter"))%>
+          <%= image_tag "/images/icons/linked_in.png", :title => t("navigation.login_by", :account => t("providers.linked_in"))%>
+        </a>
+      </li>
+    </ul>
+  <% end %>
+</div>
+
+<div class="actions">
+  <% if current_user %>
+    <ul class="actions_list clearfix">
+      <li><%= link_to @head_requests_count ? "<span class='numbr'>#{@head_requests_count}</span>".html_safe : "", "#", :class=>"#{@head_requests_count ? 'request_hover' : 'request'}  request_menu", :title => t("messages.users_requests") %></li>
+      <li><%= link_to @head_notifications_count ? "<span class='numbr'>#{@head_notifications_count}</span>".html_safe : "", "#", :class=>"#{@head_notifications_count ? 'notify_hover' : 'notify'} notification_menu", :title => t("messages.notifications") %></li>
+      <li><%= link_to @head_messages_count ? "<span class='numbr'>#{@head_messages_count}</span>".html_safe : "", "#", :class=>"#{@head_messages_count ? 'message_hover' : 'message'} messages_menu", :title => t("messages.users_messages") %></li>
+    </ul>
+    <div class="logged_user">
+      <ul id="notification_drop_menu" class="drop_menu for_notify">
+        <div style=""><%= image_tag("/images/gif/ajax-loader.gif", :style => "width:200px") %></div>
+      </ul>
+    </div>
+    <div class="logged_user">
+      <ul id="request_drop_menu" class="drop_menu for_notify">
+        <div style=""><%= image_tag("/images/gif/ajax-loader.gif", :style => "width:200px") %></div>
+      </ul>
+    </div>
+    <div class="logged_user">
+      <ul id="messages_drop_menu" class="drop_menu for_notify">
+        <div style=""><%= image_tag("/images/gif/ajax-loader.gif", :style => "width:200px") %></div>
+      </ul>
+    </div>
+  <% else %>
+    <ul class="actions_list clearfix">
+      <li><%= link_to "", "#", :class=>"request", :title => t("messages.users_requests"), :onclick => "showMsg('#{t('messages.login_first', :login_link => link_to('تسجيل الدخول', login_path, :style => 'color:#C9581F'))}', 'warning'); return false;" %></li>
+      <li><%= link_to "", "#", :class=>"notify", :title => t("messages.notifications"), :onclick => "showMsg('#{t('messages.login_first', :login_link => link_to('تسجيل الدخول', login_path, :style => 'color:#C9581F'))}', 'warning'); return false;" %></li>
+      <li><%= link_to "", "#", :class=>"message", :title => t("messages.users_messages"), :onclick => "showMsg('#{t('messages.login_first', :login_link => link_to('تسجيل الدخول', login_path, :style => 'color:#C9581F'))}', 'warning'); return false;" %></li>
+    </ul>
+  <% end %>
+</div>

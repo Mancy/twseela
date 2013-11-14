@@ -1,0 +1,53 @@
+<div class="main_page_content">
+  <h2 class="page_title">فعاليات</h2>
+  <div class="content_container">
+    <div class="sub_page_content" style="margin-bottom: 35px;">
+      <h3 class="title">تفاصيل الحدث</h3>
+      <div class="sub_page_container">
+        
+        <div class="form_side">
+          <span id="free_cost_container" class="form_item clearfix">
+            <label class="label_txt long" for="transport_cost">
+              عنوان
+            </label>
+            <%= link_to @event.title, @event.page_url, :target => "_blank" %>
+          </span>
+          <span id="free_cost_container" class="form_item clearfix">
+            <label class="label_txt long" for="transport_cost">
+              الميعاد
+            </label>
+            <%= l(@event.start_time, :format => :short) %>
+          </span>
+          <span id="free_cost_container" class="form_item clearfix">
+            <label class="label_txt long" for="transport_cost">
+              الرابط
+            </label>
+            <%= link_to @event.page_url, @event.page_url, :target => "_blank" %>
+          </span>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+      </div>
+    </div>
+    
+    <%= render :partial => "/transports/transports", :locals => {:transports => @transports, :hint => t("transports.hint_5"), :title => "التوصيلات المتاحة", :no_transports_msg => t("transports.not_transports_very_long").html_safe}%>
+    
+  </div>
+</div>
+<% content_for :sidebar do %>
+<%= render "/shared/sidebar/new_transport" %>
+<%= render "/shared/sidebar/transport_search" %>
+<%= render "/shared/sidebar/like_box" %>
+<%= render "/shared/sidebar/invite_friends" %>
+<%= render :partial => "/shared/sidebar/latest_users", :locals => {:users => @users} %>
+<%= render "/shared/sidebar/friends" %>
+<% end %>
+
+<%= content_for :javascripts do %>
+<%= javascript_include_tag "/javascripts/rails.js"%>
+<% end %>

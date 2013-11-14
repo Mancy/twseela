@@ -1,0 +1,22 @@
+<div class="side_page_content">
+  <h2 class="side_page_title"><%= link_to t("sidebar.invite_friends"), page_path(:invite_friends) %></h2>
+  <div class="content_container">
+    <p><%= t("sidebar.invite_friends_hint")%> </p>
+    <span class="small_span small_icon">
+      <%= link_to image_tag("/images/graphic/invite_friends_small_2.png") + "<div>ادعو المزيد من الأصدقاء لأستخدام الموقع</div>".html_safe, "#", :onclick => "sendRequestViaMultiFriendSelector(); return false;" %>
+    </span>
+    <span class=" small_icon">
+      <% if current_user %>
+      <%= link_to image_tag("/images/graphic/invite_friends_small.png") + "<div>شارك موقع توصيلة مع أصدقائك</div>".html_safe, invite_friends_user_path(current_user), :method => :put, :confirm => "سيقوم موقع توصيلة بنشر دعوة مع أصدقائك للإنضمام لموقع توصيلة ... هل أنت متأكد؟" %>
+      <% else %>
+      <%= link_to image_tag("/images/graphic/invite_friends_small.png") + "<div>شارك موقع توصيلة مع أصدقائك</div>".html_safe, "#", :onclick => "showMsg('#{t('messages.login_first', :login_link => link_to('تسجيل الدخول', login_path, :style => 'color:#C9581F'))}', 'warning'); return false;" %>
+      <% end %>
+    </span>
+    
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/rails.js" %>
+  <%= render "/shared/fb/fb_invite_friends" %>
+<% end %>

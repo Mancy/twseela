@@ -1,0 +1,9 @@
+<% if !current_user || can?(:new, Transport.new) %>
+<div class="side_page_content">
+  <h2 class="side_page_title"><%= link_to t("sidebar.new_transport"), new_transport_path %></h2>
+  <div class="content_container">
+    <p><%= t("sidebar.new_transport_hint")%> </p>
+    <span><%= link_to image_tag("/images/graphic/new_transport.png"), new_transport_path %></span>
+  </div>
+</div>
+<% end %>

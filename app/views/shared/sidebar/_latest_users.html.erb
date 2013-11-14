@@ -1,0 +1,13 @@
+<% if current_user && users && users.size > 0 %>
+<div class="side_page_content">
+  <h2 class="side_page_title"><%= link_to t("sidebar.lastest_users"), users_path %></h2>
+  <div class="content_container">
+    <ul class="side_users_list">
+      <% users.each do |user|%>
+        <li><%= link_to image_tag(user.accounts.default_one.first.my_image(:square), :title => user.name, :style => "height: 48px;"), user, :target => "_blank" %></li>
+      <% end %>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<% end %>

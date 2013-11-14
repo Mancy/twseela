@@ -1,0 +1,294 @@
+<%= form_for(account.user) do |f| %>
+  <%= render :partial=>'/shared/form_errors', :locals=>{:obj => account.user} %>
+  
+  <% if account.user.new_record? %>
+  <div>
+    <%= hidden_field "user_accounts", "provider", :value => account.provider, :name=>"user[accounts_attributes][0][provider]" %>
+    <%= hidden_field "user_accounts", "uid",:value => account.uid, :name=>"user[accounts_attributes][0][uid]" %>
+    <%= hidden_field "user_accounts", "image",:value => account.image, :name=>"user[accounts_attributes][0][image]" %>
+    <%= hidden_field "user_accounts", "provider_token",:value => account.provider_token, :name=>"user[accounts_attributes][0][provider_token]" %>
+    <%= hidden_field "user_accounts", "provider_secret",:value =>  account.provider_secret, :name=>"user[accounts_attributes][0][provider_secret]" %>
+  </div>
+  <% end %>
+  
+  <div class="sub_page_content">
+    <h3 class="title"><%= t("users.my_data") %></h3>
+    <div class="sub_page_container">
+      <% if account.user.new_record? %>
+        <p><%= t("users.new_user_hint") %></p>
+        <p></p>
+      <% end %>
+      <div class="form_side">
+        <% if account.user.new_record? %>
+          <div style="height: 100px;margin: 0 auto 10px;width: 305px;">
+            <img src="/images/provider/<%= account.provider %>.png" style="float: left;"/>
+            <p style="float: left;margin: 7px;position: relative;text-align: center;width: 150px;"><%= t("navigation.login_by", :account=>"")%></p>
+            <img src="<%= account.image %>" style="float: right;"/>
+          </div>
+        <% end %>
+        
+        <span class="form_item clearfix">
+          <%= f.label :name, User.human_attribute_name(:name), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= f.text_field :name, :class=>"input_txt large", :placeholder => t("users.name_holder") %>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :email, User.human_attribute_name(:email), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= f.text_field :email, :class=>"input_txt large", :placeholder => t("users.email_holder") %>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :mobile, User.human_attribute_name(:mobile), :class=>"label_txt long" %>
+          <%= f.text_field :mobile, :class=>"input_txt large", :placeholder => t("users.mobile_holder") %>
+          <div class="help_container">
+            <div class="icon" title="<%= t('users.mobile_hint')%>"></div>
+          </div>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :birthdate, User.human_attribute_name(:birthdate), :class=>"label_txt long" %>
+          <%= f.date_select :birthdate, {:start_year=>7.years.ago.year, :end_year=>100.years.ago.year, :prompt => { :day => t("messages.select_day"), :month => t("messages.select_month"), :year => t("messages.select_year") }} , {:class=>"small"} %>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :city_id, User.human_attribute_name(:city_id), :class=>"label_txt long" %>
+          <%= f.select :city_id, options_for_select([[t("messages.select_city"), ""]]) + options_from_collection_for_select(@cities, :id, :name, account.user.city_id), {}, {:class=>"large"} %>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :gender, User.human_attribute_name(:gender), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= f.select :gender, options_for_select([[t("gender.select_gender"), ""], [t("gender.gender_1"), "1"], [t("gender.gender_2"), "2"]], account.user.gender), {},:class=>"large" %>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :trust_level, User.human_attribute_name(:trust_level), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= f.select :trust_level, options_for_select([[t("trust_level.high"), 1], [t("trust_level.medium"), 2], [t("trust_level.low"), 3], [t("trust_level.very_low"), 4], [t("trust_level.public"), 5]], account.user.trust_level), {},:class=>"large" %>
+          <div class="help_container">
+            <div class="icon" title="<%= t('users.trust_level_hint')%>"></div>
+          </div>
+        </span>
+        
+        <% if account.user.new_record? %>
+        <span class="form_item clearfix">
+          <label class="label_txt">أنشر التسجيل</label>
+          <span class="required">*</span>
+          <%= f.select :share_registration, options_for_select([[t("share_transport.share"), "1"], [t("share_transport.do_not_share"), "0"]], account.user.share_registration), {},:class=>"large" %>
+          <div class="help_container">
+            <div class="icon" title="تحب تشارك وتنشر على فيسبوك وتويتر ولينكدان أنك قمت بالأشتراك على موقع توصيلة"></div>
+          </div>
+        </span>
+        <% end %>
+        
+        <% if account.user.groups.size > 0 %>
+        <span class="form_item clearfix">
+          <%= f.label :friends_type, User.human_attribute_name(:friends_type), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <div class="radio" style="width: 100% !important;">
+            <%= f.radio_button :friends_type, "1" , :checked => account.user.friends_type == FriendsType.friends ? true : false %>
+            <label for="user_friends_type_1">شبكات التواصل الاجتماعي</label>
+            
+            <%= f.radio_button :friends_type, "2" , :checked => account.user.friends_type == FriendsType.network ? true : false %>
+            <label for="user_friends_type_2">الشبكات الخاصة</label>
+            
+            <%= f.radio_button :friends_type, "3" , :checked => account.user.friends_type == FriendsType.both ? true : false %>
+            <label for="user_friends_type_3">كلاهما</label>
+          </div>
+        </span>
+        <% end %>
+        
+        <span class="form_item clearfix">
+          <%= f.label :default_locale, User.human_attribute_name(:default_locale), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <div class="radio" style="width: 400px !important;">
+            <%= f.radio_button :default_locale, "ar" , :checked => account.user.default_locale.try(:strip) == "ar" ? true : false %>
+            <label for="user_default_locale_ar"><%= t("locales.ar") %></label>
+            
+            <%= f.radio_button :default_locale, "en" , :checked => account.user.default_locale.try(:strip) == "en" ? true : false %>
+            <label for="user_default_locale_en"><%= t("locales.en") %></label>
+          </div>
+        </span>
+        
+        <div class="clear"></div>
+      </div>
+    
+    </div>
+  </div>
+  
+  <% unless account.user.new_record? %>
+  <div class="sub_page_content">
+    <h3 class="title">الأخطارات</h3>
+    <div class="sub_page_container">
+      <p>قم بتحديد نوعية الرسائل التي تسمح بإستقبالها من موقع توصيلة، الأخطارات متعلقة بـ : </p>
+      <p></p>
+      <div class="form_side">
+        
+        
+        <span class="form_item clearfix">
+          <%= f.label :transports_notifications, User.human_attribute_name(:transports_notifications), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <div class="radio" style="width: 400px !important;">
+            <%= f.radio_button :transports_notifications, "true" , :checked => account.user.transports_notifications == true %>
+            <label for="user_transports_notifications_true">نعم</label>
+            
+            <%= f.radio_button :transports_notifications, "false" , :checked => account.user.transports_notifications != true %>
+            <label for="user_transports_notifications_false">لا</label>
+          </div>
+        </span>
+        
+        <span class="form_item clearfix">
+          <%= f.label :friends_notifications, User.human_attribute_name(:friends_notifications), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <div class="radio" style="width: 400px !important;">
+            <%= f.radio_button :friends_notifications, "true" , :checked => account.user.friends_notifications == true %>
+            <label for="user_friends_notifications_true">نعم</label>
+            
+            <%= f.radio_button :friends_notifications, "false" , :checked => account.user.friends_notifications != true %>
+            <label for="user_friends_notifications_false">لا</label>
+          </div>
+        </span>
+        
+        
+        <span class="form_item clearfix">
+          <%= f.label :new_transports_notifications, User.human_attribute_name(:new_transports_notifications), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <div class="radio" style="width: 400px !important;">
+            <%= f.radio_button :new_transports_notifications, "true" , :checked => account.user.new_transports_notifications == true %>
+            <label for="user_new_transports_notifications_true">نعم</label>
+            
+            <%= f.radio_button :new_transports_notifications, "false" , :checked => account.user.new_transports_notifications != true %>
+            <label for="user_new_transports_notifications_false">لا</label>
+          </div>
+        </span>
+        
+        <div class="clear"></div>
+      </div>
+    
+    </div>
+  </div>
+  <% end %>
+  
+  <div class="sub_page_content">
+    <h3 class="title"><%= t("users.cars")%></h3>
+    <div class="sub_page_container">
+      <div class="form_side">
+        <span class="form_item clearfix">
+          <%= f.label :has_car, User.human_attribute_name(:has_car), :class=>"label_txt" %>
+          <span class="required">*</span>
+          <div class="radio" style="width: 400px !important;">
+            <%= f.radio_button :has_car, "0" , :checked => account.user.has_car == false %>
+            <label for="user_has_car_0"><%= t("messages.no_lab") %></label>
+            
+            <%= f.radio_button :has_car, "1" , :checked => account.user.has_car == true %>
+            <label for="user_has_car_1"><%= t("messages.yes_lab") %></label>
+          </div>
+        </span>
+        
+        <div id="car_profile_container" style="<%= 'display: none;' if account.user.has_car != true%> ">
+          <span class="form_item clearfix recorded_data">
+            <div class="col2">
+              <%= label :car_profile, :number, CarProfile.human_attribute_name(:number), :class=>"label_txt short" %>
+              <span class="required">*</span>
+              <%= text_field :car_profile, :number, :class=>"input_txt overtiny center", :name=>"", :id=>"car_profile_number_0" %>
+              <%= text_field :car_profile, :number, :class=>"input_txt overtiny center", :name=>"", :id=>"car_profile_number_1" %>
+            </div>
+            <div class="col2">
+              <%= label :car_profile, :color, CarProfile.human_attribute_name(:color), :class=>"label_txt short" %>
+              <span class="required">*</span>
+              
+              <%= text_field :car_profile, :color, :class=>"input_txt oversmall hide_txt", :name=>"", :placeholder => t("users.color_holder") %>
+            </div>
+          </span>
+          <span class="form_item clearfix recorded_data">
+            <div class="col2">
+              <%= label :car_profile, :cars_make_id, CarProfile.human_attribute_name(:cars_make_id), :class=>"label_txt short" %>
+              <span class="required">*</span>
+              <%= select :car_profile, :cars_make_id, options_for_select([[t("messages.select_car_make"), ""]]) + options_from_collection_for_select(@carsmakes, :id, :name, 0), {}, {:class=>"oversmall", :name=>""} %>
+            </div>
+            <div class="col2">
+              <%= label :car_profile, :model_name, CarProfile.human_attribute_name(:model_name), :class=>"label_txt short" %>
+              <span class="required">*</span>
+              <%= text_field :car_profile, :model_name, :class=>"input_txt oversmall", :name=>"" , :id=>"car_profile_model_name" %>
+            </div>
+          </span>
+          <span class="form_item clearfix recorded_data">
+            <div class="col2">
+              <%= label :car_profile, :make_date, CarProfile.human_attribute_name(:make_date), :class=>"label_txt short"%>
+              <span class="required">*</span>
+              <%= date_select :car_profile, :make_date, {:start_year=>1.years.since.year, :end_year=>50.years.ago.year, :discard_day => true, :discard_month => true, :prompt => {:year => t("messages.select_year") }}, {:class=>"oversmall", :name=>""} %>
+            </div>
+            <div class="col2">
+              <%= label :car_profile, :gasoline_type_id, CarProfile.human_attribute_name(:gasoline_type_id), :class=>"label_txt short"%>
+              <span class="required">*</span>
+              <%= select :car_profile, :gasoline_type_id, options_for_select([[t("messages.select_gasoline"), ""]]) + options_from_collection_for_select(@gasoline_type, :id, :name, 0), {}, {:class=>"oversmall", :name=>""} %>
+            </div>
+          </span>
+        </div>
+      </div>
+      <div id="add_to_car_list" class="clearfix clear_updown" style="<%= 'display: none;' if account.user.has_car != true%> ">
+        <%= link_to t("navigation.add_to_car_list"), "#", :class=>"submit_btn add_car", :id=>"add_car" %>
+        
+        بعد كتابة بيانات السيارة أضغط على "أضف لقائمة السيارات"
+      </div>
+      <hr />
+      <div id="cars_list_container" id="cars_list_container" class="list_wrapper" style="<%= 'display: none;' if account.user.has_car != true%> ">
+        <h3><%= t("users.cars_list")%></h3>
+        <div id="cars_list_item_container" class="list_container">
+          <div id="no_cars_item" class="list_item" style="<%= 'display: none;' if account.user.car_profiles.size > 0 %>" >
+            <p><%= t("users.no_cars") %></p>
+          </div>
+          <div id="deleted_cars_list">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="submit clearfix">
+    <p><%= t("users.before_save")%></p>
+    <%= f.submit :class=>"submit_btn save", :value => "تحديث بيانات العضو" %>
+  </div>
+  
+  
+<% end %>
+
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.16.custom.css", "/stylesheets/colorpicker.css" %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/jquery-ui-1.8.16.custom.min.js", "/javascripts/colorpicker.js", "/javascripts/users.js" %>
+  <script>
+    $(document).ready(function () {
+      <% account.user.car_profiles.each_with_index do |car_profile, index| %>
+        $("#car_profile_templ").tmpl({"obj_id": '<%= car_profile.id %>', "number_0": '<%= car_profile.number.split("-")[0] if car_profile.number %>', "number_1": '<%= car_profile.number.split("-")[1] if car_profile.number %>', "make_name": '<%= car_profile.cars_make.name if car_profile.cars_make %>', "make_id": '<%= car_profile.cars_make_id %>', "model_name": '<%= car_profile.model_name %>', "make_date": '<%= car_profile.make_date.year if car_profile.make_date %>', "gas_name": '<%= car_profile.gasoline_type.name if car_profile.gasoline_type %>', "gas_id": '<%= car_profile.gasoline_type_id %>', "color": '<%= car_profile.color %>', "car_profile_id": '<%= index %>', "car_make_image": '<%= car_profile.cars_make.name_en if car_profile.cars_make %>'}).appendTo("#cars_list_item_container");
+      <% end %>
+    });
+  </script>
+  <script id="car_profile_templ" type="text/x-jquery-tmpl">
+    <div id="car_profile_${car_profile_id}" class="list_item real_list_item clearfix">
+      <a href="#" class="delete_item" title="حذف"><img src="/images/icons/small_delete.png" /></a>
+      <div class="car_number">
+        <div class="top"><div class="right">مصر</div><div class="left">Egypt</div></div>
+        <div class="bottom">
+          <div class="right gray">${number_0}</div>
+          <div class="left">${number_1}</div> 
+        </div>
+      </div>
+      <div class="car_logo" >
+        <img src="/images/cars/${car_make_image}.gif"/>
+      </div>
+      <div class="col4"><label><%= CarProfile.human_attribute_name(:model_name)%></label>${model_name}</div>
+      <div class="col4"><label><%= CarProfile.human_attribute_name(:make_date)%></label>${make_date}</div>                              
+      <div class="col4"><label><%= CarProfile.human_attribute_name(:gasoline_type)%></label>${gas_name}</div>
+      <div class="col4"><label><%= CarProfile.human_attribute_name(:color)%></label> <span style="background: #${color};"></span></div>
+      
+      <%= hidden_field :user, :car_profiles, :value=>"${obj_id}", :id=>"user_car_profiles_attributes_id", :name=>"user[car_profiles_attributes][${car_profile_id}][id]" %>
+      <%= hidden_field :user, :car_profiles, :value=>"${number_0}-${number_1}", :id=>"user_car_profiles_attributes_number", :name=>"user[car_profiles_attributes][${car_profile_id}][number]" %>
+      <%= hidden_field :user, :car_profiles, :value=>"${color}", :id=>"user_car_profiles_attributes_color", :name=>"user[car_profiles_attributes][${car_profile_id}][color]" %>
+      <%= hidden_field :user, :car_profiles, :value=>"${make_id}", :id=>"user_car_profiles_attributes_cars_make_id", :name=>"user[car_profiles_attributes][${car_profile_id}][cars_make_id]" %>
+      <%= hidden_field :user, :car_profiles, :value=>"${model_name}", :id=>"user_car_profiles_attributes_model_name", :name=>"user[car_profiles_attributes][${car_profile_id}][model_name]" %>
+      <%= hidden_field :user, :car_profiles, :value=>"${make_date}", :id=>"user_car_profiles_attributes_make_date_1i", :name=>"user[car_profiles_attributes][${car_profile_id}][make_date(1i)]" %>
+      <%= hidden_field :user, :car_profiles, :value=>"1", :id=>"user_car_profiles_attributes_make_date_2i", :name=>"user[car_profiles_attributes][${car_profile_id}][make_date(2i)]" %>
+      <%= hidden_field :user, :car_profiles, :value=>"1", :id=>"user_car_profiles_attributes_make_date_3i", :name=>"user[car_profiles_attributes][${car_profile_id}][make_date(3i)]" %>
+      <%= hidden_field :user, :car_profiles, :value=>"${gas_id}", :id=>"user_car_profiles_attributes_gasoline_type_id", :name=>"user[car_profiles_attributes][${car_profile_id}][gasoline_type_id]" %>
+    </div>
+  </script>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="controls controls_hover">
+  <% if transports_request.status == Status.accepted %>
+    <span class="accept_hover hide_txt" title="<%= t('transports_requests.accepted') %>" ></span>
+  <% elsif transports_request.status == Status.rejected %>
+    <span class="reject_hover hide_txt" title="<%= t('transports_requests.rejected') %>" ></span>
+  <% elsif transports_request.status == Status.requested %>
+    <span class="waiting hide_txt" title="<%= t('transports_requests.waiting') %>" ></span>
+  <% elsif transports_request.status == Status.canceled %>
+    <span class="cancel hide_txt" title="<%= t('transports_requests.cancelled') %>" ></span>
+  <% elsif transports_request.status == Status.completed %>
+    <span class="completed hide_txt" title="<%= t('transports_requests.completed') %>" ></span>
+  <% end %>
+</div>
+
+<% if can? :edit, transports_request%>
+<div class="controls">
+  <% if transports_request.status == Status.requested || transports_request.status == Status.accepted %>
+    <%= link_to "", cancel_request_transport_transports_request_path(transports_request.transport, transports_request), :class => "cancel hide_txt", :confirm => "هل أنت متأكد من إلغاء الطلب؟", :title => t('transports_requests.cancel') %>
+  <% end %>
+</div>
+<% end %>

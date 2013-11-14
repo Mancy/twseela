@@ -1,0 +1,3 @@
+$("#messages_drop_menu").html("<%= escape_javascript(render :partial => "/messages/messages", :locals => {:messages => @messages}) %>");
+$(".messages_menu").removeClass("message_hover").addClass("message");
+$(".messages_menu span").html("");

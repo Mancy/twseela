@@ -1,0 +1,67 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("payments.add_amount")%></h2>
+  <div class="content_container">
+    
+    
+    <div class="sub_page_content" >
+      <h3 class="title"><%= t("payments.cashu_amount") %></h3>
+      <div class="sub_page_container">
+        <div class="help_txt">
+          <p>سيتم تحويلك الأن لموقع كاش يو لتحصيل القيمة التي قمت بإدخالها لإضافة رصيد على موقع توصيلة ، برجاء مراجعة البيانات التي قمت بإدخالها قبل التأكيد على الدفع </p>
+        </div>
+        
+        <div style="height: 60px;margin: 0 auto 10px;width: 275px;">
+          <p style="font-size: 16px;float: right;margin: 7px;position: relative;text-align: center;width: 150px;">أدفع بإستخدام خدمة كاش يو</p>
+          <a href='http://cashu.com/' target="_blank" style="float: left;"><img src='https://images.cashu.com/images/cashULogo/ar/90-54-11.jpg' alt='كاش يو | وسيلة الدفع عبر الانترنت' border='0' width='90' height='54'></a>
+          
+        </div>
+          
+        <%= form_for(@payment, :url => CASHU_CONFIG[:url]) do |f| %>
+          <div id="hidden_fields">
+            <%= hidden_field "cashu", "merchant_id", :value => CASHU_CONFIG[:merchant_id], :name=>"merchant_id" %>
+            <%= hidden_field "cashu", "servicesName", :value => CASHU_CONFIG[:services_name], :name=>"servicesName" %>
+            <%= hidden_field "cashu", "token", :value => @payment.token, :name=>"token" %>
+            <%= hidden_field "cashu", "display_text", :value => t("payments.cashu.display_text") , :name=>"display_text" %>
+            <%= hidden_field "cashu", "currency", :value => CASHU_CONFIG[:currency], :name=>"currency" %>
+            <%= hidden_field "cashu", "amount", :value => @payment.amount.to_i.to_s, :name=>"amount" %>
+            <%= hidden_field "cashu", "language", :value => I18n.locale.to_s , :name=>"language" %>
+            <%= hidden_field "cashu", "session_id", :value => @payment.session_id , :name=>"session_id" %>
+            <%= hidden_field "cashu", "txt1", :value => t("payments.cashu.txt1") , :name=>"txt1" %>
+          
+          </div>
+          <%= render :partial=>'/shared/form_errors', :locals=>{:obj => @payment} %>
+          
+          <div class="form_side">
+            <span class="form_item clearfix">
+              <%= f.label :amount, :class=>"label_txt" %>
+              <span style="font-size: 16px;font-weight: bold;"><%= @payment.amount %></span>
+            </span>
+          </div>
+          
+          <div class="form_side">
+            <span class="form_item clearfix">
+              <label class="label_txt" for="payment_amount">العملة</label>
+              <span style="font-size: 16px;font-weight: bold;">EGP</span>
+            </span>
+          </div>
+          <div class="submit clearfix">
+            <%= f.submit :class=>"submit_btn send", :value=> "تأكيد الدفع", :name => "but" %>
+            <%= link_to t("navigation.cancel"), payment_path(@payment), :class => "submit_btn back right", :method => :delete, :confirm => "هل أنت متأكد من إلغاء عملية الدفع ؟" %>
+          </div>
+        <% end %>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/rails.js" %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/credits" %>
+  <%= render "/shared/sidebar/new_transport" %>
+  <%= render "/shared/sidebar/transport_search" %>
+<% end %>

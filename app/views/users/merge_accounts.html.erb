@@ -1,0 +1,51 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("users.merge_accounts")%></h2>
+  <div class="content_container">
+    <div class="sub_page_content">
+      <h3 class="title"><%= t("users.merge") %></h3>
+      <div class="sub_page_container">
+        <p><%= t("users.merge_accounts_hint_1") %></p>
+        <p><%= t("users.merge_accounts_hint_2") %></p>
+        <div class="login_logos center">
+          <ul class="login_list">
+            <% @accounts.each do |account| %>
+              <li><%= link_to "", login_path(account), :class=>"#{account}_login" %></li>
+            <% end %>
+            <% if @accounts.size == 0%>
+              <div class="list_item">
+                <p><%= t("users.no_accounts")%></p>
+              </div>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <% if current_user.accounts.size > 1 %>
+      <div class="sub_page_content">
+        <h3 class="title"><%= t("users.my_accounts") %></h3>
+        <div class="sub_page_container">
+          <p><%= t("users.merge_accounts_hint_3") %></p>
+          <form method="get" action="/users/<%= current_user.id %>/update_default_account" >
+            <span class="form_item clearfix recorded_data">
+              <% current_user.accounts.each do |account| %>
+                <div class="col4">
+                  <%= radio_button :account, :default_account, account.id, :checked => account.default_account == true ? "checked" : "", :id => "account_id", :name => "account_id" %>
+                  <span class="with_icon <%= account.provider %>"><%= account.provider.titleize %></span>
+                </div>
+              <% end %>
+            </span>
+            <div class="submit clearfix">
+              <input type="submit" value="تحديث الحساب" name="commit" class="submit_btn save">
+            </div>
+          </form>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/like_box" %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/groups_users" %>
+<% end %>

@@ -1,0 +1,66 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: tawseela_development
+  pool: 5
+  username: temporary
+  password: temporary
+
+development_geo:
+  adapter: postgis
+  encoding: unicode
+  database: tawseela_geo_development
+  pool: 5
+  username: temporary
+  password: temporary
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: tawseela_test
+  pool: 5
+  username: temporary
+  password: temporary
+
+test_geo:
+  adapter: postgis
+  encoding: unicode
+  database: demo
+  pool: 5
+  username: temporary
+  password: temporary
+    
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: tawseela_staging
+  pool: 5
+  username: temporary
+  password: temporary
+  
+
+staging_geo:
+  adapter: postgis
+  encoding: unicode
+  database: tawseela_geo_staging
+  pool: 5
+  username: temporary
+  password: temporary
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: tawseela
+  pool: 5
+  username: temporary
+  password: temporary
+  
+
+production_geo:
+  adapter: postgis
+  encoding: unicode
+  database: tawseela_geo
+  pool: 5
+  username: temporary
+  password: temporary
+  

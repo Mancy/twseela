@@ -1,0 +1,184 @@
+<a id="how_to_user_link" href="#"><h4 class="with_icon_big help_bus">كيف أبحث عن توصيلة</h4></a>
+<div id="how_to_user" class="list_wrapper high" style="display: none;" >
+  <div class="list_container" style="margin-right: 65px;">
+    <p><%= t("searches.hint_1")%></p>
+    <p><%= t("searches.hint_1_1")%></p>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<% if saved_searches.size > 0 %>
+  <a id="saved_transports_link" href="#"><h4 class="with_icon_big car_black_search">البحث المحفوظ سابقا</h4></a>
+  <div id="saved_transports" class="list_wrapper high" style="display: none;" >
+    <div class="list_container" style="margin-right: 65px;">
+      <ul class="notifications_list">
+        <% saved_searches.each do |saved_search| %>
+          <li>
+            <a href="/searches/<%= saved_search.id %>" >
+              <%= image_tag("/images/icons/small_car_2.png") %>
+              <div>
+                <% if !saved_search.start_place.blank? %>
+                  <span><%= saved_search.start_place %></span><br/>
+                <% elsif !saved_search.start_time_from.blank? %>
+                  <span><%= l(saved_search.start_time_from, :format => :short) %></span><br/>
+                <% elsif !saved_search.gender.blank? %>
+                  <span><%= t("gender.gender_#{saved_search.gender}")%></span><br/>
+                <% end %>
+    
+                <% if !saved_search.searches_paths.blank? %>
+                  <span class="small" ><%= saved_search.searches_paths.last.start_place %></label></span>
+                <% end %>
+              </div>
+            </a>
+            <br/><%= link_to "حذف هذا البحث", delete_search_path(saved_search), :confirm => "هل أنت متأكد؟"%>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="clear"></div>
+  </div>
+<% end %>
+<%= form_for(search, :method => :post, :url => results_searches_path) do |f| %>
+  <%= render :partial=>'/shared/form_errors', :locals=>{:obj => search} %>
+  <div id="hidden_fields"></div>
+  <a id="adv_search_link" href="#"><h4 class="with_icon_big car_black_search">البحث المتقدم</h4></a>
+  <div id="adv_search" style="">
+  <div class="form_side">
+    <span class="form_item clearfix">
+      <%= f.label :start_time_from, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.text_field :start_time_from, :class=>"input_txt large date_and_time_picker", :date=> search.start_time_from ? l(search.start_time_from.try(:to_date), :format => :default) : l(Date.today, :format => :default), :hour => search.start_time_from ? search.start_time_from.hour : "0", :minute => search.start_time_from ? search.start_time_from.min : "0" %>
+    </span>
+    <span class="form_item clearfix">
+      <%= f.label :start_time_to, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.text_field :start_time_to, :class=>"input_txt large date_and_time_picker", :date=> search.start_time_to ? l(search.start_time_to.try(:to_date), :format => :default) : l(Date.today, :format => :default), :hour => search.start_time_to ? search.start_time_to.hour : "0", :minute => search.start_time_to ? search.start_time_to.min : "0" %>
+    </span>
+    <span class="form_item clearfix">
+      <%= f.label :gender, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.select :gender, options_for_select([[t("gender.all_genders"), ""], [t("gender.gender_1"), "1"], [t("gender.gender_2"), "2"]], search.gender), {},:class=>"large" %>
+      <div class="help_container">
+        <div class="icon" title="تحب تركب مع مين ؟ اختر الجنس الي تحب تروح معاهم في التوصيلة"></div>
+      </div>
+    </span>
+    
+    <!-- 
+    <span class="form_item clearfix">
+      <%= f.label :cost_type , :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.select :cost_type, options_for_select([[t("gender.all_genders"), ""], [t("cost_type.paid"), 1], [t("cost_type.free"), 2]], search.cost_type), {},:class=>"large" %>
+      <div class="help_container">
+        <div class="icon" title="تحب تشارك فى البنزين ؟ اختر نوع الدفع الي يناسبك"></div>
+      </div>
+    </span>
+    
+    <span class="form_item clearfix">
+      <label class="label_txt"><%= t("transports.accessories")%></label>
+      <span class="required">*</span>
+      <%= f.check_box :air_cond %>
+      <span><%= t("transports.air_condition")%></span>
+      <%= f.check_box :cassette %>
+      <span><%= t("transports.cassette")%></span>
+      <%= f.check_box :smoking %>
+      <span><%= t("transports.smoking")%></span>
+    </span>
+    
+    -->
+    
+    <span class="form_item clearfix">
+      <%= f.label :return_back, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.check_box :return_back %>
+      <span><%= t("transports.return_back")%></span>
+    </span>
+  </div>
+  </div>
+  
+  <div class="map_side" >
+    <div class="map">
+      <div id="map-canvas" style="width: 575px; height: 400px; "></div>
+    </div>
+    <div class="clear"></div>
+    <div class="advices">
+      <p><%= t("transports.hint_2")%></p>
+    </div>
+    <div class="map_btn">
+      <ul class="btn_list">
+        <%= render :partial=>'/shared/map_btn', :locals=>{} %>
+        <%= render :partial=>'/shared/map_hints', :locals=>{} %>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="clear"></div>
+  <div class="submit clearfix">
+    <p>لعرض الكل لا تقم بتحديد اي بيانات</p>
+    <%= f.submit :class=>"submit_btn search", :value=> t("searches.searches_search") %>
+    
+    <div style="float: left; padding: 10px 0 0 0;">
+      <%= f.label :save_search, :title => "حفظ البحث عن توصيلة لإعادة إستخدامه لاحقا" %>
+      <%= f.check_box :save_search %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.16.custom.css" %>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/jquery-ui-1.8.16.custom.min.js", "/javascripts/jquery-ui-timepicker-addon.js", "/javascripts/rails.js", "/javascripts/maps.js", "/javascripts/transports.js" %>
+  
+  <script>
+    $(document).ready(function () {
+      <% if current_user && current_user.city && current_user.city.lat && current_user.city.lng %>
+        cityLat = "<%= current_user.city.lat %>";
+        cityLng = "<%= current_user.city.lng %>";
+      <% else %>
+        cityLat = null;
+        cityLng = null;
+      <% end %>
+      
+      if(cityLat && cityLng) {
+        myLatlng = new google.maps.LatLng(cityLat, cityLng);
+        map.setCenter(myLatlng);
+        map.setZoom(13);
+      }
+      $("#saved_transports_link").click(function(){
+        $("#saved_transports").toggle("slow");
+        return false;
+      })
+      
+      $("#how_to_user_link").click(function(){
+        $("#how_to_user").toggle("slow");
+        return false;
+      })
+      
+      $("#adv_search_link").click(function(){
+        $("#adv_search").toggle("slow");
+        return false;
+      })
+      
+      <% if params[:controller] == "searches" && params[:action] != "results" %>
+        $("#adv_search").hide();
+      <% end %>
+    });
+  </script>
+  
+  <script id="transport_path_templ" type="text/x-jquery-tmpl">
+    <div id="hidden_field_${index}">
+      <input type="hidden" name="search[searches_paths_attributes][${index}][start_place]" value="${start_place}" >
+      <input type="hidden" name="search[searches_paths_attributes][${index}][start_lng]" value="${start_lng}" >
+      <input type="hidden" name="search[searches_paths_attributes][${index}][start_lat]" value="${start_lat}" >
+    </div>
+  </script>
+  
+  <script id="transport_place_templ" type="text/x-jquery-tmpl">
+    <div id="hidden_field_${index}">
+      <input type="hidden" name="search[start_place]" value="${start_place}" >
+    </div>
+  </script>
+  
+  
+<% end %>

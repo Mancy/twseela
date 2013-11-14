@@ -1,0 +1,35 @@
+<h1>Editing transports_request</h1>
+
+<%= form_for(@transports_request, :url => transport_transports_request_path(@transport, @transports_request)) do |f| %>
+  
+  <% if @transports_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transports_request.errors.count, "error") %> prohibited this transports_request from being saved:</h2>
+
+      <ul>
+      <% @transports_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :requester_notify_type %><br />
+    <%= f.text_field :requester_notify_type %>
+  </div>
+  <div class="field">
+    <%= f.label :money_back %><br />
+    <%= f.check_box :money_back %>
+  </div>
+  
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

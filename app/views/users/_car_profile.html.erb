@@ -1,0 +1,26 @@
+<div class="list_item clearfix">
+  <% if show_delete == true %>
+  <a href="#" class="delete_item"><img src="../../images/icons/small_delete.png"></a>
+  <% end %>
+  <% if show_details == true %>
+  <div class="car_number">
+    <div class="top">
+    <div class="right">مصر</div>
+    <div class="left">Egypt</div>
+    </div>
+    <div class="bottom">
+      <div class="right gray"><%= car_profile.number.split("-")[0] %></div>
+      <div class="left"><%= car_profile.number.split("-")[1] %></div> 
+    </div>
+  </div>
+  <% end %>
+  <div class="car_logo">
+    <%= image_tag "/images/cars/#{car_profile.cars_make.name_en}.gif", :title => car_profile.cars_make.name_ar %>
+  </div>
+  <div class="col4"><label class="bold"><%= CarProfile.human_attribute_name(:model_name)%></label><%= car_profile.model_name %></div>
+  <div class="col4"><label class="bold"><%= CarProfile.human_attribute_name(:make_date)%></label><%= car_profile.make_date.year %></div>                              
+  <% if show_details == true %>
+  <div class="col4"><label class="bold"><%= CarProfile.human_attribute_name(:gasoline_type)%></label><%= car_profile.gasoline_type.name %></div>
+  <div class="col4"><label class="bold"><%= CarProfile.human_attribute_name(:color)%></label> <span style="background: #<%= car_profile.color %>;"></span></div>
+  <% end %>
+</div>

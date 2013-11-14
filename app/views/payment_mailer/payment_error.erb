@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+  عملية دفع فاشلة
+<% end %>
+
+<p><%= t("payment_mailer.payment_error.body_1", :locale => :ar) %></p>
+<h3>بيانات الدفع كالتالي : </h3>
+<p><strong>Error</strong> : <%= @error %></p>
+<p><strong>Transaction ID</strong> : <%= @trans_id %></p>
+<p><strong>Verification String</strong> : <%= @verification_string%></p>
+<p><strong>Payment ID</strong> : <%= @payment.id%></p>
+<p><strong>Payment Amount</strong> : <%= @payment.amount %></p>
+
+<div style="display: block;clear: both;"></div>

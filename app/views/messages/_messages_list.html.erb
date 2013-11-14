@@ -1,0 +1,35 @@
+<div class="sub_page_content">
+  <% if messages.size > 0 %>
+    <ul class="notifications_list">
+      <% messages.each do |message| %>
+        <li>
+          <a href="<%= message_path(message) %>" class="fancybox" >
+            <% if show_from == true %>
+              <%= image_tag(message.sender.accounts.default_one.first.my_image(:square), :title => message.sender.name, :style => "height: 48px;" ) %>
+            <% else %>
+              <%= image_tag(message.recipient.accounts.default_one.first.my_image(:square), :title => message.recipient.name, :style => "height: 48px;" ) %>
+            <% end %>
+            <div>
+              <span><%= message.subject %></span><br/>
+              <span class="small" ><%= l(message.sender.created_at, :format => :long) %></span>
+            </div>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+    <div class="clear"></div>
+  <% else %>
+    <div class="list_wrapper">
+      <div class="list_container">
+        <div class="list_item">
+          <p>لا يوجد رسائل</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% if messages.num_pages > 1 %>
+  <div class="submit clearfix">
+    <%= paginate messages %>
+  </div>
+<% end %>

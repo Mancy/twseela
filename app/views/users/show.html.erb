@@ -1,0 +1,86 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("users.user_details")%></h2>
+  <div class="content_container">
+    <div class="show_item">
+      <div class="controls_2 short">
+        <% @user.accounts.each do |account|%>
+          <%= link_to "", account.url, :class => "#{account.provider} hide_txt", :target => "_blank", :title=> t("users.#{account.provider}_link") %>
+        <% end %>
+      </div>    
+      <div class="user_logo" >
+        <%= image_tag @user.accounts.default_one.first.my_image %> 
+      </div>
+      <div class="main_data">
+        <div class="col1" style="margin-bottom: 10px"><h3><%= @user.name %></h3></div>
+        
+        <% if @user.car_profiles.size > 0 %>
+        <div class="col2">
+          <div title=" الكيلومترات التي قطعها بالسيارة لتوصيل الأصدقاء . . خذ أصدقائك معاك فى سكتك لكي تستطيع زيادة الكيلومترات" class="km_numbers"><%= @user.mileage_sum_str %></div>
+        </div>
+        <% end %>
+        
+        <div class="col5 with_icon gender_<%= @user.gender %>"><span title="<%= t("users.gender") %>" ><%= t("gender.gender_#{@user.gender}") %></span></div>
+        
+        <%if @show_details %>
+        <% unless @user.mobile.blank? %><div class="col4 with_icon mobile"><span title="<%= t("users.mobile") %>" ><%= @user.mobile %></span></div><% end %>
+        <% end %>
+        
+        <% unless @user.birthdate.blank? %><div class="col4 with_icon birthdate"><span title="<%= t("users.birthdate") %>" ><%= l(@user.birthdate) %></span></div><% end %>
+        <%if @show_details %>
+        <div class="col2 with_icon email"><span title="<%= t("users.email") %>" ><%= @user.email %></span></div>
+        <% end %>
+        
+        <div class="col6 with_icon flag_weight"><span title="<%= t("users.flags_weight") %>" ><%= @user.flags_weight %></span></div>
+        <div class="col6 with_icon rates_weight"><span title="<%= t("users.rates_weight") %>" ><%= @user.rates_weight %></span></div>
+        <div class="col6 with_icon block_weight"><span title="<%= t("users.blocked_weight") %>" ><%= @user.blocked_weight %></span></div>
+      </div>
+      <div class="brk"></div>
+      
+      <div class="controls right">
+        <% if current_user && can?(:new, Message.new(:sender_id => current_user.id, :recipient_id => @user.id)) %>
+          <%= link_to "", new_user_message_path(current_user.id) + "?recipient_id=#{@user.id}" , :class=>"send_msg hide_txt fancybox", :title => t("user_messages.send_message") %>
+        <% end %>
+        
+        <% if can? :new, Block.new(:user_id => current_user.id, :blocked_id => @user.id )%>
+          <%= link_to "", new_user_block_path(current_user, :blocked_id => @user.id), :class=>"reject hide_txt", :title=>"قم بحجب هذا العضو بحيث لا يظهر لك فى نتيجة البحث عن توصيلات"%>
+        <% end %>
+        
+        <% block_for_user = current_user.blocks.for_blocked(@user.id).first %>
+        <% if block_for_user && can?(:delete, block_for_user) %>
+          <%= link_to "", delete_user_block_path(current_user, block_for_user.id), :class=>"accept hide_txt", :title => "قم بإلغاء الحجب عن هذا العضو بحيث يظهر لك فى نتيجة البحث عن توصيلات"%>
+        <% end %>
+      </div>
+      
+      <div class="clear fixed_height"></div>
+    </div>
+    <div class="sub_page_content">
+      <h3 class="title"><%= t("users.cars")%></h3>
+      <div class="sub_page_container">
+        <div class="list_wrapper">
+          <div class="list_container">
+            <% if @user.car_profiles.size == 0 %>
+            <div class="list_item">
+              <p><%= t("users.no_cars")%></p>
+            </div>
+            <% end %>
+            <% @user.car_profiles.each do |car_profile|  %>
+              <%= render :partial => "/users/car_profile", :locals => {:car_profile => car_profile, :show_delete => false, :show_details => false} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <%= render :partial => "/users/friends_numbers", :locals => {:user => @user}%>
+    
+    <% if @user.friends_type != FriendsType.friends && @user.groups.size > 0 %>
+    <%= render :partial => "/users/networks", :locals => {:user => @user}%>
+    <% end %>
+    
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/like_box" %>
+<% end %>

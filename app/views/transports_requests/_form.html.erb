@@ -1,0 +1,133 @@
+<p><%= t("transports_requests.hint_1")%></p>
+<%= form_for(transports_request, :url => transport_transports_requests_path(transports_request.transport) ) do |f| %>
+  <%= render :partial=>'/shared/form_errors', :locals=>{:obj => transports_request} %>
+  <div id="hidden_fields"></div>
+  <div class="form_side">
+    <% persons =  [[t("messages.select_count"), ""]] %>
+    <% transports_request.transport.available_persons.times do |index| %>
+      <% persons << [index+1, index+1] %>
+    <% end %>
+    <span class="form_item clearfix">
+      <%= f.label :for_persons, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.select :for_persons, options_for_select(persons, transports_request.for_persons || persons.size == 2 ? 1 : 0), {},:class=>"large" %>
+    </span>
+    
+    <% if transports_request.transport.return_back == true %>
+      <span class="form_item clearfix">
+        <%= f.label :requester_return_back, :class=>"label_txt" %>
+        <span class="required">*</span>
+        <%= f.check_box :requester_return_back %>
+        <label class="label_txt verylong"><%= t("transports_requests.return_back") %></label>
+      </span>
+      
+      <div id="requester_return_back_container" style="<%= 'display: none;' if transports_request.requester_return_back == false %>">
+        <span class="form_item clearfix">
+          <%= f.label :requester_return_back_meet_place, :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= f.text_field :requester_return_back_meet_place, :class=>"input_txt large" %>
+        </span>
+      </div>
+    <% end %>
+    
+    <% if transports_request.transport.cost_type == CostType. paid %>
+      <span class="form_item clearfix">
+        <label class="label_txt long"><%= t("transports_requests.total_cost") %></label>
+        <span class="recorded_value"><%= number_to_currency(transports_request.transport.cost, :precision => 2, :unit => t("currency"), :format => " %n %u ") %></span>
+      </span>
+      <span class="form_item clearfix">
+        <%= f.label :requester_cost, :class=>"label_txt" %>
+        <span class="required">*</span>
+        <%= f.text_field :requester_cost, :class=>"input_txt large" %>
+        <div class="help_container">
+          <div class="icon" title="التكلفة التي ستقوم بدفعها لكل فرد بناءا على مسافة التوصيلة المطلوبة . . سيتم احتساب نفس القيمة فى حالة العودة من نفس الطريق . . يجب مراعاة التكلفة المطلوبة من صاحب التوصيلة"></div>
+        </div>
+      </span>
+    <% else %>
+      <span class="form_item clearfix">
+        <%= f.label :requester_cost, :class=>"label_txt long " %>
+        <span class="recorded_value"><%= number_to_currency(transports_request.transport.cost, :precision => 2, :unit => t("currency"), :format => " %n %u ") %></span>
+      </span>
+    <% end %>
+    <span class="form_item clearfix">
+      <%= f.label :requester_message, :class=>"label_txt long" %>
+      <%= f.text_area :requester_message, :class=>"input_txt large"%>
+    </span>
+    <span class="form_item clearfix" style="display: none;">
+      <%= f.label :notify_type, :class=>"label_txt long" %>
+      <%= f.select :notify_type, options_for_select([[t("notify_type.type_1"), "1"], [t("notify_type.type_2"), "2"], [t("notify_type.type_3"), "3"]], transports_request.notify_type), {},:class=>"large" %>
+      <div class="help_container">
+        <div class="icon" title="طريقة تبليغ صاحب السيارة بهذا الطلب ، 'بواسطة الأخطارات' هي الطريقة الأفتراضية للتبليغ وهي تظهر للعضو فى اعلى الشاشة، اما فى حالة أختيار 'رسالة على المحمول' سيتم خصم قيمة الرسالة من حسابك  "></div>
+      </div>
+    </span>
+    
+    <span class="form_item clearfix">
+      <%= f.label :requester_meet_place, :class=>"label_txt" %>
+      <span class="required">*</span>
+      <%= f.text_field :requester_meet_place, :class=>"input_txt large" %>
+      <div class="help_container">
+        <div class="icon" title="مكان المقابلة يجب ان يكون فى مسار التوصيلة ، لاعطاء الفرصة لصاحب السيارة بقبول الطلب"></div>
+      </div>
+    </span>
+  </div>
+  <div class="advices">
+    <h4><%= t("transports.hint_4")%></h4>
+  </div>
+  <div class="clear"></div>
+  
+  <div class="map_side" >
+    <div class="map">
+      <div id="map-canvas" style="width: 575px; height: 400px; "></div>
+    </div>
+    <div class="clear"></div>
+   
+    <div class="map_btn">
+      <ul class="btn_list">
+        <%= render :partial=>'/shared/map_hints_2', :locals=>{} %>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="clear"></div>
+  <div class="submit clearfix">
+    <%= f.submit :class=>"submit_btn search", :value=> t("transports_requests.send_rquest") %>
+    <%= link_to t("navigation.back"), @back_url, :class => "submit_btn back right" %>
+  </div>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/jquery-ui-1.8.16.custom.min.js", "/javascripts/maps.js", "/javascripts/transports.js" %>
+  <script>
+    $(document).ready(function(){
+      markers_handelrs = false;
+      user_markers_handelrs = true;
+      
+      <% transports_request.transport.points_list.each do |point| %>
+        <% if !point[:start_lat].blank? && !point[:start_lng].blank? %>
+          addNewPointLngLat('<%= point[:start_lat] %>', '<%= point[:start_lng] %>');
+        <% end %>
+      <% end %>
+      
+      if(markers.length > 0){
+        centerMarkersInMap();
+      }
+      
+      <% if !transports_request.requester_meet_lng.blank? && !transports_request.requester_meet_lat.blank? %>
+        addNewUserPointLngLat('<%= transports_request.requester_meet_lat %>', '<%= transports_request.requester_meet_lng %>');
+      <% end %>
+      
+      $("#transports_request_requester_return_back").click(function(){
+        if($(this).is(':checked')){
+          $("#requester_return_back_container").show("slow");
+        }else{
+          $("#requester_return_back_container").hide("slow");
+        }
+      })
+    });
+  </script>
+  
+  <script id="transport_request_meet_place_templ" type="text/x-jquery-tmpl">
+    <input type="hidden" name="transports_request[requester_meet_lng]" value="${meet_lng}">
+    <input type="hidden" name="transports_request[requester_meet_lat]" value="${meet_lat}">
+  </script>
+<% end %>

@@ -1,0 +1,16 @@
+<div class="sub_page_content">
+  <h3 class="title">شبكات الأصدقاء</h3>
+  <div class="sub_page_container">
+    <div class="main_data">
+      <div class="col2" style="margin-bottom: 10px"><h4>شبكات الأصدقاء الخاصة</h4></div>
+      <div class="col3">
+        <% user.groups.each do |group| %>
+        <div style="float: right;margin: 0 10px;">
+          <%= group.image_url ? image_tag(group.image_url, :title => group.name) : "" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="brk"></div>
+  </div>
+</div>

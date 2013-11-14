@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  provider: 
+  uid: MyString
+  image: MyString
+  provider_token: MyString
+  provider_secret: MyString
+
+two:
+  provider: 
+  uid: MyString
+  image: MyString
+  provider_token: MyString
+  provider_secret: MyString

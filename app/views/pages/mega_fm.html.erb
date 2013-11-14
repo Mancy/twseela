@@ -1,0 +1,114 @@
+<div class="main_page_content">
+  <h2 class="page_title">مواقع خارجية</h2>
+  <div class="content_container">
+    <div class="sub_page_content">
+      <h3 class="title">ميجا أف أم</h3>
+      <div class="sub_page_container">
+        <p>
+        </p>
+        <div dir="ltr" style="width: 201px;margin: 20px auto;text-align: center;">
+
+
+
+
+          <div id="jquery_jplayer_1" class="jp-jplayer">
+          </div>
+          <div id="jp_container_1" class="jp-audio-stream">
+            <div class="jp-type-single">
+              <div class="jp-gui jp-interface">
+                <ul class="jp-controls">
+                  <li>
+                    <a href="javascript:;" class="jp-play" tabindex="1">play</a>
+                  </li>
+                  <li>
+                    <a href="javascript:;" class="jp-pause" tabindex="1">pause</a>
+                  </li>
+                  <li>
+                    <a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a>
+                  </li>
+                  <li>
+                    <a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a>
+                  </li>
+                  <li>
+                    <a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a>
+                  </li>
+                </ul>
+                <div class="jp-volume-bar">
+                  <div class="jp-volume-bar-value">
+                  </div>
+                </div>
+              </div>
+              <div class="jp-no-solution">
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/like_box" %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/friends" %>
+<% end %>
+
+
+<%= content_for :stylesheets do %>
+  <%= stylesheet_link_tag "/stylesheets/jplayer.pink.flag.css" %>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/jquery.jplayer.min.js"%>
+  
+  "<script type="text/javascript">
+  //<![CDATA[
+  
+  $(document).ready(function(){
+  
+    var stream = {
+      title: "",
+      mp3: "http://twesto.com:7281/;stream/1"
+  
+    },
+    ready = false;
+  
+  
+  
+    $("#jquery_jplayer_1").jPlayer({
+      ready: function (event) {
+        ready = true;
+        $(this).jPlayer("setMedia", stream).jPlayer("play");
+  
+      },
+      pause: function() {
+        $(this).jPlayer("clearMedia");
+      },
+      error: function(event) {
+        if(ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
+          $(this).jPlayer("setMedia", stream).jPlayer("play");
+        }
+      },
+          autoPlay: "true",
+      swfPath: "js",
+      supplied: "mp3",
+      preload: "none",
+      wmode: "window"
+  
+    });
+  
+  
+  });
+  //]]>
+  </script>"
+<% end %>
+
+<%= content_for :final_javascripts do %>
+<script>
+  $(document).ready(function(){
+    $("#jquery_jplayer_1").jPlayer.event.loadstart();
+  });
+</script>
+<%end %>

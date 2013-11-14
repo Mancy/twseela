@@ -1,0 +1,19 @@
+<% msg = nil; msg_type = nil; %>
+<%- flash.each do |name, message| -%>
+  <% msg = message %>
+  <% msg_type = name %>
+  <% flash.delete name.to_sym%>
+<%- end -%>
+
+<div style="display: none;">
+  <div id="msg_content" class="msg_content">
+    <div class="msg">
+      <p><%= msg %></p>
+    </div>
+    <% msg_type ||= "error" %>
+    <%= link_to(image_tag("/images/msg/#{msg_type}.png"), "#", :onclick => "$.fancybox.close(); return false;") %>
+  </div>
+</div>
+<div style="display: none;">
+  <%= link_to "MSG", "#msg_content", :class=>"fancybox", :id=>"show_msg_box" %>
+</div>

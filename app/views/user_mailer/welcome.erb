@@ -1,0 +1,20 @@
+<% content_for :page_title do %>
+  مرحبا بك
+<% end %>
+
+<p><%= t("all_mailer.hello", :locale => :ar) %></p>
+<h3><%= t("user_mailer.welcome.body") %></h3>
+
+<% if @user && @user.has_car %>
+  <p><%= t("user_mailer.welcome.body_1") %></p>
+<% else %>
+  <p><%= t("user_mailer.welcome.body_2") %></p>
+<% end %>
+
+
+<p><%= t("user_mailer.friends_counts.body_1") %></p>
+<p><%= t("user_mailer.friends_counts.body_2", :locale => :ar, :link => link_to("ادعو أصدقائك", page_url(:invite_friends))).html_safe %></p>
+<br />
+<h3><%= t("user_mailer.welcome.body_3") %></h3>
+
+<div style="display: block;clear: both;"></div>

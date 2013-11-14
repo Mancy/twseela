@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  start_time: 2011-10-02 15:36:28
+  allowed_persons: 1
+  cost_type: 1
+  cost: 1.5
+  air_cond: false
+  cassette: false
+  smoking: 1
+  return_back: false
+
+two:
+  start_time: 2011-10-02 15:36:28
+  allowed_persons: 1
+  cost_type: 1
+  cost: 1.5
+  air_cond: false
+  cassette: false
+  smoking: 1
+  return_back: false

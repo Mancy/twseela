@@ -1,0 +1,33 @@
+<h1>Listing transports_requests</h1>
+
+<table>
+  <tr>
+    <th>Status</th>
+    <th>Requester message</th>
+    <th>Transporter message</th>
+    <th>Meet place</th>
+    <th>Meet lng</th>
+    <th>Meet lat</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @transports_requests.each do |transports_request| %>
+  <tr>
+    <td><%= transports_request.status %></td>
+    <td><%= transports_request.requester_message %></td>
+    <td><%= transports_request.transporter_message %></td>
+    <td><%= transports_request.meet_place %></td>
+    <td><%= transports_request.meet_lng %></td>
+    <td><%= transports_request.meet_lat %></td>
+    <td><%= link_to 'Show', transports_request %></td>
+    <td><%= link_to 'Edit', edit_transports_request_path(transports_request) %></td>
+    <td><%= link_to 'Destroy', transports_request, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Transports request', new_transports_request_path %>

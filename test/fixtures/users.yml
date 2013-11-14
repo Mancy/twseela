@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  gender: 1
+  email: MyString
+  mobile: MyString
+  has_car: false
+  trust_level: 1
+
+two:
+  name: MyString
+  gender: 1
+  email: MyString
+  mobile: MyString
+  has_car: false
+  trust_level: 1

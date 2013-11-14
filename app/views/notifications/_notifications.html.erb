@@ -1,0 +1,13 @@
+<% if notifications.size == 0 %>
+<li><p><%= t("notifications.no_notifications") %></p><a></a></li>
+<% end %>
+<% notifications.each do |notification| %>
+  <li>
+    <a href="<%= notification.url %>">
+      <%= image_tag(notification.user.accounts.default_one.first.my_image(:square), :title => notification.user.name ) %>
+      <span><%= t(notification.notification) %></span>
+      <span class="small" ><%= l(notification.created_at, :format => :long) %></span>
+    </a>
+  </li>
+<% end %>
+<li><p style="text-align: center;" ><%= link_to t("notifications.show_all") , user_notifications_path(current_user) %></p></li>

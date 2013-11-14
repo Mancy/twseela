@@ -1,0 +1,42 @@
+<% if current_user.has_car %>
+<div class="sub_page_content">
+  <h3 class="title"><%= t("dashboard.latest_transports") %></h3>
+  <div class="sub_page_container">
+    <p>آخر التوصيلات التي قمت بإضافتها . . . </p>
+    <div class="list_wrapper">
+      <div class="list_container">
+        <% if @transports.size ==  0 %>
+          <div class="list_item">
+            <p><%= t("transports.not_transports")%></p>
+          </div>
+        <% end %>
+        <% @transports.each do |transport| %>
+          <%= render :partial => "/transports/transport", :locals => {:transport => transport, :adv_view => true}%>
+        <% end %>
+        
+        <div class=" clearfix">
+          <%= link_to "عرض كل توصيلاتي" , transports_path, :class => "submit_btn car" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<div class="sub_page_content">
+  <h3 class="title"><%= t("dashboard.latest_request") %></h3>
+  <div class="sub_page_container">
+    <p>آخر الطلبات التي قمت بإرسالها . . . </p>
+    <div class="list_wrapper">
+      <div class="list_container">
+        
+        <%= render :partial => "/transports/transports_requests", :locals => {:transports_requests => @transports_requests, :show_requests => true, :show_transport_data => true }%>
+        
+        <% if @transports_requests.size > 5 %>
+        <div class=" clearfix">
+          <%= link_to "عرض المزيد من الطلبات" , transports_requests_user_transports_path(current_user), :class => "submit_btn car" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

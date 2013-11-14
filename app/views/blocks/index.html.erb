@@ -1,0 +1,41 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("blocks.blocks")%></h2>
+  <div class="content_container">
+    <div id="users_results" class="sub_page_content">
+      <h3 class="title"><%= t("blocks.blocks_list")%></h3>
+      <div class="sub_page_container">
+        <div class="form_side">
+          <div class="list_container">
+            <% if @blocks.size == 0 %>
+            <div class="list_item">
+              <p><%= t("users.no_users")%></p>
+            </div>
+            <% end %>
+            <% @blocks.each do |block| %>
+              <%= render :partial => "/users/user", :locals => {:user => block.blocked, :show_details => false} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <% if @blocks.size > 0 && @blocks.num_pages > 1 %>
+  <div class="submit clearfix">
+    <%= paginate @blocks %>
+  </div>
+  <% end %>
+</div>
+
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "/stylesheets/jquery-ui-1.8.16.custom.css" %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/friends" %>
+  <%= render "/shared/sidebar/invite_friends" %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/jquery-ui-1.8.16.custom.min.js" %>
+<% end %>

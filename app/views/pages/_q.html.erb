@@ -1,0 +1,12 @@
+<div id="q_<%=q_number%>" class="sub_page_container">
+  <h3><%= link_to q_title, "#q_#{q_number}" %></h3>
+  <%= yield %>
+  <% if show_nav == true %>
+  <div style="width: 100%;text-align: left;">
+    <%= link_to(image_tag(src="/images/icons/back.png", :title =>"عودة أعلى الصفحة"), "#")%>
+    <% if q_last != true %>
+    <%= link_to(image_tag(src="/images/icons/down.png", :title =>"السؤال التالي"), "#q_#{q_number+1}")%>
+    <% end %>
+  </div>
+  <% end %>
+</div>

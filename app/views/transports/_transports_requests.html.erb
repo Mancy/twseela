@@ -1,0 +1,12 @@
+<div id="requests_container" class="list_wrapper" style="display: <%= show_requests == true ? 'block' : 'none' %> ;">
+  <div class="list_container">
+    <% transports_requests.each do |transports_request| %>
+    <%= render :partial => "/shared/request", :locals => {:transports_request => transports_request, :show_transport_data => show_transport_data} %>
+    <% end %>
+    <% if transports_requests.size == 0 %>
+      <div class="list_item">
+        <p>لا يوجد طلبات حتى الأن</p>
+      </div>
+    <% end %>
+  </div>
+</div>

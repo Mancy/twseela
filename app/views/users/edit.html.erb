@@ -1,0 +1,11 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("navigation.edit_profile")%></h2>
+  <div class="content_container">
+    <%= render :partial => '/users/form', :locals=>{:account => @account} %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/merge_accounts" %>
+<% end %>

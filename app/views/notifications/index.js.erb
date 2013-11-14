@@ -1,0 +1,3 @@
+$("#notification_drop_menu").html("<%= escape_javascript(render :partial => "/notifications/notifications", :locals => {:notifications => @notifications}) %>");
+$(".notification_menu").removeClass("notify_hover").addClass("notify");
+$(".notification_menu span").html("");

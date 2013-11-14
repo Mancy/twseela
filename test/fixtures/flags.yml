@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  flag: MyString
+  comment: MyString
+  flaggable_id: 1
+  flaggable_type: MyString
+  user_id: 1
+
+two:
+  flag: MyString
+  comment: MyString
+  flaggable_id: 1
+  flaggable_type: MyString
+  user_id: 1

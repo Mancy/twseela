@@ -1,0 +1,41 @@
+<style type="text/css" media="all">
+#news-container {
+  margin: auto;
+  margin-top: 30px;
+}
+</style>
+    
+<div class="sub_page_content" style="margin-bottom: 35px;">
+  <h3 class="title">توصيلات سابقة</h3>
+  <div class="sub_page_container">
+    <div class="list_wrapper" id="news-container" style="overflow: hidden; position: relative; height: 430px;">
+      <ul class="list_container" style="position: absolute; margin: 0px; padding: 0px; top: 0px;">
+        <% transports.each do |transport| %>
+        <li style="margin: 0px; padding: 0px; height: 130px; display: list-item;">
+          <div>
+            <%= render :partial => "/transports/transport", :locals => {:transport => transport, :adv_view => false}%>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/jquery.vticker-min.js" %>
+  
+  <script type="text/javascript">
+  $( function() {
+    $('#news-container').vTicker({
+      speed: 500,
+      pause: 4000,
+      animation: 'fade',
+      mousePause: false,
+      showItems: 3,
+      height: 430
+    });
+  });
+  </script>
+<% end %>

@@ -1,0 +1,50 @@
+<div class="list_item auto high">
+  <div class="main_logo">
+    <%= link_to image_tag(transports_request.user.accounts.default_one.first.image), transports_request.user, :title => transports_request.user.name %>
+  </div>
+  <% if current_user && transports_request.transport.user_id == current_user.id %>
+    <%= render :partial => "/shared/transporter_controls", :locals => {:transports_request => transports_request} %>
+  <% else %>
+    <%= render :partial => "/shared/requester_controls", :locals => {:transports_request => transports_request} %>
+  <% end %>
+  <div class="main_data auto">
+    <div class="col5 seats"><label title="<%= t('transports.requested_seats') %>" ><%= transports_request.for_persons %></label></div>
+    <div class="col5 payment"><label title="<%= t('transports.cost') %>" ><%= number_to_currency(transports_request.requester_cost, :precision => 2, :unit => t("currency"), :format => " %u %n ") %></label></div>
+  </div>
+  
+  <% if show_transport_data == true %>
+  <div class="main_data wide auto">
+    <div class="col3 small_car"><label title="<%= t('transports.title') %>" ><a href="<%= transport_path(transports_request.transport) %>"><%= transports_request.transport.title %></a></label></div>
+    <div class="col3 time"><label title="<%= t('transports.start_time') %>" ><%= l(transports_request.transport.start_time, :format => :short) %></label></div>
+  </div>
+  <% end %>
+  
+  
+  <div class="main_data wide auto">
+    <div class="col3 place"><label title="<%= t('transports.place') %>" ><%= transports_request.requester_meet_place %></label></div>
+    <% unless transports_request.transporter_meet_time.blank? %>
+      <div class="col3 time"><label title="<%= t('transports_requests.transporter_meet_time') %>" ><%= l(transports_request.transporter_meet_time, :format => :short) %></label></div>
+    <% end %>
+  </div>
+  <% if transports_request.requester_return_back %>
+    <div class="main_data wide auto">
+      <div class="col4 return"><label title="<%= t('transports.return_back') %>" >عودة</label></div>
+      <div class="col4 place_return"><label title="<%= t('transports.return_back_meet_place') %>" ><%= transports_request.requester_return_back_meet_place %></label></div>
+      <% unless transports_request.transporter_return_back_meet_time.blank? %>
+        <div class="col4 time"><label title="<%= t('transports.transporter_return_back_meet_time') %>" ><%= l(transports_request.transporter_return_back_meet_time, :format => :short) %></label></div>
+      <% end %>
+    </div>
+  <% end %>
+  <% unless transports_request.requester_message.blank? %>
+    <div class="main_data wide auto">
+      <div class="message" title="<%= t('transports_requests.requester_message') %>"><%= transports_request.requester_message %></div>
+    </div>
+  <% end %>
+  <% unless transports_request.transporter_message.blank? %>
+    <div class="main_data wide auto">
+      <div class="message" title="<%= t('transports_requests.transporter_message') %>"><%= transports_request.transporter_message %></div>
+    </div>
+  <% end %>
+  
+  <div class="clear"></div>
+</div>

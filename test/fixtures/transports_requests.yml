@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  status: 1
+  requester_message: MyString
+  transporter_message: MyString
+  meet_place: MyString
+  meet_lng: 1.5
+  meet_lat: 1.5
+
+two:
+  status: 1
+  requester_message: MyString
+  transporter_message: MyString
+  meet_place: MyString
+  meet_lng: 1.5
+  meet_lat: 1.5

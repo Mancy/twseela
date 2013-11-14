@@ -1,0 +1,13 @@
+<% if messages.size == 0 %>
+  <li><p><%= t("user_messages.no_messages") %></p><a></a></li>
+<% end %>
+<% messages.each do |message| %>
+  <li>
+    <a href="<%= message_path(message) %>">
+      <%= image_tag(message.sender.accounts.default_one.first.my_image(:square), :title => message.sender.name) %>
+      <span><%= message.subject %></span>
+      <span class="small" ><%= l(message.created_at, :format => :long) %></span>
+    </a>
+  </li>
+<% end %>
+<li><p style="text-align: center;" ><%= link_to t("user_messages.show_all") , user_messages_path(current_user) %></p></li>

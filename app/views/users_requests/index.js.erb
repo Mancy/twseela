@@ -1,0 +1,3 @@
+$("#request_drop_menu").html("<%= escape_javascript(render :partial => "/users_requests/users_requests", :locals => {:users_requests => @users_requests}) %>");
+$(".request_menu").removeClass("request_hover").addClass("request");
+$(".request_menu span").html("");

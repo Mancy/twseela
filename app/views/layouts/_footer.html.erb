@@ -1,0 +1,29 @@
+<div class="footer">  <!-- footer start -->
+<div class="footer_content clearfix">
+
+<div class="footer_menu">
+  <ul>
+    <li class="home"><%= link_to t("pages.home_page"), root_path %></li>
+    <li><%= link_to t("transports.new_transport"), new_transport_path %></li>
+    <li><%= link_to t("transports.search_transport"), new_search_path %></li>
+    <li><%= link_to t("pages.invite_friends"), page_path(:invite_friends) %></li>
+    <li><%= link_to t("pages.FAQ"), page_path(:FAQ) %></li>
+    <li><%= link_to t("pages.how_it_works"), page_path(:how_it_works) %></li>
+    <li><%= link_to t("pages.about"), page_path(:about)#, :class => "fancybox" 
+            %></li>
+    <li><%= link_to t("pages.contact_us"), new_feedback_path %></li>
+    <!-- <li><%= link_to t("pages.privacy"), page_path(:privacy) %></li>
+        <li><%= link_to t("pages.terms"), page_path(:terms) %></li> -->
+  </ul>
+</div>
+
+<div class="copyright">
+  <p>
+    <span>جميع الحقوق محفوظة </span>
+    <span> <%= link_to "لموقع توصيلة", SITE_URL %> </span>
+    <span>&copy; <%= Date.today.year %></span>
+  </p>
+</div>
+
+</div>
+</div>  <!-- footer end -->

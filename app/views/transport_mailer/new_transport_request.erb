@@ -1,0 +1,36 @@
+<% content_for :page_title do %>
+  طلب جديد
+<% end %>
+<p><%= t("all_mailer.hello", :locale => :ar) %></p>
+<p><%= t("user_mailer.new_transport_request.body_1", :locale => :ar) %></p>
+<h3><p><%= t("user_mailer.new_transport_request.body_2", :locale => :ar) %></p></h3>
+<div>
+  <div>
+    <div style="margin-bottom: 20px; height: 80px; -webkit-border-radius: 10px;border-radius: 10px;margin: 10px 0;padding: 5px;border: 1px solid #E2BF8C;">
+      <div style="float: right;width: 45px;height: 45px;margin: 0 5px;overflow: hidden;">
+        <%= link_to image_tag("#{SITE_URL}/images/icons/car.png"),  transport_url(@transport) %>
+      </div>
+      <div style="width: 180px;float: right;height: 45px;margin: 5px 5px 0 0;">
+        <p style="text-align: right;font-size: 13px;margin-top: 0px;padding-top: 0px;">
+          <%= link_to @transport.title, transport_url(@transport) %>
+        </p>
+      </div>
+      <div style="width: 100%;float: right;height: 45px;margin: 5px 5px 0 0;">
+        <div style="padding-right: 30px; height: 25px; padding-top: 2px; background: url('<%= SITE_URL%>/images/icons/time.png') no-repeat right 0;width: 160px;float: right">
+          <label style="float: right;margin-left: 10px;" title="<%= t('transports.start_time') %>" >
+            <%= l(@transport.start_time, :format => :short) %>
+          </label>
+        </div>
+        <div class="col5 payment" style="padding-right: 30px;height: 25px;padding-top: 2px;background: url('<%= SITE_URL%>/images/icons/payment.png') no-repeat right 0;width: 100px;float: right;">
+          <label style="float: right;margin-left: 10px;" title="<%= t('transports.cost') %>" >
+            <%= @transport.cost %> <%= t("currency", :locale => :ar)%>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<p><%= t("user_mailer.new_transport_request.body_3", :locale => :ar) %></p>
+<p><%= link_to @transport_request.transport.title, transport_url(@transport_request.transport) + "?show_request=true#show_requests"  %></p>
+<p><%= t("user_mailer.new_transport_request.body_4", :locale => :ar) %></p>

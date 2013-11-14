@@ -1,0 +1,126 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("payments.payments")%></h2>
+  <div class="content_container">
+    <div class="sub_page_content">
+      <h3 class="title"><%= t("payments.amount") %></h3>
+      <div class="sub_page_container">
+        <div class="show_item">
+          <div class="amount_block">
+            <p class="amount"><%= current_user.credits %></p>
+            <p class="currency"><%= t("currency_long")%></p> 
+          </div>
+          <div class="" style="margin: 0 10px 0 0; float: right;">
+            <p style="font-size: 16px;">رصيدك الحالي على موقع توصيلة، ويمكنك أتباع التالي </p>
+            <div class="main_data" style="width: 290px;">
+              <div class="col2 payment" style="height: 24px; margin-bottom: 15px; font-size: 17px;"><%= link_to "إضافة رصيد جديد", new_payment_path, :style => "margin-right: 35px;" %></div>
+              <div class="col2 cash" style="height: 24px; margin-bottom: 15px; font-size: 17px;"><a href="#draw_credits" style="margin-right: 35px;">سحب رصيدك الحالي</a></div>
+              <div class="col2 transfer" style="height: 24px; margin-bottom: 15px; font-size: 17px;"><a href="#transfer_credits" style="margin-right: 35px;">تحويل رصيد الي اي صديق</a></div>
+            </div>
+          </div>
+          <div class="brk"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!--span></span>
+    <div class="sub_page_content" id="add_credits" >
+      <h3 class="title"><%= t("payments.add_amount") %></h3>
+      <div class="sub_page_container">
+        <div class="help_txt">
+          <p><%= t("payments.add_amount_hint_1") %></p>
+          <h3><%= t("payments.add_amount_hint_2") %></h3>
+          <h5><%= t("payments.add_amount_hint_3") %></h5>
+        </div>
+        <div class="login_logos center wide">
+          <ul class="login_list fine">
+            <li><%= link_to "<span>#{VODAFONE_NUM}</span>".html_safe , "#", :class=>"vodafone wide", :onclick => "return false;" %></li>
+            <li><%= link_to "<span>#{MOBINILE_NUM}</span>".html_safe, "#", :class=>"mobinile wide", :onclick => "return false;" %></li>
+            <li><%= link_to "<span>#{ETISALAT_NUM}</span>".html_safe, "#", :class=>"etisalat wide", :onclick => "return false;" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="sub_page_content" id="draw_credits">
+      <h3 class="title"><%= t("payments.draw_amount") %></h3>
+      <div class="sub_page_container">
+        <div class="help_txt">
+          <p><%= t("payments.draw_amount_hint_1") %></p>
+          <h3><%= t("payments.draw_amount_hint_2") %></h3>
+          <h5><%= t("payments.draw_amount_hint_3") %></h5>
+        </div>
+        <div class="show_item">
+          <div class="amount_block">
+            <p class="amount"><%= current_user.credits %></p>
+            <p class="currency"><%= t("currency_long")%></p> 
+          </div>
+          <div class="" style="margin: 0 10px 0 0; float: right;">
+            
+            <div class="main_data" style="width: 290px;">
+            <%= form_for(Transport.new) do |f| %>
+              <span class="form_item clearfix">
+                <label class="label_txt" style="text-align: right;">المبلغ المراد سحبه</label>
+                <input class="input_txt large" name="transport[title]" size="30" type="text">
+              </span>
+              
+              <span class="form_item clearfix">
+                <label class="label_txt" style="text-align: right;">طريقة السحب</label>
+                <select class="input_txt large" >
+                  <option>رصيد على المحمول</option>
+                  <option>تحويل الى حساب بنكي</option>
+                  <option>الحصول عليه نقدا</option>
+                </select>
+              </span>
+              
+              <div class="clear" style="height: 30px;"></div>
+              <div class=" clearfix">
+                <%= f.submit :class=>"submit_btn send", :value => "سحب الرصيد", :onclick => "showMsg('غير مدعومة حتى الأن . . . قريبا', 'warning'); return false;" %>
+              </div>
+            <% end %>
+            </div>
+          </div>
+          <div class="brk"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="sub_page_content" id="transfer_credits">
+      <h3 class="title"><%= t("payments.transfer_amount") %></h3>
+      <div class="sub_page_container">
+        <div class="show_item">
+          <div class="amount_block">
+            <p class="amount"><%= current_user.credits %></p>
+            <p class="currency"><%= t("currency_long")%></p> 
+          </div>
+          <div class="" style="margin: 0 10px 0 0; float: right;">
+            <p style="font-size: 16px; width: 290px;"> الرصيد المسوح لك بتحويله، يمكنك تحويل رصيد لإحدي أصدقائك، قم بكتابة المبلغ المراد تحويله ثم أضغط على تحويل الرصيد</p>
+            <div class="main_data" style="width: 290px;">
+            <%= form_for(Transport.new) do |f| %>
+              <span class="form_item clearfix">
+                <label class="label_txt" style="text-align: right;">أسم الصديق</label>
+                <input class="input_txt large" name="transport[title]" size="30" type="text">
+              </span>
+              <span class="form_item clearfix">
+                <label class="label_txt" style="text-align: right;">المبلغ المراد تحويله</label>
+                <input class="input_txt large" name="transport[title]" size="30" type="text">
+              </span>
+              <div class="clear" style="height: 30px;"></div>
+              <div class=" clearfix">
+                <%= f.submit :class=>"submit_btn send", :value => "تحويل الرصيد", :onclick => "showMsg('غير مدعومة حتى الأن . . . قريبا', 'warning'); return false;" %>
+              </div>
+            <% end %>
+            </div>
+          </div>
+          <div class="brk"></div>
+        </div>
+      </div>
+    </div>
+    <span></span-->
+    
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/new_transport" %>
+  <%= render "/shared/sidebar/transport_search" %>
+<% end %>

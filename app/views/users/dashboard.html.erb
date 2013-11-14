@@ -1,0 +1,16 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("navigation.dashboard") %></h2>
+  <div class="content_container">
+    <%= render "dashboard" %>
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/rails.js"%>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/groups_users" %>
+  <%= render "/shared/sidebar/like_box" %>
+<% end %>

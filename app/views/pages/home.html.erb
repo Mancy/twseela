@@ -1,0 +1,33 @@
+<div class="main_page_content">
+  <h2 class="page_title">توصيلة</h2>
+  <div class="content_container">
+    
+    <% if current_user %>
+      <%= render :partial => "/shared/follow_twseela" %>
+      <%= render "users/dashboard" %>
+    <% else %>
+      <%= render :partial => "/shared/twseela_hint" %>
+      <% if @transports && @transports.size > 0 %>
+      <%= render :partial => "/shared/latest_slider", :locals => {:transports => @transports} %>
+      <% end %>
+      <%= render :partial => "/sessions/login", :locals => {:show_title => true} %>
+      <%= render :partial => "/shared/follow_twseela" %>
+      <% if @transports && @transports.size > 0 %>
+      <%#= render :partial => "/transports/transports", :locals => {:transports => @transports, :hint => "عرض لآخر التوصيلات التي تم إضافتها على موقع توصيلة", :title => "آخر التوصيلات", :no_transports_msg => "لا توجد توصيلات مضافة حتى الأن"} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/new_transport" %>
+  <%= render "/shared/sidebar/transport_search" %>
+  <%= render "/shared/sidebar/like_box" %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render :partial => "/shared/sidebar/latest_users", :locals => {:users => @users} %>
+  <%= render "/shared/sidebar/friends" %>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/rails.js"%>
+<% end %>

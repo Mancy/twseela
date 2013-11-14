@@ -1,0 +1,8 @@
+<div class="side_bar">
+  <%= yield :sidebar %>
+  
+  <% if params[:action].to_s == "show" && params[:id].to_s == "FAQ" %>
+  <% else %>
+    <%= render "/shared/sidebar/faq" %>
+  <% end %>
+</div>

@@ -1,0 +1,64 @@
+<div class="main_page_content">
+  <h2 class="page_title">ادعو أصدقائك</h2>
+  <div class="content_container">
+    <div class="sub_page_content">
+      <h3 class="title">ادعو أصدقائك</h3>
+      <div class="sub_page_container">
+        <p>يعتمد موقع توصيلة على شبكة أصدقائك، كلما زاد عدد أصدقائك كلما كان من السهل العثور على رفيق للطريق أو العثور على مواصلة، لذلك يمكنك دعوة أصدقائك لإستخدام موقع توصيلة من الرابط التالي </p>
+        <span class="small_icon">
+          <%= link_to image_tag("/images/graphic/invite_friends_small_2.png") + "<div>أدعو المزيد من الأصدقاء لأستخدام الموقع</div>".html_safe, "#", :onclick => "sendRequestViaMultiFriendSelector(); return false;" %>
+        </span>
+      </div>
+    </div>
+    
+    
+    <div class="sub_page_content">
+      <h3 class="title">شارك أصدقائك</h3>
+      <div class="sub_page_container">
+        <p>إذا أردت ان تشارك موقع توصيلة مع أصدقائك وتنشر الموقع على الفيسبوك او تويتر أو لينكدأن ، يمكنك ذلك من خلال الرابط التالي </p>
+        <span class="small_span small_icon">
+          <% if current_user %>
+            <%= link_to image_tag("/images/graphic/invite_friends_small.png") + "<div>شارك موقع توصيلة مع أصدقائك</div>".html_safe, invite_friends_user_path(current_user), :method => :put, :confirm => "سيقوم موقع توصيلة بنشر دعوة مع أصدقائك للإنضمام لموقع توصيلة ... هل أنت متأكد؟" %>
+          <% else %>
+            <%= link_to image_tag("/images/graphic/invite_friends_small.png") + "<div>شارك موقع توصيلة مع أصدقائك</div>".html_safe, "#", :onclick => "showMsg('#{t('messages.login_first', :login_link => link_to('تسجيل الدخول', login_path, :style => 'color:#C9581F'))}', 'warning'); return false;" %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+    
+    <% if can? :new, GroupsUser.new %>
+    <div class="sub_page_content">
+      <h3 class="title">شبكات الأصدقاء</h3>
+      <div class="sub_page_container">
+        <p>قم بإضافة اصدقاء جدد للشبكات الخاصة بك . . فقط أطلب من أصدقائك البريد الالكتروني والأسم بالكامل كما هو مسجل على موقع توصيلة ، يمكنك الحصول على هذه البيانات من صفحة تعديل بياناتي</p>
+        <span class="small_icon">
+          <%= link_to image_tag("/images/graphic/invite_friends_small_3.png") + "<div>قم بإضافة اصدقاء جدد للشبكات الخاصة بك</div>".html_safe, new_groups_user_path %>
+        </span>
+      </div>
+    </div>
+    <% end %>
+    
+    <div class="sub_page_content">
+      <h3 class="title">توصيلة على الفيسبوك</h3>
+      <div class="sub_page_container">
+        <%= render :partial => "/shared/fb/fb_like", :locals => {:fb_width => "580"} %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "/shared/sidebar/latest_users", :locals => {:users => @users} %>
+  <%= render "/shared/sidebar/groups_users" %>
+  <%= render "/shared/sidebar/friends" %>
+  <%= render "/shared/sidebar/merge_accounts" %>
+  <% unless current_user %>
+    <%= render "/shared/sidebar/new_transport" %>
+    <%= render "/shared/sidebar/transport_search" %>
+  <% end %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/rails.js" %>
+  <%= render "/shared/fb/fb_invite_friends" %>
+<% end %>

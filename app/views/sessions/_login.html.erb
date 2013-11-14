@@ -1,0 +1,25 @@
+<div class="sub_page_content" style="margin-bottom: 35px;">
+  <% if show_title %>
+  <h3 class="title"><%= t("navigation.login")%></h3>
+  <% end %>
+  <div class="sub_page_container">
+    <div class="help_txt">
+      <p><%= t("pages.login.line_1") %></p>
+      <p><%= t("pages.login.line_2") %> <%= t("pages.login.line_3") %></p>
+      <p></p>
+    </div>
+    
+    <div style="display: none;">
+      <%= image_tag "/images/provider/linked_in_log.png" %>
+      <%= image_tag "/images/provider/twitter_log.png" %>
+      <%= image_tag "/images/provider/facebook_log.png" %>
+    </div>
+    <div class="login_logos center">
+      <ul class="login_list">
+        <li><%= link_to "", login_path(:facebook), :class=>"facebook_login" %></li>
+        <li><%= link_to "", login_path(:twitter), :class=>"twitter_login" %></li>
+        <li><%= link_to "", login_path(:linked_in), :class=>"linked_in_login" %></li>
+      </ul>
+    </div>
+  </div>
+</div>

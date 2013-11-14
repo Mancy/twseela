@@ -1,0 +1,14 @@
+<% if clickalbe == true %>
+  <div class="stars_container stars clickalbe <%= html_class %>" style="display: none;">
+    <% 5.times.each do |index| %>
+      <%= link_to "", rate_url + "?rate=#{index+1}", :class => "#{rates_count >= index+1 ? 'rated with_vote' : 'rate with_no_vote'} hide_txt clickalbe", :id => "star_#{index + 1}", :method => rate_method %>
+    <% end %>
+  </div>
+<% else %>
+  <% msg = rates_count > 0 ? "متوسط التقييمات التي تمت" : "لم يتم التقييم حتى الان" %>
+  <div class="stars_container stars top" title="<%= msg%>">
+    <% 5.times.each do |index| %>
+      <span class="<%= rates_count >= index+1 ? 'rated with_vote' : 'rate with_no_vote' %> hide_txt"></span>
+    <% end %>
+  </div>
+<% end %>

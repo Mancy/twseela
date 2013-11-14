@@ -1,0 +1,41 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("sidebar.feedback") %></h2>
+  <div class="content_container">
+    <p><%= t("sidebar.feedback_hint")%></p>
+    <%= form_for(@feedback) do |f| %>
+      <%= render :partial=>'/shared/form_errors', :locals=>{:obj => @feedback} %>
+      <div id="hidden_fields"></div>
+      <div class="form_side">
+        <span class="form_item clearfix">
+          <%= f.label :email, :class=>"label_txt" %>
+          <span class="required">*</span>
+          <div id="feedback_new_email">
+            <%= f.text_field :email, :class=>"input_txt", :placeholder => t("users.email_holder") %>
+          </div>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :title, :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= f.text_field :title, :class=>"input_txt", :placeholder => t("holders.title") %>
+        </span>
+        <span class="form_item clearfix">
+          <%= f.label :body, :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= f.text_area :body, :class=>"input_txt large"%>
+        </span>
+      </div>
+      <div class="form_side" dir="ltr" style="text-align: center;">
+        <div style="width: 310px;margin: 0 auto;">
+          <%= get_captcha(:options => {:theme => 'white', :tabindex => 1}).html_safe %>
+        </div>
+      </div>
+      <div class="submit clearfix">
+        <%= f.submit :class=>"submit_btn send", :value=> "أرسل" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/like_box" %>
+<% end %>

@@ -1,0 +1,56 @@
+development:
+  linked_in:
+    key: blysfrymufbg
+    secret: uvpGdcDknG8Z7VAA
+    
+  twitter:
+    key: Z56BgVczXQt7XY605vZ0A
+    secret: 72gE7rfCMlMITztZ7ztWpBE2vci9FuuxMpMPwsv0k
+    
+  facebook:
+    key: 100128296763899
+    secret: 912d942e46761de5dadae03d28dec35c
+    scope: "publish_stream,offline_access,email"
+    
+test:
+  linked_in:
+    key: blysfrymufbg
+    secret: uvpGdcDknG8Z7VAA
+    
+  twitter:
+    key: Z56BgVczXQt7XY605vZ0A
+    secret: 72gE7rfCMlMITztZ7ztWpBE2vci9FuuxMpMPwsv0k
+    
+  facebook:
+    key: 100128296763899
+    secret: 912d942e46761de5dadae03d28dec35c
+    scope: "publish_stream,offline_access,email"
+    
+staging:
+  linked_in:
+    key: 5pf2vj0cjkor
+    secret: 2EgrYbZP1DvkMy0a
+    
+  twitter:
+    key: 5z0q5on7W13oEZZp6ukS8A
+    secret: YpAnCt2NWivsAqmT7oXLp7J6lFEXtk8oePayyWxBs
+    
+  facebook:
+    key: 299441503423280
+    secret: a7665969e7e93ad97fec27eb66b27b6d
+    scope: "publish_stream,offline_access,email"
+    
+production:
+  linked_in:
+    key: jfgktpvcadl8
+    secret: rfrvD5VCzW3cXkOt
+    
+  twitter:
+    key: IZgHXmFAYPYF1MJz9xx3g
+    secret: B0NgrYE18K0JeNBkcyMtyjTtNfv5zOMohnniLo4gU
+    
+  facebook:
+    key: 349578465085975
+    secret: 8e97c6421e7f1813c5549bdf26df45a8
+    scope: "publish_stream,offline_access,email"
+

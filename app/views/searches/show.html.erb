@@ -1,0 +1,8 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("transports.transports")%></h2>
+  <%= render :partial => "/transports/index", :locals => {:transports => @transports, :prev_transports => [], :hint => t("searches.hint_2")}%>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/credits" %>
+<% end %>

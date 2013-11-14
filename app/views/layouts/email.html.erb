@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+      body, td, th{font-family: Arial, Helvetica, sans-serif;font-size:15px;color:#000000;line-height:1.5;}
+      div, span, applet, object, iframe, h2, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+      a, a:link, a:visited, a:hover, a:active {font-family:Arial, Helvetica, sans-serif;font-size:1em;color:#000000;text-decoration:none;}
+      a:hover {text-decoration:none;color:#fbae40;cursor:pointer;}
+      h2{font-size:2em;color:#000000;font-family: Arial, Helvetica, sans-serif;}
+      p{padding:5px 0;font-size:15px;}
+      * html .clearfix{*height:1%;}
+    </style>
+  </head>
+  <body style="direction: rtl;margin:0;background-color: #242424;">
+    <div>
+      <div>
+        <div style="padding-top:10px;margin:0;height:100px;">
+          <div style="width:300px;height: 100px;float:right;background:url('<%= SITE_URL %>/images/main/short_logo.png') no-repeat;margin-right: 20px;">
+            <a href="<%= SITE_URL %>" style="display: block;height:70px;outline: medium none;text-indent: -5000px;width:250px;right:20px;margin-left:15px;">&nbsp;</a>
+          </div>
+        </div>
+        <div>
+          <div class="clearfix" style="margin:0 25px;text-align:right;padding: 10px 10px 10px 15px;margin-bottom:10px;border-radius:10px;background-color: #C1B695;-moz-border-radius: 10px;-webkit-border-radius:10px;border-radius:10px;border: 1px solid #fff;*display:inline-block;">
+            <div style="float:right;width:62%;">
+              <div style="padding:1px 10px 10px 10px;width: 100%;">
+                <h2 style="background:#C9581F;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;padding:0 10px;border:2px solid #E2BF8C;font-size:30px;font-weight:bold;color:#ffffff;width:40%;float:right;margin-right:15px;text-align: center;margin-top:5px">
+                  <%= yield :page_title %>
+                </h2>
+                <div style="padding:10px;background:#ffffff;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;padding-top:30px;margin-top:25px;border:3px solid #E2BF8C;">
+                  
+                  <%= yield %>
+                  
+                </div>
+              </div>
+            </div>
+            <div style="float:left;width:35%;">
+              <div style="padding:1px 0px 10px 0px;">
+                <h2 style="background:#C9581F;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;padding:0 10px;border:2px solid #E2BF8C;color:#ffffff;width:45%;float:right;margin-right:10px;text-align: center;">أسئلة متكررة</h2>
+                <div style="padding:10px;background:#ffffff;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;padding-top:30px;margin-top:25px;border:3px solid #E2BF8C;">
+                  <p>
+                    هناك بعض الأسئلة المتكررة حول موقع توصيلة، تعرف على أجابات أهم الأسئلة التي قد تدور فى ذهنك
+                  </p>
+                  <span style="padding:5px;width:96%;background:#E2BF8C;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;text-align: center;display: block;">
+                    <%= link_to image_tag("#{SITE_URL}/images/graphic/faq.png", :alt => "Frequently Answered Questions"), page_url(:FAQ, :locale => :ar) %>
+                  </span>
+                </div>
+              </div>
+              
+              <div style="padding:1px 0px 10px 0px;">
+                <h2 style="background:#C9581F;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;padding:0 10px;border:2px solid #E2BF8C;color:#ffffff;width:45%;float:right;margin-right:10px;text-align: center;">شارك برايك</h2>
+                <div style="padding:10px;background:#ffffff;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;padding-top:30px;margin-top:25px;border:3px solid #E2BF8C;">
+                  <p>
+                    لأن رأيكم مهم .. نرجو منكم مشاركتنا أرائكم .. ننتظر أقتراحاتكم وأرائكم
+                  </p>
+                  <span style="padding:5px;width:96%;background:#E2BF8C;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;text-align: center;display: block;">
+                    <%= link_to image_tag("#{SITE_URL}/images/graphic/feedback.png", :alt => "Feedback"), new_feedback_url(:locale => :ar) %>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div style="content:'\0020';display:block;height:0;clear:both;visibility:hidden;overflow:hidden;"></div>
+          </div>
+        
+          <div class="main_page" style="float:right;width:95%;">
+            <div class="main_page_content" style="padding:10px 25px 20px 10px;width: 100%;">
+              <div class="content_container" style="padding:5px;background:#ffffff;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;margin-top:25px;border:3px solid #E2BF8C;">
+                <p>يمكنك التحكم فى نوعية الرسائل التي تسمح بإستقبالها وذلك من صفحة تعديل بياناتي على موقع توصيلة</p>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        <div style="background: none repeat scroll 0 0 #161616;bottom: 0;left: 0;opacity: 0.4;width: 100%;z-index: 20;">
+          <div class="clearfix" style="margin:0 ;padding:10px;*display:inline-block;">
+            <div style="float:right;">
+              <ul style="list-style:none;margin:0px;padding:0px;">
+                <li style="border-right:none; float:right;padding: 0 10px;border-right: 1px solid #FFFFFF;"><%= link_to "الرئيسية", root_url(:locale => :ar), :style => "color:#ffffff;" %></li>
+                <li style="float:right;padding: 0 10px;border-right: 1px solid #FFFFFF;"><%= link_to "توصيلة جديدة", new_transport_url(:locale => :ar), :style => "color:#ffffff;" %></li>
+                <li style="float:right;padding: 0 10px;border-right: 1px solid #FFFFFF;"><%= link_to "عاوز توصيلة", new_search_url(:locale => :ar), :style => "color:#ffffff;" %></li>
+                <li style="float:right;padding: 0 10px;border-right: 1px solid #FFFFFF;"><%= link_to "عن توصيلة", page_url(:about, :locale => :ar), :style => "color:#ffffff;" %></li>
+                <li style="float:right;padding: 0 10px;border-right: 1px solid #FFFFFF;"><%= link_to "أسئلة متكررة", page_url(:FAQ, :locale => :ar), :style => "color:#ffffff;" %></li>
+                <li style="float:right;padding: 0 10px;border-right: 1px solid #FFFFFF;"><%= link_to "كيف يعمل توصيلة", page_url(:how_it_works, :locale => :ar), :style => "color:#ffffff;" %></li>
+                <li style="float:right;padding: 0 10px;border-right: 1px solid #FFFFFF;"><%= link_to "إتصل بنا", new_feedback_url(:locale => :ar), :style => "color:#ffffff;" %></li>
+              </ul>
+            </div>
+            <div class="copyright" style="float:left;">
+              <p style="padding: 0;color: white;">
+                <span>جميع الحقوق محفوظة </span>
+                <span><%= link_to "لموقع توصيلة", root_url(:locale => :ar) , :style=>"color: white;" %></span>
+                <span>&copy; <%= Date.today.year %></span>
+              </p>
+            </div>
+            <div style="content:'\0020';display:block;height:0;clear:both;visibility:hidden;overflow:hidden;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

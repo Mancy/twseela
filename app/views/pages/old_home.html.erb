@@ -1,0 +1,133 @@
+<div id="slider_div" class="slider">
+  <div id="next_icon" class="next_icon" style="display: none;">
+    <%= image_tag "/images/home/next.png"%>
+  </div>
+  <div class="section">
+    <% if current_user %>
+      <div class="section_item dashboard">
+        <a href="/users/<%= current_user.id %>/dashboard">
+          <%= image_tag "/images/home/dashboard.png"%>
+          <div class="label"><h4><%= t("navigation.dashboard")%></h4></div>
+        </a>
+      </div>
+    <% else %>
+      <div class="section_item login_house">
+        <a href="/login">
+          <%= image_tag "/images/home/login.png"%>
+          <div class="label"><h4><%= t("navigation.login")%></h4></div>
+        </a>
+      </div>
+    <% end %>
+    
+    <div class="section_item new_transport">
+      <% if can?(:new, Transport.new) %>
+        <a href="<%= new_transport_path %>">
+          <%= image_tag "/images/home/new_transport.png"%>
+          <div class="label"><h4><%= t("transports.new_transport") %></h4></div>
+        </a>
+      <% else %>
+        <a href="#" onclick="showMsg('<%= t("transports.cant_add_transport") %>', 'error'); return false;">
+          <%= image_tag "/images/home/new_transport.png"%>
+          <div class="label"><h4><%= t("transports.new_transport") %></h4></div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section_item transports_search">
+        <a href="<%= new_search_path %>">
+        <%= image_tag "/images/home/transports_search.png"%>
+        <div class="label"><h4><%= t("transports.search_transport")%></h4></div>
+      </a>
+    </div>
+    <div class="section_item bus_stop">
+      <a href="<%= new_search_path %>">
+        <%= image_tag "/images/home/bus_stop.png"%>
+      </a>
+    </div>
+    <div class="section_item how_it_works">
+      <a href="<%= page_path(:how_it_works) %>">
+        <%= image_tag "/images/home/how_it_works.png"%>
+        <div class="label"><h4><%= t("navigation.how_it_works")%></h4></div>
+      </a>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section_item friends_bus">
+      <% if current_user %>
+        <a href="<%= users_path %>">
+      <% else %>
+        <a href="/login#login_content" class="fancybox internal">
+      <% end %>
+        <%= image_tag "/images/home/bus.png"%>
+        <div class="label"><h4><%= t("navigation.my_friends")%></h4></div>
+      </a>
+    </div>
+    <div class="section_item bank_build">
+      <% if current_user %>
+        <a href="/payments">
+      <% else %>
+        <a href="/login#login_content" class="fancybox internal">
+      <% end %>
+        <%= image_tag "/images/home/bank.png"%>
+        <div class="label"><h4><%= t("navigation.my_credits")%></h4></div>
+      </a>
+    </div>
+    
+    <div class="section_item merge_accounts">
+      <% if current_user %>
+        <a href="<%= merge_accounts_user_path(current_user) %>">
+      <% else %>
+        <a href="/login#login_content" class="fancybox internal">
+      <% end %>
+        <%= image_tag "/images/home/merge.png"%>
+        <div class="label"><h4><%= t("navigation.merge_accounts")%></h4></div>
+      </a>
+    </div>
+    <div class="section_item mobile_man">
+      <a href="#" onclick="showMsg('<%= t("navigation.on_mobile_hint")%>', 'warning'); return false;" >
+        <%= image_tag "/images/home/mobile_man.png"%>
+        <div class="label"><h4><%= t("navigation.on_mobile")%></h4></div>
+      </a>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section_item twitter_home">
+      <a href="<%= TWITTER_PAGE %>" target="_blank">
+        <%= image_tag "/images/home/twitter.png"%>
+        <div class="label"><h4><%= t("navigation.follow_twitter")%></h4></div>
+      </a>
+    </div>
+    <div class="section_item facebook_home">
+      <a href="<%= FACEBOOK_PAGE %>" target="_blank">
+        <%= image_tag "/images/home/facebook.png"%>
+        <div class="label"><h4><%= t("navigation.follow_facebook")%></h4></div>
+      </a>
+    </div>
+    <div class="section_item contact_car">
+      <a href="<%= new_feedback_path %>">
+        <%= image_tag "/images/home/contact.png"%>
+        <div class="label"><h4><%= t("pages.contact_us")%></h4></div>
+      </a>
+    </div>
+    
+    <% if current_user %>
+    <div class="section_item exit_logo">
+      <a href="/logout">
+        <%= image_tag "/images/home/exit.png"%>
+        <div class="label"><h4><%= t("navigation.logout")%></h4></div>
+      </a>
+    </div>
+    <% end %>
+  </div>
+  
+  <div id="previous_icon" class="previous_icon">
+    <%= image_tag "/images/home/previous.png"%>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/home.js" %>
+<% end %>

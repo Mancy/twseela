@@ -1,0 +1,9 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("navigation.login")%></h2>
+  <div class="content_container">
+  <%= render :partial => "login", :locals => {:show_title => false} %>
+  </div>
+</div>
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/like_box" %>
+<% end %>

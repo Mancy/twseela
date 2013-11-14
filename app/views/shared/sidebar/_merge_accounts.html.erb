@@ -1,0 +1,9 @@
+<% if current_user %>
+<div class="side_page_content">
+  <h2 class="side_page_title"><%= link_to t("sidebar.merge_accounts"), merge_accounts_user_path(current_user) %></h2>
+  <div class="content_container">
+    <p><%= t("sidebar.merge_accounts_hint")%> </p>
+    <span><%= link_to image_tag("/images/graphic/merge.png"), merge_accounts_user_path(current_user) %></span>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,11 @@
+development:
+  server: "http://localhost:7474/db/data"
+  
+test:
+  server: "http://localhost:7474/db/data"
+  
+staging:
+  server: "http://localhost:7474/db/data"
+  
+production:
+  server: "http://localhost:7474/db/data"

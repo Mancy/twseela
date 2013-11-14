@@ -1,0 +1,7 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("flags.flags") %></h2>
+  <div class="content_container">
+    <p><%= t("flags.hint_1") %></p>
+    <%= render :partial => '/flags/form', :locals=>{:flag => @flag} %>
+  </div>
+</div>

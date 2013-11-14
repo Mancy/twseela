@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <title><%= @title.titleize + ' - ' + t('tawseela') %></title>
+    <meta name="description" content="<%= @description ? @description : t('tawseela_with_slogan') %>" />
+    <meta name="keywords" content="توصيلة, مواصلات, خد حد معاك, خد حد فى سكتك, ميكروباص, اوتوبيس, زحمة المواصلات, زحمة الطرق, زحمة المرور, زحمة المواصلات, <%= @title %>" />
+    <meta name="author" content="Dr-Click">
+    <meta name="copyright" content="temporary.com <%= Date.today.year %> ">
+    <meta property="og:image" content="<%= SITE_URL %>/images/main/car.png" />
+    <%= stylesheet_link_tag "/stylesheets/screen.css", "/stylesheets/screen_#{I18n.locale}.css", "/stylesheets/fancybox.css" %>
+    <%= yield :stylesheets%>
+    <%= csrf_meta_tags %>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div id="wrapper_div" class="wrapper">
+        
+        <div class="side_ad_container">
+          <div class="ad_elem" >
+            
+          </div>
+        </div>
+        
+        <%= render "/layouts/header" %>
+        <% if params[:action] == "show" && (params[:id].to_s == "how_it_works") %>
+          <%= render "/layouts/how_it_works_content" %>
+        <% else %>
+          <%= render "/layouts/content" %>
+        <% end %>
+        
+        <%= render "/layouts/footer" %>
+      </div>
+    </div>
+    <%= render "/layouts/login" %>
+    <%= render "/layouts/msg" %>
+    <%= javascript_include_tag "/javascripts/jquery-1.6.4.min.js", "/javascripts/jquery.tools.min.js", "/javascripts/jquery.tmpl.min.js", "/javascripts/fancybox.js", "/javascripts/application.js" %>
+    <%= render "/shared/fb/fb" %>
+    <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false&language=ar&v=3&libraries=geometry" %>
+    <%= javascript_include_tag "/javascripts/maps_functions.js" %>
+    <%= yield :javascripts%>
+    <% unless @welcome_message.blank? %>
+    <script>
+      $(document).ready(function(){
+        loadLoginHeader();
+        
+        if(Cookies.readCookie("welcome_message_appeared").length == 0){
+          showMsg("<%= @welcome_message.html_safe %>", "warning");
+          Cookies.createCookie("welcome_message_appeared", "true", 7);
+        } 
+        
+        <% if CACHED_CONTROLLERS.include?(params[:controller].to_sym) && CACHED_Actions[params[:controller].to_sym] && CACHED_Actions[params[:controller].to_sym].include?(params[:action].to_sym) %>
+          if(Cookies.readCookie("flash_error").length > 0){
+            showMsg(Cookies.readCookie("flash_error"), "error");
+            Cookies.eraseCookie("flash_error");
+          }else if(Cookies.readCookie("flash_notice").length > 0){
+            showMsg(Cookies.readCookie("flash_notice"), "notice");
+            Cookies.eraseCookie("flash_notice");
+          }else if(Cookies.readCookie("flash_warning").length > 0){
+            showMsg(Cookies.readCookie("flash_warning"), "warning");
+            Cookies.eraseCookie("flash_warning");
+          }
+        <% else %>
+          if($("#msg_content p").size() > 0  && $("#msg_content p").html().length > 0){
+            $("#show_msg_box").fancybox(fancybox_options).trigger('click');
+            $.fancybox.center();
+          }
+          
+          Cookies.eraseCookie("flash_error");
+          Cookies.eraseCookie("flash_notice");
+          Cookies.eraseCookie("flash_warning");
+        <% end %>
+
+  
+      });
+    </script>
+    <% end %>
+    <% if Rails.env.production? %>
+    <%= render "/layouts/analytics" %>
+    <%= render "/shared/woopra" %>
+    <% end %>
+    
+    <%= yield :final_javascripts %>
+    
+  </body>
+</html>

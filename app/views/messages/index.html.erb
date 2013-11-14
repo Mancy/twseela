@@ -1,0 +1,11 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("user_messages.received_messages")%></h2>
+  <div class="content_container">
+    <%= render :partial => "/messages/messages_list", :locals => {:messages => @messages, :show_from => true} %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/like_box" %>
+<% end %>

@@ -1,0 +1,5 @@
+<%= render :partial=>'/users/new', :locals=>{:account => @account} %>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/invite_friends" %>
+<% end %>

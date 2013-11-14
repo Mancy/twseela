@@ -1,0 +1,341 @@
+<% transport_request = @transports_requests.first if current_user && current_user.id != @transport.user_id %>
+
+<div class="main_page_content">
+  <h2 class="page_title">توصيلة</h2>
+  <div class="content_container">
+    <div class="show_item all_controls_div">
+      <div class="main_logo" >
+        <img src="/images/main/car.png"/>
+      </div>
+      <div class="main_logo wide">
+        <% if current_user && can?(:new, Rate.new(:rateable => @transport, :user => current_user)) %>
+          <% transport_rate = @transport.rates.where(:user_id => current_user.id).first if current_user %>
+          <% if transport_rate %>
+            <% transport_rate_url = transport_rate_path(@transport, transport_rate.id) %>
+            <% rate_method = :put %>
+          <% else %>
+            <% transport_rate_url = transport_rates_path(@transport) %>
+            <% rate_method = :post %>
+          <% end %>
+          <%= render :partial => "/shared/stars", :locals => {:clickalbe => true, :rate_url => transport_rate_url, :rates_count => transport_rate ? transport_rate.rate : 0, :rate_method => rate_method, :html_class => "for_show"}%>
+        <% end %>
+        
+        <%= render :partial => "/shared/stars", :locals => {:clickalbe => false, :rates_count => @transport.rates_avr}%>
+      </div>
+      <div class="brk"></div>
+      <div class="controls_wide">
+        <% if transport_request %>
+        <div class="col3">
+          <div class="btn_container">
+            <div class="btn_link ask_hover">
+              <span><%= t('transports_requests.requested') %></span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        
+        <% if can? :new, TransportsRequest.new(:transport_id => @transport.id) %>
+        <div class="col3">
+          <div class="btn_container">
+            <a href="<%= new_transport_transports_request_path(@transport) %>">
+            <div class="btn_link ask">
+              <span><%= t('transports_requests.new_request') %></span>
+            </div>
+            </a>
+          </div>
+        </div>
+        <% elsif !current_user %>
+        <div class="col3">
+          <div class="btn_container">
+            <a href="#" onclick="<%= "showMsg('#{t('messages.please_login')}', 'error'); return false;" %>" >
+            <div class="btn_link ask">
+              <span><%= t('transports_requests.new_request') %></span>
+            </div>
+            </a>
+          </div>
+        </div>
+        <% end %>
+        
+        <% if can? :new, Flag.new(:flaggable_type => @transport.class.name, :flaggable_id => @transport.id) %>
+        <div class="col3">
+          <div class="btn_container">
+            <a href="<%= new_transport_flag_path(@transport) %>" class="fancybox" >
+            <div class="btn_link flag">
+              <span><%= t('flags.flag_transport') %></span>
+            </div>
+            </a>
+          </div>
+        </div>
+        <% end %>
+        
+        <% transport_flag = @transport.flags.where(:user_id => current_user.id).first if current_user %>
+        <% if transport_flag && can?(:delete, transport_flag) %>
+        <div class="col3">
+          <div class="btn_container">
+            <%= link_to("<div class='btn_link unflag'><span>#{t('flags.unflag_transport')}</span></div>".html_safe, delete_transport_flag_path(@transport, transport_flag), :confirm => "هل أنت متأكد من حذف التبليغ؟") %>
+          </div>
+        </div>
+        <% end %>
+        
+        <% if can? :new, Rate.new(:rateable => @transport, :user => current_user) %>
+        <div class="col3">
+          <div class="btn_container">
+            <a href="#" class="add_stars">
+            <div class='btn_link rate'>
+              <span><%= t('rates.rate_transport') %></span>
+            </div>
+            </a>
+          </div>
+        </div>
+        <% end %>
+        
+        <% if can? :repeat, @transport %>
+        <div class="col3">
+          <div class="btn_container">
+            <%= link_to("<div class='btn_link repeat'><span>#{t('transports.repeat_transport')}</span></div>".html_safe, repeat_transport_path(@transport), :method => :put, :confirm => "سيتم إضافة التوصيلة بنفس البيانات غدا . .  هل أنت متأكد؟") %>
+          </div>
+        </div>
+        <% end %>
+        
+        <% if can? :edit, @transport %>
+        <div class="col3">
+          <div class="btn_container">
+            <a href="<%= edit_transport_path(@transport) %>">
+            <div class="btn_link big_edit">
+              <span><%= t('transports.edit_transport') %></span>
+            </div>
+            </a>
+          </div>
+        </div>
+        <% end %>
+        
+        <% if can? :delete, @transport %>
+        <div class="col3">
+          <div class="btn_container">
+            <%= link_to("<div class='btn_link delete'><span>#{t('transports.delete_transport')}</span></div>".html_safe, delete_transport_path(@transport), :confirm => "هل أنت متأكد من الحذف ؟") %>
+          </div>
+        </div>
+        <% end %>
+        
+      </div>
+      <div class="brk"></div>
+      
+      <div class="controls_wide">
+        <% if can? :new, Rate.new(:rateable => @transport, :user => current_user) %>
+          <% transport_rate = @transport.rates.where(:user_id => current_user.id).first if current_user %>
+          <% if transport_rate %>
+            <% transport_rate_url = transport_rate_path(@transport, transport_rate.id) %>
+            <% rate_method = :put %>
+          <% else %>
+            <% transport_rate_url = transport_rates_path(@transport) %>
+            <% rate_method = :post %>
+          <% end %>
+          
+         
+        <% end %>
+      </div>
+      
+      <div class="brk"></div>
+      <div class="main_data_2">
+        <div class="col4 with_icon flag_weight"><span title="<%= t('transports.flags') %>" ><%= @transport.flags.size %></span></div>
+        <div class="col4 with_icon rates_weight"><span title="<%= t('transports.rates') %>" ><%= @transport.rates.size %></span></div>
+        <div class="col4 with_icon seats"><span title="<%= t('transports.seats') %>" ><%= @transport.available_persons %></span></div>
+      </div>
+      <div class="brk"></div>
+      
+      <div class="main_data_2">
+        <div class="col4 with_icon small_car"><span title="<%= t('transports.title') %>" ><%= @transport.title %></span></div>
+        <div class="col4 with_icon time"><span title="<%= t('transports.start_time') %>" ><%= l(@transport.start_time, :format => :short) %></span></div>
+        <div class="col4 with_icon payment"><span title="<%= t('transports.cost') %>" ><%= number_to_currency(@transport.cost, :precision => 2, :unit => t("currency"), :format => " %u %n ") %></span></div>
+      </div>
+      
+      <div class="brk"></div>
+      <div class="main_data_2">
+        <div class="col4 with_icon gender"><span title="<%= t('transports.gender') %>" ><%= t("gender.gender_#{@transport.gender}")%></span></div>
+        <!-- <div class="col4 with_icon access"><span title="<%= t('transports.accessories') %>" ><%= @transport.accessories %></span></div> -->
+        <% if @transport.return_back %>
+          <div class="col4 with_icon return">عودة من نفس الطريق</div>
+        <% end %>
+      </div>
+      <div class="brk"></div>
+      
+      <% if !@transport.start_place.blank? && !@transport.end_place.blank? %>
+      <div class="main_data_2">
+        <div class="col1 with_icon transport_from">
+          <span title="التوصيلة تبدأ من "><%= @transport.start_place %></span>
+        </div>
+        <div class="col1 with_icon transport_to">
+          <span title="التوصيلة تنتهي الى "><%= @transport.end_place %></span>
+        </div>
+      </div>
+      <div class="brk"></div>
+      <% end %>
+      
+    </div>
+    
+    
+    <% if current_user %>
+    
+    <% if (transport_request && transport_request.status == Status.accepted) || (current_user && current_user.id == @transport.user.id) %>
+      <a id="show_user_profile" href="#"><h4 class="with_icon_big user_medium">بيانات صاحب التوصيلة</h4></a>
+      <div id="user_profile_container" class="list_wrapper high" style="display: none;">
+        <div class="list_container">
+          <%= render :partial => "/users/user", :locals => {:user => @transport.user, :show_details => true} %>
+        </div>
+      </div>
+      
+      <% if @transport.car_profile %>
+      <a id="show_car_profile" href="#"><h4 class="with_icon_big car">بيانات السيارة</h4></a>
+      <div id="car_profile_container" class="list_wrapper high" style="display: none;">
+        <div class="list_container">
+          <%= render :partial => "/users/car_profile", :locals => {:car_profile => @transport.car_profile, :show_delete => false, :show_details => true} %>
+        </div>
+      </div>
+      <% end %>
+    <% else %>
+      <a id="show_user_profile" href="#"><h4 class="with_icon_big user_medium">بيانات صاحب التوصيلة</h4></a>
+      <div id="user_profile_container" class="list_wrapper high" style="display: none;">
+        <div class="list_container">
+          <%= render :partial => "/users/user", :locals => {:user => @transport.user, :show_details => false} %>
+        </div>
+      </div>
+      
+      <% if @transport.car_profile %>
+      <a id="show_car_profile" href="#"><h4 class="with_icon_big car">بيانات السيارة</h4></a>
+      <div id="car_profile_container" class="list_wrapper high" style="display: none;">
+        <div class="list_container">
+          <%= render :partial => "/users/car_profile", :locals => {:car_profile => @transport.car_profile, :show_delete => false, :show_details => false} %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+    
+    <% if @transport.flags.size > 0 %>
+    <a id="show_flags" href="#"><h4 class="with_icon_big flag_hover">البلاغات</h4></a>
+    <div id="flags_container" class="list_wrapper high" style="display: none;">
+      <div class="list_container">
+        <% @transport.flags.each do |flag| %>
+        <%= render :partial => "/shared/flag", :locals => {:flag => flag} %>
+        <% end %>
+        <% if @transport.flags.size == 0 %>
+          <div class="list_item">
+            <p>لا يوجد بلاغات</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+    
+    <% if current_user && current_user.id == @transport.user_id || @transports_requests.size > 0 %>
+      <a id="show_requests" href="#"><h4 class="with_icon_big ask_hover">طلبات الإنضمام</h4></a>
+      <%= render :partial => "transports_requests", :locals => {:transports_requests => @transports_requests, :show_requests => !params[:show_request].blank?, :show_transport_data => false }%>
+    <% end %>
+    
+    <% end %>
+    
+    
+    <a id="show_map" href="#"><h4 class="with_icon_big map_icon">مسار التوصيلة على الخريطة</h4></a>
+    <div id="map_container" class="map_side high" >
+      <div class="map">
+        <div id="map-canvas" style="width: 575px; height: 400px; "></div>
+      </div>
+      <div class="clear"></div>
+      <div class="map_btn">
+        <ul class="btn_list">
+          <%= render :partial=>'/shared/map_hints_3', :locals=>{} %>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="clearfix"></div>
+    <a id="show_facebook_comments" href="#"><h4 class="with_icon_big facebook_comments">التعليقات</h4></a>
+    <div id="facebook_comments_container" class="list_wrapper high" style="display: none;">
+      <div class="list_container">
+        <div class="fb-comments" data-href="<%= request.url %>" data-num-posts="20" data-width="580"></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  
+  <!-- <div class="submit clearfix">
+      <a href="#" class="submit_btn back right" onclick="window.back();">9H/)</a>
+    </div> -->
+</div>
+
+<%= content_for :javascripts do %>
+  
+  <%= javascript_include_tag "/javascripts/rails.js", "/javascripts/maps.js", "/javascripts/stars.js" %>
+  <script>
+    $(document).ready(function () {
+      markers_handelrs = false;
+      <% @transport.points_list.each do |point| %>
+        <% if !point[:start_lat].blank? && !point[:start_lng].blank? %>
+          addNewPointLngLat('<%= point[:start_lat] %>', '<%= point[:start_lng] %>');
+        <% end %>
+      <% end %>
+      
+      <% @transports_requests.each do |transports_request_elem| %>
+        <% if !transports_request_elem.requester_meet_lng.blank? && !transports_request_elem.requester_meet_lat.blank? %>
+          addNewUserPointLngLat('<%= transports_request_elem.requester_meet_lat %>', '<%= transports_request_elem.requester_meet_lng %>');
+        <% end %>
+      <% end if @transports_requests %>
+      
+      if(markers.length > 0){
+        centerMarkersInMap();
+      }
+      
+      $("#show_user_profile").click(function(){
+        $("#user_profile_container").toggle("slow");
+        return false;
+      })
+      
+      $("#show_car_profile").click(function(){
+        $("#car_profile_container").toggle("slow");
+        return false;
+      })
+      
+      $("#show_map").click(function(){
+        $("#map_container").toggle("slow");
+        return false;
+      })
+      
+      $("#show_flags").click(function(){
+        $("#flags_container").toggle("slow");
+        return false;
+      })
+      
+      $("#show_requests").click(function(){
+        $("#requests_container").toggle("slow");
+        return false;
+      })
+      
+      $("#show_paths").click(function(){
+        $("#show_paths_container").toggle("slow");
+        return false;
+      })
+      
+      $("#map_hint_click").click(function(){
+        $("#v_content_container").hide("fast");
+        $("#map_hint_container").toggle("slow");
+        return false;
+      });
+      
+      $("#show_facebook_comments").click(function(){
+        $("#facebook_comments_container").toggle("slow");
+        return false;
+      })
+      
+    });
+  </script>
+<% end %>
+
+<% content_for :sidebar do %>
+  <% if current_user %>
+  <%= render :partial => "/shared/sidebar/latest_transports", :locals=>{:transports => @latest_transports} %>
+  <% end %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/like_box" %>
+  <% if current_user && current_user == @transport.user %>
+  <%= render :partial => "/shared/sidebar/share", :locals => {:share_link => share_transport_path(@transport)} %>
+  <% end %>
+<% end %>

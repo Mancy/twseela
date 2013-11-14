@@ -1,0 +1,38 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("searches.searches") %></h2>
+  <div class="content_container">
+    <% if @transports_list && @transports_list.size > 0 %>
+    <div class="sub_page_content" style="margin-bottom: 35px;">
+      <h3 class="title">أجدد التوصيلات</h3>
+      <div class="sub_page_container">
+        
+        <div class="list_wrapper">
+          <div class="list_container">
+            <% @transports_list.each do |transport| %>
+              <%= render :partial => "/transports/transport", :locals => {:transport => transport, :adv_view => true}%>
+            <% end %>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <% end %>
+    
+    <div class="sub_page_content">
+      <h3 class="title">البحث عن توصيلة</h3>
+      <div class="sub_page_container">
+        <%= render :partial => '/searches/form', :locals=>{:search => @search, :saved_searches => @saved_searches} %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "/shared/sidebar/latest_transports", :locals=>{:transports => @latest_transports} %>
+  <%= render "/shared/sidebar/invite_friends" %>
+  <%= render "/shared/sidebar/like_box" %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "/javascripts/stars.js" %>
+<% end %>

@@ -1,0 +1,15 @@
+$("#user_header_container").html("<%= escape_javascript(render :partial => "/layouts/logged_in_header", :locals => {}) %>");
+$("#user_header_loading").hide();
+$("#user_header_container").show('fast');
+
+<% if current_user %>
+
+$("#feedback_new_email").html("<%= current_user.email %>");
+
+<% end %>
+
+$(".fancybox.internal").each(function(){
+  hrf = $(this).attr("href");
+  $(this).attr("href", "#" + hrf.split("#")[1])
+});
+$("a.fancybox,a.iframe,#etrigger").fancybox(fancybox_options);

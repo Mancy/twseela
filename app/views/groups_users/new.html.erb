@@ -1,0 +1,36 @@
+<div class="main_page_content">
+  <h2 class="page_title">شبكات الأصدقاء</h2>
+  <div class="content_container">
+    <p>قم بإضافة اصدقاء جدد للشبكات الخاصة بك . . فقط أطلب من أصدقائك البريد الالكتروني والأسم بالكامل كما هو مسجل على موقع توصيلة ، يمكنك الحصول على هذه البيانات من صفحة تعديل بياناتي</p>
+    <%= form_for(@groups_users) do |f| %>
+      <%= render :partial=>'/shared/form_errors', :locals=>{:obj => @groups_users} %>
+      <div id="hidden_fields"></div>
+      <div class="form_side">
+        <span class="form_item clearfix">
+          <%= label :groups_user, :group_id, "شبكة الأصدقاء", :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= select :groups_user, :group_id, options_from_collection_for_select(current_user.groups, :id, :name, @groups_users.group_id), {}, {:class => "large", :name => "group_id"} %>
+        </span>
+        <span class="form_item clearfix">
+          <%= label :groups_user, :full_name, "الأسم بالكامل", :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= text_field :groups_user, :full_name, :class=>"input_txt", :name=>"full_name", :id=>"groups_user_full_name" %>
+        </span>
+        <span class="form_item clearfix">
+          <%= label :groups_user, :email, "البريد الالكتروني", :class=>"label_txt" %>
+          <span class="required">*</span>
+          <%= text_field :groups_user, :email, :class=>"input_txt", :name=>"email", :id=>"groups_user_email" %>
+        </span>
+      </div>
+      
+      <div class="submit clearfix">
+        <%= f.submit :class=>"submit_btn send", :value=> "اضافة" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/like_box" %>
+  <%= render "/shared/sidebar/invite_friends" %>
+<% end %>

@@ -1,0 +1,29 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("user_messages.messages")%></h2>
+  <div class="content_container">
+    <div class="sub_page_content">
+      <div>
+        <table style="width: 100%; text-align: center;">
+          <tr>
+            <th style="width: 49%">الراسل</th>
+            <th style="width: 49%">المرسل له</th>
+          </tr>
+          <tr>
+            <td><%= link_to image_tag(@message.sender.accounts.default_one.first.my_image(:square), :title => @message.sender.name ), @message.sender %></td>
+            <td><%= link_to image_tag(@message.recipient.accounts.default_one.first.my_image(:square), :title => @message.recipient.name ), @message.recipient %></td>
+          </tr>
+        </table>
+      </div>
+      
+      <p><%= @message.subject %></p>
+      <p><%= l(@message.created_at, :format => :long) %></p>
+      <p><%= @message.body %></p>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/new_transport" %>
+  <%= render "/shared/sidebar/transport_search" %>
+<% end %>

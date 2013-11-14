@@ -1,0 +1,20 @@
+<div class="sub_page_content" style="margin-bottom: 35px;">
+  <h3 class="title"><%= title%></h3>
+  <div class="sub_page_container">
+    <% if transports.size == 0 %>
+      <div class="list_item" >
+        <p><%= no_transports_msg %></p>
+      </div>
+    <% else %>
+      <p><%= hint %></p>
+    <% end %>
+    
+    <div class="list_wrapper">
+      <div class="list_container">
+        <% transports.each do |transport| %>
+          <%= render :partial => "/transports/transport", :locals => {:transport => transport, :adv_view => true}%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

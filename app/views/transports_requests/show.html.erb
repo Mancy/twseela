@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Status:</b>
+  <%= @transports_request.status %>
+</p>
+
+<p>
+  <b>Requester message:</b>
+  <%= @transports_request.requester_message %>
+</p>
+
+<p>
+  <b>Transporter message:</b>
+  <%= @transports_request.transporter_message %>
+</p>
+
+<p>
+  <b>Meet place:</b>
+  <%= @transports_request.meet_place %>
+</p>
+
+<p>
+  <b>Meet lng:</b>
+  <%= @transports_request.meet_lng %>
+</p>
+
+<p>
+  <b>Meet lat:</b>
+  <%= @transports_request.meet_lat %>
+</p>
+
+
+<%= link_to 'Edit', edit_transports_request_path(@transports_request) %> |
+<%= link_to 'Back', transports_requests_path %>

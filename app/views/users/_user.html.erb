@@ -1,0 +1,45 @@
+<div class="list_item high">
+  <div class="main_logo">
+    <%= link_to image_tag(user.accounts.default_one.first.image), user %>
+  </div>
+  <div class="main_data small_wide">
+    <div class="col2 user"><label><%= link_to user.name, user %></label></div>
+    <% if show_details %>
+      <% unless user.mobile.blank? %><div class="col5 with_icon mobile"><span title="<%= t("users.mobile") %>" ><%= user.mobile %></span></div><% end %>
+      <div class="col2 with_icon email"><span title="<%= t("users.email") %>" ><%= user.email %></span></div>
+    <% end %>
+    
+    <div class="col6 with_icon flag_weight"><span title="<%= t("users.flags_weight") %>" ><%= user.flags_weight %></span></div>
+    <div class="col6 with_icon rates_weight"><span title="<%= t("users.rates_weight") %>" ><%= user.rates_weight %></span></div>
+    <div class="col6 with_icon block_weight"><span title="<%= t("users.blocked_weight") %>" ><%= user.blocked_weight %></span></div>
+  </div>
+  <% block_for_user = current_user.blocks.for_blocked(user.id).first %>
+  <div class="controls controls_hover">
+    <% if block_for_user.blank? %>
+      <span class="accept_hover hide_txt" title="هذا العضو غير محجوب"></span>
+    <% else %>
+      <span class="reject_hover hide_txt" title="تم حجب هذا العضو"></span>
+    <% end %>
+  </div>
+  <div class="controls">
+    <% if can? :new, Block.new(:user_id => current_user.id, :blocked_id => user.id )%>
+      <%= link_to "", new_user_block_path(current_user, :blocked_id => user.id), :class=>"reject hide_txt", :title=>"قم بحجب هذا العضو بحيث لا يظهر لك فى نتيجة البحث عن توصيلات"%>
+    <% end %>
+    <% if can?(:delete, block_for_user) %>
+      <%= link_to "", delete_user_block_path(current_user, block_for_user.id), :class=>"accept hide_txt", :title => "قم بإلغاء الحجب عن هذا العضو بحيث يظهر لك فى نتيجة البحث عن توصيلات"%>
+    <% end %>
+    <% if current_user && can?(:new, Message.new(:sender_id => current_user.id, :recipient_id => user.id)) %>
+      <%= link_to "", new_user_message_path(current_user.id) + "?recipient_id=#{user.id}" , :class=>"send_msg hide_txt fancybox", :title => t("user_messages.send_message") %>
+    <% end %>
+    
+    <br/>
+    <div style="float: left; margin-top: 4px;">
+      <% user.groups.each do |group| %>
+        <%= image_tag(group.small_image_url, :title => group.name, :class => "show_all")%>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="clear"></div>
+  
+</div>

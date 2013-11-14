@@ -1,0 +1,6 @@
+development:
+  merchant_id: 'temporary'
+  currency: 'egp'
+  encryption_keyword: 'temporary_test'
+  services_name: 'temporaryRecharge'
+  url: 'https://sandbox.cashu.com/cgi-bin/pcashu.cgi'

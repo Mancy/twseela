@@ -1,0 +1,89 @@
+<div class="list_item clearfix">
+  <div class="main_logo" >
+    <% if current_user %>
+      <%= link_to image_tag(transport.user.accounts.default_one.first.image), transport.user, :title => transport.user.name %>
+    <% else %>
+      <%= link_to image_tag("/images/icons/car.png"),  transport %>
+    <% end %>
+  </div>
+  <div class="main_data small">
+    <p class="small">
+      <% if adv_view == true %>
+        <%= link_to transport.title, transport %>
+      <% else %>
+        <%= transport.title %>
+      <% end %>
+    </p>
+  </div>
+  
+  <% if adv_view == true %>
+  <div class="all_controls_div"> 
+    <div class="controls">
+      <% if can? :delete, transport %>
+        <%= link_to "", delete_transport_path(transport), :title => t("transports.delete_transport"), :class=>"delete hide_txt", :confirm => "هل أنت متأكد من الحذف ؟" %>
+      <% end %>
+      
+      <% if can? :edit, transport %>
+        <%= link_to "", edit_transport_path(transport), :title => t("transports.edit_transport"), :class=>"big_edit hide_txt" %>
+      <% end %>
+      
+      <% if can? :repeat, transport %>
+        <%= link_to "", repeat_transport_path(transport), :title => t("transports.repeat_transport"), :class=>"repeat hide_txt", :method => :put, :confirm => "سيتم إضافة التوصيلة بنفس البيانات غدا . .  هل أنت متأكد؟" %>
+      <% end %>
+      
+      <% transport_request = transport.transports_requests.where(:user_id => current_user.id).first if current_user %>
+      <% if can? :new, TransportsRequest.new(:transport_id => transport.id) %>
+        <%= link_to "", new_transport_transports_request_path(transport), :class=>"ask hide_txt", :title => t("transports_requests.new_request") %>
+      <% elsif transport_request %>
+        <span class="ask_hover" title="<%= t('transports_requests.requested') %>" ></span>
+      <% end %>
+      
+      <% if can? :new, Flag.new(:flaggable_type => transport.class.name, :flaggable_id => transport.id) %>
+        <%= link_to "", new_transport_flag_path(transport), :title => t("flags.flag_transport"), :class=>"flag hide_txt fancybox" %>
+      <% end %>
+      
+      <% transport_flag = transport.flags.where(:user_id => current_user.id).first if current_user%>
+      <% if transport_flag && can?(:delete, transport_flag) %>
+        <%= link_to "", delete_transport_flag_path(transport, transport_flag), :title => t("flags.unflag_transport"), :class=>"unflag hide_txt", :confirm => "هل أنت متأكد من حذف التبليغ؟" %>
+      <% end %>
+      
+      <% if current_user && can?(:new, Rate.new(:rateable => transport, :user => current_user)) %>
+        <%= link_to "", "#" , :class=>"rate hide_txt add_stars", :title => t("rates.rate_transport") %>
+      <% end %>
+    </div>
+    
+    <% if current_user && can?(:new, Rate.new(:rateable => transport, :user => current_user)) %>
+      <% transport_rate = transport.rates.where(:user_id => current_user.id).first if current_user %>
+      <% if transport_rate %>
+        <% transport_rate_url = transport_rate_path(transport, transport_rate.id) %>
+        <% rate_method = :put %>
+      <% else %>
+        <% transport_rate_url = transport_rates_path(transport) %>
+        <% rate_method = :post %>
+      <% end %>
+      
+      <%= render :partial => "/shared/stars", :locals => {:clickalbe => true, :rate_url => transport_rate_url, :rates_count => transport_rate ? transport_rate.rate : 0, :rate_method => rate_method, :html_class => "for_index"}%>
+    <% end %>
+  </div>
+  <% end %>
+  
+  <% if !transport.start_place.blank? && !transport.end_place.blank? %>
+  <div class="main_data wide">
+    <div class="col2 transport_from">
+      <label title="التوصيلة تبدأ من "><%= transport.start_place %></label>
+    </div>
+    <div class="col3 transport_to">
+      <label title="التوصيلة تنتهي الى"><%= transport.end_place %></label>
+    </div>
+  </div>
+  <% end %>
+  
+  <div class="main_data wide">
+    <% if adv_view == true %>
+    <div class="col4 time"><label title="<%= t('transports.start_time') %>" ><%= l(transport.start_time, :format => :short) %></label></div>
+    <% end %>
+    <div class="col5 gender"><label title="<%= t('transports.gender') %>" ><%= t("gender.gender_#{transport.gender}")%></label></div>
+    <div class="col5 payment"><label title="<%= t('transports.cost') %>" ><%= transport.cost %> <%= t("currency")%></label></div>
+    <!-- <div class="col4 access"><label title="<%= t('transports.accessories') %>" ><%= transport.accessories %></label></div> -->
+  </div>
+</div>

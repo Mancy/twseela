@@ -1,0 +1,10 @@
+<% content_for :page_title do %>
+  عملية دفع ناجحة
+<% end %>
+
+<p><%= t("payment_mailer.payment_success.body_1", :locale => :ar) %></p>
+<h3>بيانات الدفع كالتالي : </h3>
+<p><strong>Payment ID</strong> : <%= @payment.id %></p>
+<p><strong>Payment Amount</strong> : <%= @payment.amount %></p>
+
+<div style="display: block;clear: both;"></div>

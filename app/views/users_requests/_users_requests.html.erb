@@ -1,0 +1,16 @@
+<% if users_requests.size == 0 %>
+<li><p><%= t("users_requests.no_users_requests") %></p><a></a></li>
+<% end %>
+<% users_requests.each do |users_request| %>
+  <li>
+    <a href="<%= users_request.url %>?show_request=true#show_requests">
+      <% user_image = users_request.requester.accounts.default_one.first.my_image(:square) if users_request.requester.accounts.default_one.first %>
+      <% if user_image %>
+        <%= image_tag(user_image, :title => users_request.requester.name ) %>
+      <% end %>
+      <span><%= t(users_request.details) %></span>
+      <span class="small" ><%= l(users_request.created_at, :format => :long) %></span>
+    </a>
+  </li>
+<% end %>
+<li><p style="text-align: center;" ><%= link_to t("users_requests.show_all") , user_users_requests_path(current_user) %></p></li>

@@ -1,0 +1,8 @@
+<% content_for :page_title do %>
+  انضم صديق
+<% end %>
+
+<p><%= t("all_mailer.hello", :locale => :ar) %></p>
+<p><%= t("user_mailer.new_roadmate.body") %></p>
+<p><%= t("user_mailer.new_roadmate.body_2") %></p>
+<p><%= link_to @transport_request.transport.title, transport_url(@transport_request.transport) + "?show_request=true#show_requests"  %></p>

@@ -1,0 +1,10 @@
+<div class="main_page_content">
+  <h2 class="page_title"><%= t("transports.edit_transport") %></h2>
+  <div class="content_container">
+    <%= render :partial => '/transports/form', :locals=>{:transport => @transport, :saved_transports => @saved_transports} %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render "/shared/sidebar/my_transports" %>
+<% end %>

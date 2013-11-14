@@ -1,0 +1,36 @@
+<h1>My Searches</h1>
+
+<table>
+  <tr>
+    <th>Start time</th>
+    <th>Allowed persons</th>
+    <th>Cost type</th>
+    <th>Cost</th>
+    <th>Air cond</th>
+    <th>Cassette</th>
+    <th>Smoking</th>
+    <th>Return back</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @searches.each do |transport| %>
+  <tr>
+    <td><%= transport.search_name %></td>
+    <td><%= transport.cost_type %></td>
+    <td><%= transport.air_cond %></td>
+    <td><%= transport.cassette %></td>
+    <td><%= transport.smoking %></td>
+    <td><%= transport.return_back %></td>
+    <td><%= link_to 'Show', transport %></td>
+    <td><%= link_to 'Edit', edit_search_path(transport) %></td>
+    <td><%= link_to 'Destroy', delete_search_path(transport) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Search', new_search_path %>

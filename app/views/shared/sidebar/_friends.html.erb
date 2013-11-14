@@ -1,0 +1,9 @@
+<% if current_user %>
+<div class="side_page_content">
+  <h2 class="side_page_title"><%= link_to t("sidebar.friends"), users_path %></h2>
+  <div class="content_container">
+    <p><%= t("sidebar.friends_hint")%> </p>
+    <span><%= link_to image_tag("/images/graphic/friends.png"), users_path %></span>
+  </div>
+</div>
+<% end %>

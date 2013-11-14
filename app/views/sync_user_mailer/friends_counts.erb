@@ -1,0 +1,21 @@
+<% content_for :page_title do %>
+  أصدقائي
+<% end %>
+
+<p><%= t("all_mailer.hello", :locale => :ar) %></p>
+<h3><%= t("user_mailer.friends_counts.body_5", :locale => :ar, :friends_count => @friends_count) %></h3>
+<p><%= t("user_mailer.friends_counts.body_0", :locale => :ar) %></p>
+<p><%= t("user_mailer.friends_counts.body_1", :locale => :ar) %></p>
+<p><%= t("user_mailer.friends_counts.body_2", :locale => :ar, :link => link_to("ادعو أصدقائك", page_url(:invite_friends))).html_safe %></p>
+<p><%= t("user_mailer.friends_counts.body_3", :locale => :ar, :link => link_to("دمج الحسابات", merge_accounts_user_url(@user))).html_safe %></p>
+<p><%= t("user_mailer.friends_counts.body_4", :locale => :ar, :link => link_to("تعديل بياناتي", edit_user_url(@user))).html_safe %></p>
+
+<% if @latest_friends.size > 0 %>
+<p><%= t("user_mailer.friends_counts.body_6", :locale => :ar) %></p>
+<ul class="side_users_list" style="list-style: none;margin: 0px;padding: 0px;height: 55px;">
+  <% @latest_friends.each do |user| %>
+  <li style="height: 50px;margin: 5px 2px;float: right;"><%= link_to image_tag(user.accounts.default_one.first.my_image(:square), :title => user.name, :style => "height: 48px;"), user_url(user), :target => "_blank" %></li>
+  <% end %>
+</ul>
+<% end %>
+<div style="display: block;clear: both;"></div>
