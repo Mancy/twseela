@@ -1,0 +1,46 @@
+Read the following by order : 
+http://virtuoso.rubyforge.org/rgeo/Spatial_Programming_With_RGeo_rdoc.html
+http://live.osgeo.org/en/quickstart/postgis_quickstart.html
+http://www.cols-code-snippets.co.uk/2010/11/install-postgrespostgis-on-ubuntu.html
+
+
+create database:
+sudo apt-get install postgresql postgresql-client postgresql-contrib
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get install postgresql-8.4-postgis
+
+
+sudo su postgres
+export DB_NAME=tawseela_geo_development
+export DB_PASSWORD=twseela
+createdb postgistemplate
+createlang plpgsql postgistemplate
+
+
+# in Ubuntu 10.04
+psql -d postgistemplate -f /usr/share/postgresql/8.4/contrib/postgis.sql
+psql -d postgistemplate -f /usr/share/postgresql/8.4/contrib/spatial_ref_sys.sql
+# in Ubuntu 10.10
+psql -d postgistemplate -f /usr/share/postgresql/8.4/contrib/postgis-1.5/postgis.sql
+psql -d postgistemplate -f /usr/share/postgresql/8.4/contrib/postgis-1.5/spatial_ref_sys.sql
+
+
+psql
+CREATE ROLE gisgroup NOSUPERUSER NOINHERIT CREATEDB NOCREATEROLE;
+
+CREATE ROLE gis LOGIN PASSWORD '${DB_PASSWORD}' NOINHERIT;
+GRANT gisgroup TO gis;
+\q
+
+
+psql -d postgistemplate
+
+ALTER TABLE geometry_columns OWNER TO gis;
+ALTER TABLE spatial_ref_sys OWNER TO gis;
+CREATE SCHEMA gis_schema AUTHORIZATION gis;
+\q
+
+
+createdb -T postgistemplate -O gis ${DB_NAME}
+
+exit # from user postgres
