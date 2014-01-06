@@ -7,6 +7,10 @@ Twseela is a Rails application for carpooling system, it gives you a lot of feat
 - match transports by matching routs on the map.
 - Ready to integrate with a payment method.
 
+# memcache server
+sudo apt-get install memcached
+
+
 # Redis
 Install: http://redis.io/download
 Run Server: DOWNLOAD_FOLDER/redis-2.6.9/src/redis-server
